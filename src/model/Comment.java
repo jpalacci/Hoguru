@@ -15,12 +15,12 @@ public class Comment {
 		this.comment=comment;
 		this.nombreUsuario=nombreUsuario;
 		this.date=date;
-		
+
 		//QUERY a DATA BASE
 	}
 	
-	public delete(String nombreUsuario, String nombreHotel) {
-		//QUERY TO DATA BASE
+	public boolean delete(String nombreUsuario, String nombreHotel) {
+		return true;//QUERY TO DATA BASE
 	}
 	
 }
