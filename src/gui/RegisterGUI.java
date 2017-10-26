@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 
 import javax.swing.JTextField;
@@ -15,9 +17,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 
-public class Registrarse {
+public class RegisterGUI {
 
 	private JFrame frame;
+	private JFrame loginFrame;
 	private JTextField mailTf;
 	private JTextField nameTf;
 	private JTextField lastNameTf;
@@ -48,26 +51,12 @@ public class Registrarse {
 	private JFormattedTextField numberFtf;
 	private JFormattedTextField postCodeFtf;
 	private JFormattedTextField telephoneFtf;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Registrarse window = new Registrarse();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public Registrarse() {
+	public RegisterGUI(JFrame loginFrame) {
+		this.loginFrame = loginFrame;
 		initialize();
 	}
 
@@ -79,7 +68,7 @@ public class Registrarse {
 		frame.setBounds(100, 100, 523, 522);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setVisible(true);
 		lblCompletaLosSiguientes = new JLabel("Completa los siguientes campos para registrarse");
 		lblCompletaLosSiguientes.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblCompletaLosSiguientes.setBounds(10, 11, 414, 29);
@@ -181,10 +170,28 @@ public class Registrarse {
 		acceptBtn = new JButton("Aceptar");
 		acceptBtn.setBounds(139, 439, 89, 23);
 		frame.getContentPane().add(acceptBtn);
+		acceptBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRegistrationValid()){
+					sendRegistration();
+					loginFrame.setVisible(true);
+					new ThankYouPopUpGUI();
+					frame.dispose();
+				}
+			}
+		});
 		
 		cancelBtn = new JButton("Cancelar");
 		cancelBtn.setBounds(335, 439, 89, 23);
 		frame.getContentPane().add(cancelBtn);
+		cancelBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loginFrame.setVisible(true);
+				frame.dispose();
+			}
+		});
 		
 		MaskFormatter phoneMask = null;
         try {
@@ -235,5 +242,14 @@ public class Registrarse {
 		passwordConfirmationField = new JPasswordField();
 		passwordConfirmationField.setBounds(175, 127, 285, 20);
 		frame.getContentPane().add(passwordConfirmationField);
+	}
+
+	protected void sendRegistration() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	protected boolean isRegistrationValid() {
+		return true;
 	}
 }

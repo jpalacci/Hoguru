@@ -7,8 +7,14 @@ import javax.swing.JPasswordField;
 import java.awt.Label;
 import java.awt.Button;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Color;
 
-public class Login {
+public class LoginGUI {
 
 	private JFrame frame;
 	private JTextField userTf;
@@ -18,6 +24,8 @@ public class Login {
 	private Label registerLbl;
 	private Label label_4;
 	private JButton acceptBtn;
+	private JLabel errorLbl;
+	private Timer deleteErrorMessage;
 
 	/**
 	 * Launch the application.
@@ -26,7 +34,7 @@ public class Login {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login window = new Login();
+					LoginGUI window = new LoginGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +46,7 @@ public class Login {
 	/**
 	 * Create the application.
 	 */
-	public Login() {
+	public LoginGUI() {
 		initialize();
 	}
 
@@ -47,7 +55,7 @@ public class Login {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 450, 316);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -70,15 +78,71 @@ public class Login {
 		
 		registerLbl = new Label("Registrate");
 		registerLbl.setAlignment(Label.CENTER);
-		registerLbl.setBounds(184, 229, 89, 22);
+		registerLbl.setBounds(184, 252, 89, 22);
 		frame.getContentPane().add(registerLbl);
+		registerLbl.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new RegisterGUI(frame);
+				frame.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+        });
 		
 		label_4 = new Label("Hoguru");
 		label_4.setBounds(174, 39, 62, 22);
 		frame.getContentPane().add(label_4);
 		
 		acceptBtn = new JButton("Aceptar");
-		acceptBtn.setBounds(184, 195, 89, 23);
+		acceptBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(isValid(userTf.getText() ,passwordField.getPassword().toString())){
+					SearchGUI searchGUI = new SearchGUI();
+					frame.dispose();
+				}
+			}
+		});
+		acceptBtn.setBounds(184, 223, 89, 23);
 		frame.getContentPane().add(acceptBtn);
+		
+		errorLbl = new JLabel("");
+		errorLbl.setForeground(Color.RED);
+		errorLbl.setBounds(137, 195, 184, 14);
+		frame.getContentPane().add(errorLbl);
+	}
+	
+	private boolean isValid(String userName, String password){
+		String trimUserName = userName.trim();
+		String trimPassword = password.trim();
+		if(trimUserName.equals("") || trimPassword.equals(""))
+		{
+			errorLbl.setText("El nombre y la contrasena no Pueden estar vacios");;
+			return false;
+		}
+		return true;
 	}
 }

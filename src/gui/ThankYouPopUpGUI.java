@@ -4,34 +4,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
-public class MuchasGracias {
+public class ThankYouPopUpGUI {
 
 	private JFrame frame;
 	private JLabel thanksLbl;
 	private JLabel explanationLbl;
 	private JButton acceptBtn;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MuchasGracias window = new MuchasGracias();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public MuchasGracias() {
+	
+	public ThankYouPopUpGUI() {
 		initialize();
 	}
 
@@ -41,8 +26,9 @@ public class MuchasGracias {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 226);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		thanksLbl = new JLabel("Muchas Gracias");
 		thanksLbl.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -56,6 +42,12 @@ public class MuchasGracias {
 		acceptBtn = new JButton("Aceptar");
 		acceptBtn.setBounds(175, 143, 89, 23);
 		frame.getContentPane().add(acceptBtn);
+		acceptBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}	
+		});
 	}
 
 }

@@ -11,7 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
-public class Busquedad extends JFrame {
+public class SearchGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField cityTf;
@@ -25,31 +25,16 @@ public class Busquedad extends JFrame {
 	private JButton advancedSearchBtn;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Busquedad frame = new Busquedad();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public Busquedad() {
+	public SearchGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 562, 446);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setVisible(true);
 		
 		messageLbl = new JLabel("Busca las mejores ofertas online:");
 		messageLbl.setBounds(10, 77, 169, 14);
