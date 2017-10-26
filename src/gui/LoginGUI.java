@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.JPasswordField;
 import java.awt.Label;
 import java.awt.Button;
@@ -120,10 +121,16 @@ public class LoginGUI {
 		acceptBtn = new JButton("Aceptar");
 		acceptBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(isValid(userTf.getText() ,passwordField.getPassword().toString())){
+				int userType = isValid(userTf.getText() ,new String(passwordField.getPassword()));
+				if(userType == 1){
 					SearchGUI searchGUI = new SearchGUI();
 					frame.dispose();
 				}
+				else if(userType == 2)
+				{
+					
+				}
+				
 			}
 		});
 		acceptBtn.setBounds(184, 223, 89, 23);
@@ -131,18 +138,45 @@ public class LoginGUI {
 		
 		errorLbl = new JLabel("");
 		errorLbl.setForeground(Color.RED);
-		errorLbl.setBounds(137, 195, 184, 14);
+		errorLbl.setBounds(64, 195, 321, 14);
 		frame.getContentPane().add(errorLbl);
+		
+        ActionListener al = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+            	errorLbl.setText("");
+            }
+        };
+
+        deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
 	}
 	
-	private boolean isValid(String userName, String password){
+	private int isValid(String userName, String password){
 		String trimUserName = userName.trim();
 		String trimPassword = password.trim();
-		if(trimUserName.equals("") || trimPassword.equals(""))
+		if(trimUserName.equals("") && trimPassword.equals(""))
 		{
-			errorLbl.setText("El nombre y la contrasena no Pueden estar vacios");;
-			return false;
+			errorLbl.setText("El nombre y la contrasena no pueden estar vacios");
+			deleteErrorMessage.start();
+			return 0;
 		}
-		return true;
+		else if(trimUserName.equals(""))
+		{
+			errorLbl.setText("El nombre no pueden estar vacio");
+			deleteErrorMessage.start();
+			return 0;
+		}
+		else if(trimPassword.equals(""))
+		{
+			errorLbl.setText("La contrasena no pueden estar vacio");
+			deleteErrorMessage.start();
+			return 0;
+		}
+		return checkWithDataBase(trimUserName, trimPassword);
+	}
+
+	private int checkWithDataBase(String userName, String password) {
+		return 1;
 	}
 }

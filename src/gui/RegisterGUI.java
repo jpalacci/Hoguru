@@ -13,9 +13,13 @@ import javax.swing.text.MaskFormatter;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 public class RegisterGUI {
 
@@ -51,6 +55,8 @@ public class RegisterGUI {
 	private JFormattedTextField numberFtf;
 	private JFormattedTextField postCodeFtf;
 	private JFormattedTextField telephoneFtf;
+	private JLabel errorLbl;
+	private Timer deleteErrorMessage;
 
 	/**
 	 * Create the application.
@@ -65,7 +71,7 @@ public class RegisterGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 523, 522);
+		frame.setBounds(100, 100, 523, 552);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
@@ -103,6 +109,8 @@ public class RegisterGUI {
 		frame.getContentPane().add(documentNumberLbl);
 		
 		mailTf = new JTextField();
+		mailTf.setBackground(Color.WHITE);
+		mailTf.setForeground(Color.BLACK);
 		mailTf.setBounds(175, 67, 285, 20);
 		frame.getContentPane().add(mailTf);
 		mailTf.setColumns(10);
@@ -164,11 +172,11 @@ public class RegisterGUI {
 		frame.getContentPane().add(telephoneLbl);
 		
 		acceptConditionChckbx = new JCheckBox("Acepto los terminos y condiciones");
-		acceptConditionChckbx.setBounds(198, 407, 194, 23);
+		acceptConditionChckbx.setBounds(195, 449, 194, 23);
 		frame.getContentPane().add(acceptConditionChckbx);
 		
 		acceptBtn = new JButton("Aceptar");
-		acceptBtn.setBounds(139, 439, 89, 23);
+		acceptBtn.setBounds(141, 479, 89, 23);
 		frame.getContentPane().add(acceptBtn);
 		acceptBtn.addActionListener(new ActionListener(){
 			@Override
@@ -183,7 +191,7 @@ public class RegisterGUI {
 		});
 		
 		cancelBtn = new JButton("Cancelar");
-		cancelBtn.setBounds(335, 439, 89, 23);
+		cancelBtn.setBounds(335, 479, 89, 23);
 		frame.getContentPane().add(cancelBtn);
 		cancelBtn.addActionListener(new ActionListener(){
 			@Override
@@ -242,6 +250,29 @@ public class RegisterGUI {
 		passwordConfirmationField = new JPasswordField();
 		passwordConfirmationField.setBounds(175, 127, 285, 20);
 		frame.getContentPane().add(passwordConfirmationField);
+		
+		errorLbl = new JLabel("");
+		errorLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		errorLbl.setForeground(Color.RED);
+		errorLbl.setBounds(141, 420, 283, 14);
+		frame.getContentPane().add(errorLbl);
+		
+		 ActionListener al = new ActionListener() {
+
+	            @Override
+	            public void actionPerformed(ActionEvent arg0){
+	            	errorLbl.setText("");
+	            	mailTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	passwordField.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	nameTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	lastNameTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	DocumentNumberFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	passwordConfirmationField.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	telephoneFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            }
+	        };
+
+	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
 	}
 
 	protected void sendRegistration() {
@@ -250,6 +281,61 @@ public class RegisterGUI {
 	}
 
 	protected boolean isRegistrationValid() {
-		return true;
+		String mail = mailTf.getText().trim();
+		String password1 = new String(passwordField.getPassword()).trim();
+		String password2 = new String(passwordConfirmationField.getPassword()).trim();
+		String name = nameTf.getText().trim();
+		String lastName = lastNameTf.getText().trim();
+		String documentNumber = DocumentNumberFtf.getText().trim();
+		String telephone = telephoneFtf.getText().trim();
+		
+		Boolean error = false;
+		
+		if(mail.equals(""))
+		{
+			mailTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(password1.equals(""))
+		{
+			passwordField.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(password2.equals(""))
+		{
+			passwordConfirmationField.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(name.equals(""))
+		{
+			nameTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(telephone.equals(""))
+		{
+			telephoneFtf.setBorder(BorderFactory.createLineBorder(Color.red));
+		}
+		if(lastName.equals(""))
+		{
+			lastNameTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+
+		if(documentNumber.equals(""))
+		{
+			DocumentNumberFtf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(!password1.equals(password2))
+		{
+			error = true;
+		}
+		if(error)
+		{
+			errorLbl.setText("Complete los campos en rojo");
+			deleteErrorMessage.start();
+		}
+		
+		return !error;
 	}
 }
