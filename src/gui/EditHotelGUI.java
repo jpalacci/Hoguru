@@ -1,13 +1,17 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.Timer;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,6 +41,8 @@ public class EditHotelGUI extends JFrame {
 	private JFrame administratorFrame;
 	private JButton btnAgregarHabitacion;
 	private JButton btnEditarHabitacion;
+	private Timer deleteErrorMessage;
+	private JLabel errorLbl;
 	
 	public EditHotelGUI(JFrame administratorFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,11 +135,11 @@ public class EditHotelGUI extends JFrame {
 		contentPane.add(lblDatosDelHotel);
 		
 		viewPhotoBtn = new JButton("Ver Fotos");
-		viewPhotoBtn.setBounds(10, 409, 121, 23);
+		viewPhotoBtn.setBounds(10, 398, 121, 23);
 		contentPane.add(viewPhotoBtn);
 		
 		addPhotoBtn = new JButton("Agregar Fotos");
-		addPhotoBtn.setBounds(184, 409, 121, 23);
+		addPhotoBtn.setBounds(182, 398, 121, 23);
 		contentPane.add(addPhotoBtn);
 		
 		btnAgregarHabitacion = new JButton("Agregar Habitacion");
@@ -152,11 +158,88 @@ public class EditHotelGUI extends JFrame {
 		contentPane.add(btnEditarHabitacion);
 		btnEditarHabitacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditHotelGUI.this.setVisible(false);
-				new EditRoomGUI(EditHotelGUI.this);
+				if(isHotelValid()){
+					sendHotel();
+					administratorFrame.setVisible(true);
+					new ThankYouPopUpGUI();
+					EditHotelGUI.this.dispose();
+				}
 			}
 		});
 		
+		errorLbl = new JLabel("");
+		errorLbl.setForeground(Color.RED);
+		errorLbl.setBounds(57, 433, 46, 14);
+		contentPane.add(errorLbl);
+		
+		 ActionListener al = new ActionListener() {
+
+	            @Override
+	            public void actionPerformed(ActionEvent arg0){
+	            	errorLbl.setText("");
+	            	cityTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	directionTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	starTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	recreationTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	
+	            	
+	            }
+	        };
+
+	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
+	}
+	
+	protected void sendHotel(){
+		String city = cityTf.getText().trim();
+		String hotelName = hotelNameTf.getText().trim();
+		String direction = directionTf.getText().trim();
+		String stars =  starTf.getText().trim();
+		String recreation = recreationTf.getText().trim();
+		
+	}
+	
+	
+	protected boolean isHotelValid(){
+		String city = cityTf.getText().trim();
+		String hotelName = hotelNameTf.getText().trim();
+		String direction = directionTf.getText().trim();
+		String stars =  starTf.getText().trim();
+		String recreation = recreationTf.getText().trim();
+		
+		boolean error = false;
+		
+		if(city.equals(""))
+		{
+			cityTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(hotelName.equals(""))
+		{
+			hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(direction.equals(""))
+		{
+			directionTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(stars.equals(""))
+		{
+			starTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(recreation.equals(""))
+		{
+			recreationTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(error)
+		{
+			errorLbl.setText("Complete los campos en rojo");
+			deleteErrorMessage.start();
+		}
+		return !error;
 	}
 
 }

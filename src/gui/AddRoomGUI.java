@@ -1,13 +1,16 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -35,6 +38,8 @@ public class AddRoomGUI extends JFrame {
 	private JComboBox bathrooTypeCb;
 	private JFormattedTextField formattedTextField;
 	private JFrame editRoomFrame;
+	private JLabel errorLbl;
+	private Timer deleteErrorMessage;
 	
 	public AddRoomGUI(JFrame editRoomFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,6 +91,12 @@ public class AddRoomGUI extends JFrame {
 		creatRoomBtn = new JButton("Agregar Habitacion");
 		creatRoomBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(isRoomValid()){
+					sendRoom();
+					editRoomFrame.setVisible(true);
+					new ThankYouPopUpGUI();
+					AddRoomGUI.this.dispose();
+				}
 			}
 		});
 		creatRoomBtn.setBounds(42, 458, 137, 23);
@@ -125,5 +136,76 @@ public class AddRoomGUI extends JFrame {
 		formattedTextField = new JFormattedTextField();
 		formattedTextField.setBounds(137, 330, 225, 20);
 		contentPane.add(formattedTextField);
+		
+		errorLbl = new JLabel("");
+		errorLbl.setForeground(Color.RED);
+		errorLbl.setBounds(42, 427, 46, 14);
+		contentPane.add(errorLbl);
+		
+		 ActionListener al = new ActionListener() {
+
+	            @Override
+	            public void actionPerformed(ActionEvent arg0){
+	            	errorLbl.setText("");
+	            	tipoOfRoomTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	characteristicTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	guestNumberCB.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	bathrooTypeCb.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	formattedTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+	            }
+	        };
+
+	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
+		
+	}
+	
+	protected void sendRoom(){
+		String tipeOfRoom =  tipoOfRoomTf.getText().trim();
+		String characteristics = characteristicTf.getText().trim();
+		String getNumber = (String) guestNumberCB.getSelectedItem();
+		String bathRoomType = (String) bathrooTypeCb.getSelectedItem();
+		String price = formattedTextField.getText();
+		
+	}
+	
+	protected boolean isRoomValid(){
+		String tipeOfRoom =  tipoOfRoomTf.getText().trim();
+		String characteristics = characteristicTf.getText().trim();
+		String getNumber = (String) guestNumberCB.getSelectedItem();
+		String bathRoomType = (String) bathrooTypeCb.getSelectedItem();
+		String price = formattedTextField.getText();
+		boolean error = false;
+		
+		if(tipeOfRoom.equals(""))
+		{
+			tipoOfRoomTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(characteristics.equals(""))
+		{
+			characteristicTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(getNumber.equals(""))
+		{
+			guestNumberCB.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(bathRoomType.equals(""))
+		{
+			bathrooTypeCb.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(price.equals(""))
+		{
+			formattedTextField.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(error)
+		{
+			errorLbl.setText("Complete los campos en rojo");
+		}
+		
+		return !error;
 	}
 }

@@ -1,13 +1,17 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.Timer;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,12 +33,14 @@ public class AddHotelGUI extends JFrame {
 	private JButton addServiceBtn;
 	private JLabel recreationLbl;
 	private JLabel lblParticularidades;
-	private JButton creatHotelBtn;
+	private JButton createHotelBtn;
 	private JButton cancelBtn;
 	private JLabel lblDatosDelHotel;
 	private JButton viewPhotoBtn;
 	private JButton addPhotoBtn;
 	private JFrame administratorFrame;
+	private Timer deleteErrorMessage;
+	private JLabel errorLbl;
 	
 	public AddHotelGUI(JFrame administratorFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,9 +113,20 @@ public class AddHotelGUI extends JFrame {
 		textField_6.setBounds(137, 359, 225, 20);
 		contentPane.add(textField_6);
 		
-		creatHotelBtn = new JButton("Crear Hotel");
-		creatHotelBtn.setBounds(57, 458, 89, 23);
-		contentPane.add(creatHotelBtn);
+		createHotelBtn = new JButton("Crear Hotel");
+		createHotelBtn.setBounds(57, 458, 89, 23);
+		contentPane.add(createHotelBtn);
+		createHotelBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isHotelValid()){
+					sendHotel();
+					administratorFrame.setVisible(true);
+					new ThankYouPopUpGUI();
+					AddHotelGUI.this.dispose();
+				}
+			}
+		});
 		
 		cancelBtn = new JButton("Cancelar");
 		cancelBtn.setBounds(251, 458, 89, 23);
@@ -127,12 +144,44 @@ public class AddHotelGUI extends JFrame {
 		contentPane.add(lblDatosDelHotel);
 		
 		viewPhotoBtn = new JButton("Ver Fotos");
-		viewPhotoBtn.setBounds(10, 409, 121, 23);
+		viewPhotoBtn.setBounds(10, 397, 121, 23);
 		contentPane.add(viewPhotoBtn);
 		
 		addPhotoBtn = new JButton("Agregar Fotos");
-		addPhotoBtn.setBounds(184, 409, 121, 23);
+		addPhotoBtn.setBounds(184, 397, 121, 23);
 		contentPane.add(addPhotoBtn);
+		
+		errorLbl = new JLabel("");
+		errorLbl.setForeground(Color.RED);
+		errorLbl.setBounds(57, 433, 46, 14);
+		contentPane.add(errorLbl);
+		
+		 ActionListener al = new ActionListener() {
+
+	            @Override
+	            public void actionPerformed(ActionEvent arg0){
+	            	errorLbl.setText("");
+	            	cityTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	directionTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	starTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	recreationTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	
+	            	
+	            }
+	        };
+
+	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
+		
+	}
+	
+	protected void sendHotel(){
+		String city = cityTf.getText().trim();
+		String hotelName = hotelNameTf.getText().trim();
+		String direction = directionTf.getText().trim();
+		String stars =  starTf.getText().trim();
+		String recreation = recreationTf.getText().trim();
+		
 	}
 	
 	protected boolean isHotelValid(){
@@ -142,30 +191,38 @@ public class AddHotelGUI extends JFrame {
 		String stars =  starTf.getText().trim();
 		String recreation = recreationTf.getText().trim();
 		
+		boolean error = false;
+		
 		if(city.equals(""))
 		{
-			
+			cityTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
 		}
 		if(hotelName.equals(""))
 		{
-			
+			hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
 		}
 		if(direction.equals(""))
 		{
-			
+			directionTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
 		}
 		if(stars.equals(""))
 		{
-			
+			starTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
 		}
 		if(recreation.equals(""))
 		{
-			
+			recreationTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
 		}
-		boolean error = false;
-		
-		
+		if(error)
+		{
+			errorLbl.setText("Complete los campos en rojo");
+			deleteErrorMessage.start();
+		}
 		return !error;
 	}
-
 }
