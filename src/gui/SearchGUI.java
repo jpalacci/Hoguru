@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class SearchGUI extends JFrame {
 
@@ -23,6 +26,7 @@ public class SearchGUI extends JFrame {
 	private JLabel checkOutLbl;
 	private JButton searchBtn;
 	private JButton advancedSearchBtn;
+	private JLabel editUserLbl;
 
 	/**
 	 * Create the frame.
@@ -37,7 +41,7 @@ public class SearchGUI extends JFrame {
 		this.setVisible(true);
 		
 		messageLbl = new JLabel("Busca las mejores ofertas online:");
-		messageLbl.setBounds(10, 77, 169, 14);
+		messageLbl.setBounds(10, 77, 276, 14);
 		contentPane.add(messageLbl);
 		
 		cityLbl = new JLabel("Ciudad:");
@@ -76,6 +80,43 @@ public class SearchGUI extends JFrame {
 		advancedSearchBtn = new JButton("Busquedad Avanzada");
 		advancedSearchBtn.setBounds(239, 373, 156, 23);
 		contentPane.add(advancedSearchBtn);
+		
+		editUserLbl = new JLabel("Edit User");
+		editUserLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		editUserLbl.setBounds(448, 13, 74, 29);
+		contentPane.add(editUserLbl);
+		editUserLbl.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new EditUserGUI(SearchGUI.this);
+				SearchGUI.this.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+        });
 	}
 
 }

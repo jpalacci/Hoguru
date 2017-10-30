@@ -14,7 +14,7 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CrearHabitacion extends JFrame {
+public class AddRoomGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tipoOfRoomTf;
@@ -34,34 +34,17 @@ public class CrearHabitacion extends JFrame {
 	private JComboBox guestNumberCB;
 	private JComboBox bathrooTypeCb;
 	private JFormattedTextField formattedTextField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearHabitacion frame = new CrearHabitacion();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public CrearHabitacion() {
+	private JFrame editRoomFrame;
+	
+	public AddRoomGUI(JFrame editRoomFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 531);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setVisible(true);
+		this.editRoomFrame = editRoomFrame;
 		tipeOfRoomLbl = new JLabel("Tipo de Habitacion");
 		tipeOfRoomLbl.setBounds(10, 94, 98, 14);
 		contentPane.add(tipeOfRoomLbl);
@@ -111,6 +94,12 @@ public class CrearHabitacion extends JFrame {
 		cancelBtn = new JButton("Cancelar");
 		cancelBtn.setBounds(251, 458, 121, 23);
 		contentPane.add(cancelBtn);
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				editRoomFrame.setVisible(true);
+				AddRoomGUI.this.dispose();
+			}
+		});
 		
 		titleLbl = new JLabel("Datos de la Habitacion");
 		titleLbl.setFont(new Font("Tahoma", Font.BOLD, 19));

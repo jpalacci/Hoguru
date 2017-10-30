@@ -1,9 +1,13 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,10 +18,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-public class ModificarUsuario extends JFrame {
+public class EditUserGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField mailTf;
@@ -49,29 +54,15 @@ public class ModificarUsuario extends JFrame {
 	private JFormattedTextField numberFtf;
 	private JFormattedTextField postCodeFtf;
 	private JFormattedTextField telephoneFtf;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ModificarUsuario frame = new ModificarUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public ModificarUsuario() {
-		setBounds(100, 100, 523, 522);
+	private JFrame searchFrame;
+	private JLabel errorLbl;
+	private Timer deleteErrorMessage;
+	public EditUserGUI(JFrame searchFrame) {
+		setBounds(100, 100, 523, 546);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		setVisible(true);
+		this.searchFrame = searchFrame;
 		
 		lblCompletaLosSiguientes = new JLabel("Completa los siguientes campos para registrarse");
 		lblCompletaLosSiguientes.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -163,16 +154,30 @@ public class ModificarUsuario extends JFrame {
 		getContentPane().add(telephoneLbl);
 		
 		acceptConditionChckbx = new JCheckBox("Acepto los terminos y condiciones");
-		acceptConditionChckbx.setBounds(198, 407, 194, 23);
+		acceptConditionChckbx.setBounds(139, 443, 285, 23);
 		getContentPane().add(acceptConditionChckbx);
 		
 		acceptBtn = new JButton("Aceptar");
-		acceptBtn.setBounds(139, 439, 89, 23);
+		acceptBtn.setBounds(139, 473, 89, 23);
 		getContentPane().add(acceptBtn);
+		acceptBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(isRegistrationValid())
+				{
+					sendRegistration();
+				}
+			}
+		});
 		
 		cancelBtn = new JButton("Cancelar");
-		cancelBtn.setBounds(335, 439, 89, 23);
+		cancelBtn.setBounds(335, 473, 89, 23);
 		getContentPane().add(cancelBtn);
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchFrame.setVisible(true);
+				EditUserGUI.this.dispose();
+			}
+		});
 		
 		MaskFormatter phoneMask = null;
         try {
@@ -224,6 +229,162 @@ public class ModificarUsuario extends JFrame {
 		passwordConfirmationField = new JPasswordField();
 		passwordConfirmationField.setBounds(175, 127, 285, 20);
 		getContentPane().add(passwordConfirmationField);
+		
+		errorLbl = new JLabel("");
+		errorLbl.setForeground(Color.RED);
+		errorLbl.setBounds(139, 418, 285, 14);
+		getContentPane().add(errorLbl);
+		
+		 ActionListener al = new ActionListener() {
+
+	            @Override
+	            public void actionPerformed(ActionEvent arg0){
+	            	errorLbl.setText("");
+	            	mailTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	passwordField.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	nameTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	lastNameTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	DocumentNumberFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	passwordConfirmationField.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	telephoneFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	streetTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	postCodeFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	numberFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	placeTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	countryCb.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	provinceCb.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	acceptConditionChckbx.setOpaque(false);
+	            }
+	        };
+
+	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
+	}
+
+	protected void sendRegistration() {
+		String mail = mailTf.getText().trim();
+		String password1 = new String(passwordField.getPassword()).trim();
+		String password2 = new String(passwordConfirmationField.getPassword()).trim();
+		String name = nameTf.getText().trim();
+		String lastName = lastNameTf.getText().trim();
+		String documentNumber = DocumentNumberFtf.getText().trim();
+		String telephone = telephoneFtf.getText().trim();
+		String street = streetTf.getText().trim();
+		String postalCode = postCodeFtf.getText().trim();
+		String streetNumber = numberFtf.getText().trim();
+		String place = placeTf.getText().trim();
+		String province = (String) provinceCb.getSelectedItem();
+		String country = (String) countryCb.getSelectedItem();
+		
+	}
+	
+	protected boolean isRegistrationValid() {
+		String mail = mailTf.getText().trim();
+		String password1 = new String(passwordField.getPassword()).trim();
+		String password2 = new String(passwordConfirmationField.getPassword()).trim();
+		String name = nameTf.getText().trim();
+		String lastName = lastNameTf.getText().trim();
+		String documentNumber = DocumentNumberFtf.getText().trim();
+		String telephone = telephoneFtf.getText().trim();
+		String street = streetTf.getText().trim();
+		String postalCode = postCodeFtf.getText().trim();
+		String streetNumber = numberFtf.getText().trim();
+		String place = placeTf.getText().trim();
+		String province = (String) provinceCb.getSelectedItem();
+		String country = (String) countryCb.getSelectedItem();
+		
+Boolean error = false;
+		
+		if(mail.equals(""))
+		{
+			mailTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(country.equals("Pais"))
+		{
+			countryCb.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(province.equals("Provincia"))
+		{
+			provinceCb.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(password1.equals(""))
+		{
+			passwordField.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(password2.equals(""))
+		{
+			passwordConfirmationField.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(name.equals(""))
+		{
+			nameTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(telephone.equals("-"))
+		{
+			telephoneFtf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(lastName.equals(""))
+		{
+			lastNameTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+
+		if(documentNumber.equals(""))
+		{
+			DocumentNumberFtf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(!acceptConditionChckbx.isSelected())
+		{
+			acceptConditionChckbx.setBackground(Color.red);
+			acceptConditionChckbx.setOpaque(true);
+			error=true;
+		}
+		if(street.equals(""))
+		{
+			streetTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;	
+		}
+		if(streetNumber.equals(""))
+		{
+			postCodeFtf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(postalCode.equals(""))
+		{
+			numberFtf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(place.equals(""))
+		{
+			placeTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(!password1.equals(password2) && error)
+		{	
+			errorLbl.setText("Las cotrasenas no son iguales y complete los campos en rojo");
+			deleteErrorMessage.start();
+			error = true;
+		}
+		else if(!password1.equals(password2))
+		{
+			errorLbl.setText("Las cotrasenas no son iguales");
+			deleteErrorMessage.start();
+			error = true;
+		}
+		else if(error)
+		{
+			errorLbl.setText("Complete los campos en rojo");
+			deleteErrorMessage.start();
+		}
+		
+		return !error;
 	}
 
 }

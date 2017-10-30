@@ -9,8 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ModificarHotel extends JFrame {
+public class EditHotelGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField cityTf;
@@ -32,34 +34,19 @@ public class ModificarHotel extends JFrame {
 	private JLabel lblDatosDelHotel;
 	private JButton viewPhotoBtn;
 	private JButton addPhotoBtn;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearHotel frame = new CrearHotel();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public ModificarHotel() {
+	private JFrame administratorFrame;
+	private JButton btnAgregarHabitacion;
+	private JButton btnEditarHabitacion;
+	
+	public EditHotelGUI(JFrame administratorFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 531);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setVisible(true);
+		this.administratorFrame = administratorFrame;
 		cityLbl = new JLabel("Ciudad:");
 		cityLbl.setBounds(10, 94, 46, 14);
 		contentPane.add(cityLbl);
@@ -81,7 +68,7 @@ public class ModificarHotel extends JFrame {
 		contentPane.add(viewServicesBtn);
 		
 		addServiceBtn = new JButton("Agregar Servicio");
-		addServiceBtn.setBounds(184, 262, 121, 23);
+		addServiceBtn.setBounds(215, 262, 125, 23);
 		contentPane.add(addServiceBtn);
 		
 		recreationLbl = new JLabel("Recreacion");
@@ -129,6 +116,12 @@ public class ModificarHotel extends JFrame {
 		cancelBtn = new JButton("Cancelar");
 		cancelBtn.setBounds(229, 458, 111, 23);
 		contentPane.add(cancelBtn);
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				administratorFrame.setVisible(true);
+				EditHotelGUI.this.dispose();
+			}
+		});
 		
 		lblDatosDelHotel = new JLabel("Datos del Hotel");
 		lblDatosDelHotel.setFont(new Font("Tahoma", Font.BOLD, 19));
@@ -142,6 +135,28 @@ public class ModificarHotel extends JFrame {
 		addPhotoBtn = new JButton("Agregar Fotos");
 		addPhotoBtn.setBounds(184, 409, 121, 23);
 		contentPane.add(addPhotoBtn);
+		
+		btnAgregarHabitacion = new JButton("Agregar Habitacion");
+		btnAgregarHabitacion.setBounds(215, 289, 125, 23);
+		contentPane.add(btnAgregarHabitacion);
+		btnAgregarHabitacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditHotelGUI.this.setVisible(false);
+				new AddRoomGUI(EditHotelGUI.this);
+			}
+		});
+
+		
+		btnEditarHabitacion = new JButton("Editar Habitacion");
+		btnEditarHabitacion.setBounds(10, 292, 125, 23);
+		contentPane.add(btnEditarHabitacion);
+		btnEditarHabitacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditHotelGUI.this.setVisible(false);
+				new EditRoomGUI(EditHotelGUI.this);
+			}
+		});
+		
 	}
 
 }

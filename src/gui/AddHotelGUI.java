@@ -9,8 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class CrearHotel extends JFrame {
+public class AddHotelGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField cityTf;
@@ -32,34 +34,17 @@ public class CrearHotel extends JFrame {
 	private JLabel lblDatosDelHotel;
 	private JButton viewPhotoBtn;
 	private JButton addPhotoBtn;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearHotel frame = new CrearHotel();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public CrearHotel() {
+	private JFrame administratorFrame;
+	
+	public AddHotelGUI(JFrame administratorFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 531);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setVisible(true);
+		this.administratorFrame = administratorFrame;
 		cityLbl = new JLabel("Ciudad:");
 		cityLbl.setBounds(10, 94, 46, 14);
 		contentPane.add(cityLbl);
@@ -129,6 +114,12 @@ public class CrearHotel extends JFrame {
 		cancelBtn = new JButton("Cancelar");
 		cancelBtn.setBounds(251, 458, 89, 23);
 		contentPane.add(cancelBtn);
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				administratorFrame.setVisible(true);
+				AddHotelGUI.this.dispose();
+			}
+		});
 		
 		lblDatosDelHotel = new JLabel("Datos del Hotel");
 		lblDatosDelHotel.setFont(new Font("Tahoma", Font.BOLD, 19));
@@ -142,6 +133,39 @@ public class CrearHotel extends JFrame {
 		addPhotoBtn = new JButton("Agregar Fotos");
 		addPhotoBtn.setBounds(184, 409, 121, 23);
 		contentPane.add(addPhotoBtn);
+	}
+	
+	protected boolean isHotelValid(){
+		String city = cityTf.getText().trim();
+		String hotelName = hotelNameTf.getText().trim();
+		String direction = directionTf.getText().trim();
+		String stars =  starTf.getText().trim();
+		String recreation = recreationTf.getText().trim();
+		
+		if(city.equals(""))
+		{
+			
+		}
+		if(hotelName.equals(""))
+		{
+			
+		}
+		if(direction.equals(""))
+		{
+			
+		}
+		if(stars.equals(""))
+		{
+			
+		}
+		if(recreation.equals(""))
+		{
+			
+		}
+		boolean error = false;
+		
+		
+		return !error;
 	}
 
 }

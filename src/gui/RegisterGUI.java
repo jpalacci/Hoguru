@@ -172,7 +172,7 @@ public class RegisterGUI {
 		frame.getContentPane().add(telephoneLbl);
 		
 		acceptConditionChckbx = new JCheckBox("Acepto los terminos y condiciones");
-		acceptConditionChckbx.setBounds(195, 449, 194, 23);
+		acceptConditionChckbx.setBounds(141, 449, 283, 23);
 		frame.getContentPane().add(acceptConditionChckbx);
 		
 		acceptBtn = new JButton("Aceptar");
@@ -269,6 +269,13 @@ public class RegisterGUI {
 	            	DocumentNumberFtf.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	passwordConfirmationField.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	telephoneFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	streetTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	postCodeFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	numberFtf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	placeTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	countryCb.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	provinceCb.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	acceptConditionChckbx.setOpaque(false);
 	            }
 	        };
 
@@ -276,7 +283,20 @@ public class RegisterGUI {
 	}
 
 	protected void sendRegistration() {
-		// TODO Auto-generated method stub
+		String mail = mailTf.getText().trim();
+		String password1 = new String(passwordField.getPassword()).trim();
+		String password2 = new String(passwordConfirmationField.getPassword()).trim();
+		String name = nameTf.getText().trim();
+		String lastName = lastNameTf.getText().trim();
+		String documentNumber = DocumentNumberFtf.getText().trim();
+		String telephone = telephoneFtf.getText().trim();
+		String street = streetTf.getText().trim();
+		String postalCode = postCodeFtf.getText().trim();
+		String streetNumber = numberFtf.getText().trim();
+		String place = placeTf.getText().trim();
+		String province = (String) provinceCb.getSelectedItem();
+		String country = (String) countryCb.getSelectedItem();
+		String documentType = (String) documentTypeCb.getSelectedItem();
 		
 	}
 
@@ -288,12 +308,28 @@ public class RegisterGUI {
 		String lastName = lastNameTf.getText().trim();
 		String documentNumber = DocumentNumberFtf.getText().trim();
 		String telephone = telephoneFtf.getText().trim();
+		String street = streetTf.getText().trim();
+		String postalCode = postCodeFtf.getText().trim();
+		String streetNumber = numberFtf.getText().trim();
+		String place = placeTf.getText().trim();
+		String province = (String) provinceCb.getSelectedItem();
+		String country = (String) countryCb.getSelectedItem();
 		
 		Boolean error = false;
 		
 		if(mail.equals(""))
 		{
 			mailTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(country.equals("Pais"))
+		{
+			countryCb.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(province.equals("Provincia"))
+		{
+			provinceCb.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
 		if(password1.equals(""))
@@ -311,9 +347,10 @@ public class RegisterGUI {
 			nameTf.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
-		if(telephone.equals(""))
+		if(telephone.equals("-"))
 		{
 			telephoneFtf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
 		}
 		if(lastName.equals(""))
 		{
@@ -326,11 +363,45 @@ public class RegisterGUI {
 			DocumentNumberFtf.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
-		if(!password1.equals(password2))
+		if(!acceptConditionChckbx.isSelected())
 		{
+			acceptConditionChckbx.setBackground(Color.red);
+			acceptConditionChckbx.setOpaque(true);
+			error=true;
+		}
+		if(street.equals(""))
+		{
+			streetTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;	
+		}
+		if(streetNumber.equals(""))
+		{
+			postCodeFtf.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
-		if(error)
+		if(postalCode.equals(""))
+		{
+			numberFtf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(place.equals(""))
+		{
+			placeTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(!password1.equals(password2) && error)
+		{	
+			errorLbl.setText("Las cotrasenas no son iguales y complete los campos en rojo");
+			deleteErrorMessage.start();
+			error = true;
+		}
+		else if(!password1.equals(password2))
+		{
+			errorLbl.setText("Las cotrasenas no son iguales");
+			deleteErrorMessage.start();
+			error = true;
+		}
+		else if(error)
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();

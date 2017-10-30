@@ -128,7 +128,8 @@ public class LoginGUI {
 				}
 				else if(userType == 2)
 				{
-					
+					new AdministratorGUI();
+					frame.dispose();
 				}
 				
 			}
@@ -177,6 +178,13 @@ public class LoginGUI {
 	}
 
 	private int checkWithDataBase(String userName, String password) {
-		return 1;
+		if(userName.equals("Admin"))
+		{
+			return 2;
+		}
+		else
+		{
+		 return 1;
+		}
 	}
 }
