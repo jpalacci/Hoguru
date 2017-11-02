@@ -28,6 +28,8 @@ public class SearchGUI extends JFrame {
 	private JButton advancedSearchBtn;
 	private JLabel editUserLbl;
 
+
+
 	/**
 	 * Create the frame.
 	 */
@@ -77,7 +79,7 @@ public class SearchGUI extends JFrame {
 		searchBtn.setBounds(10, 373, 156, 23);
 		contentPane.add(searchBtn);
 		
-		advancedSearchBtn = new JButton("Busquedad Avanzada");
+		advancedSearchBtn = new JButton("Busqueda Avanzada");
 		advancedSearchBtn.setBounds(239, 373, 156, 23);
 		contentPane.add(advancedSearchBtn);
 		
@@ -119,4 +121,92 @@ public class SearchGUI extends JFrame {
         });
 	}
 
+	@Override
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public void setContentPane(JPanel contentPane) {
+		this.contentPane = contentPane;
+	}
+
+	public JTextField getCityTf() {
+		return cityTf;
+	}
+
+	public void setCityTf(JTextField cityTf) {
+		this.cityTf = cityTf;
+	}
+
+	public JLabel getMessageLbl() {
+		return messageLbl;
+	}
+
+	public void setMessageLbl(JLabel messageLbl) {
+		this.messageLbl = messageLbl;
+	}
+
+	public JLabel getCityLbl() {
+		return cityLbl;
+	}
+
+	public void setCityLbl(JLabel cityLbl) {
+		this.cityLbl = cityLbl;
+	}
+
+	public JComboBox getRoomsCb() {
+		return roomsCb;
+	}
+
+	public void setRoomsCb(JComboBox roomsCb) {
+		this.roomsCb = roomsCb;
+	}
+
+	public JComboBox getPeopleCb() {
+		return peopleCb;
+	}
+
+	public void setPeopleCb(JComboBox peopleCb) {
+		this.peopleCb = peopleCb;
+	}
+
+	public JLabel getChekInLbl() {
+		return chekInLbl;
+	}
+
+	public void setChekInLbl(JLabel chekInLbl) {
+		this.chekInLbl = chekInLbl;
+	}
+
+	public JLabel getCheckOutLbl() {
+		return checkOutLbl;
+	}
+
+	public void setCheckOutLbl(JLabel checkOutLbl) {
+		this.checkOutLbl = checkOutLbl;
+	}
+
+	public JButton getSearchBtn() {
+		return searchBtn;
+	}
+
+	public void setSearchBtn(JButton searchBtn) {
+		this.searchBtn = searchBtn;
+	}
+
+	public JButton getAdvancedSearchBtn() {
+		return advancedSearchBtn;
+	}
+
+	public void setAdvancedSearchBtn(JButton advancedSearchBtn) {
+		this.advancedSearchBtn = advancedSearchBtn;
+	}
+
+	public JLabel getEditUserLbl() {
+		return editUserLbl;
+	}
+
+	public void setEditUserLbl(JLabel editUserLbl) {
+		this.editUserLbl = editUserLbl;
+	}
 }
