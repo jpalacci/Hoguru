@@ -6,25 +6,23 @@ package model;
 import java.util.Calendar;
 import java.util.Map;
 
-public   class DataBaseInterface {
+public   class DataBaseFacade {
 
     StoragePersistence r ;
 
-    DataBaseInterface dbInterface = new DataBaseInterface();
+    DataBaseFacade dbInterface = new DataBaseFacade();
 
-    public DataBaseInterface getInstance(){
-        return dbInterface;
+    private DataBaseFacade() {
+        this.r = new StoragePersistence();
     }
 
-
-    private DataBaseInterface() {
-        this.r = new StoragePersistence();
+    public DataBaseFacade getInstance(){
+        return dbInterface;
     }
 
     //Add new user to DB
 
     public boolean addUser( User  u ){
-
         return true;
     }
 
@@ -41,7 +39,13 @@ public   class DataBaseInterface {
     }
 
 
+
     //ONLY HOTEL_ADMIN SHOULD ACCESS THE FOLLOWING METHODS
+
+    public boolean addHotelAdministrator(HotelAdministrator admin , String hotelName){
+
+        return true;
+    }
 
     public boolean addHotel(Hotel h){
         return true;
@@ -52,7 +56,6 @@ public   class DataBaseInterface {
     }
 
     public boolean addRoomToHotel(Room r , String hotelName){
-
         return true;
     }
 
