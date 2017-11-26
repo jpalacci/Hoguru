@@ -34,7 +34,7 @@ public   class DataBaseFacade {
         return new Reservation(0 , new User("a" , "a" , "b" , "1","aa","a")  , 1 , Calendar.getInstance() ,Calendar.getInstance() );
     }
 
-    public boolean addReservation(Reservation r  , Map<Room , String> rooms , String userName){
+    public boolean addReservation(Reservation r  , String userName){
         return true;
     }
 
