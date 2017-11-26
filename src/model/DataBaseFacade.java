@@ -10,13 +10,13 @@ public   class DataBaseFacade {
 
     StoragePersistence r ;
 
-    DataBaseFacade dbInterface = new DataBaseFacade();
+    static DataBaseFacade dbInterface = new DataBaseFacade();
 
     private DataBaseFacade() {
         this.r = new StoragePersistence();
     }
 
-    public DataBaseFacade getInstance(){
+    public static DataBaseFacade getInstance(){
         return dbInterface;
     }
 
@@ -27,11 +27,11 @@ public   class DataBaseFacade {
     }
 
     public User getUser(String userName){
-        return new User();
+        return new User("a" , "a" , "b" , "1","aa","a");
     }
 
     public Reservation getReservation(long reservationNumber){
-        return new Reservation(0 , new User()  , 1 , Calendar.getInstance() ,Calendar.getInstance() );
+        return new Reservation(0 , new User("a" , "a" , "b" , "1","aa","a")  , 1 , Calendar.getInstance() ,Calendar.getInstance() );
     }
 
     public boolean addReservation(Reservation r  , Map<Room , String> rooms , String userName){
