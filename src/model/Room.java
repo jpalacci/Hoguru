@@ -12,14 +12,16 @@ public class Room {
 		//QUERY TO DATA BASE
 	}
 	
-	public deleteRoom( int number) {
+	public boolean deleteRoom() {
 		
-		//room number is ID in data base.
+		return true;
 	}
 	
-	public getRoom(int roomNumber, String hotel) {
+	public boolean getRoom(int roomNumber, String hotel) {
 		
 		//QUERY TO DATA BASe
+
+		return true;
 		
 		
 	}
