@@ -57,6 +57,7 @@ public class EditUserGUI extends JFrame {
 	private JFrame searchFrame;
 	private JLabel errorLbl;
 	private Timer deleteErrorMessage;
+	
 	public EditUserGUI(JFrame searchFrame) {
 		setBounds(100, 100, 523, 546);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.Controller;
+
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -41,8 +44,11 @@ public class AddHotelGUI extends JFrame {
 	private JFrame administratorFrame;
 	private Timer deleteErrorMessage;
 	private JLabel errorLbl;
+	private Controller controller;
 	
 	public AddHotelGUI(JFrame administratorFrame) {
+		
+		controller = new Controller();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 531);
 		contentPane = new JPanel();
@@ -124,6 +130,10 @@ public class AddHotelGUI extends JFrame {
 					administratorFrame.setVisible(true);
 					new ThankYouPopUpGUI();
 					AddHotelGUI.this.dispose();
+				}
+				else{
+					errorLbl.setText("El hotel no se pudo crear, intentelo devuelta");
+					deleteErrorMessage.start();
 				}
 			}
 		});
@@ -222,7 +232,8 @@ public class AddHotelGUI extends JFrame {
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
+			return false;
 		}
-		return !error;
+		return controller.isValidHotel(city, hotelName,direction, stars, recreation, true);
 	}
 }

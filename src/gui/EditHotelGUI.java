@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.Controller;
+import model.Hotel;
+
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -43,8 +47,11 @@ public class EditHotelGUI extends JFrame {
 	private JButton btnEditarHabitacion;
 	private Timer deleteErrorMessage;
 	private JLabel errorLbl;
+	private Controller controller;
+	private Hotel hotel;
 	
-	public EditHotelGUI(JFrame administratorFrame) {
+	public EditHotelGUI(JFrame administratorFrame, Hotel hotel) {
+		controller = new Controller();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 531);
 		contentPane = new JPanel();
@@ -53,6 +60,7 @@ public class EditHotelGUI extends JFrame {
 		contentPane.setLayout(null);
 		setVisible(true);
 		this.administratorFrame = administratorFrame;
+		this.hotel = hotel;
 		cityLbl = new JLabel("Ciudad:");
 		cityLbl.setBounds(10, 94, 46, 14);
 		contentPane.add(cityLbl);
@@ -118,6 +126,15 @@ public class EditHotelGUI extends JFrame {
 		changeHotelBtn = new JButton("Modificar Hotel");
 		changeHotelBtn.setBounds(57, 458, 121, 23);
 		contentPane.add(changeHotelBtn);
+		changeHotelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(isHotelValid()){
+					administratorFrame.setVisible(true);
+					new ThankYouPopUpGUI();
+					EditHotelGUI.this.dispose();
+				}
+			}
+		});
 		
 		cancelBtn = new JButton("Cancelar");
 		cancelBtn.setBounds(229, 458, 111, 23);
@@ -158,12 +175,8 @@ public class EditHotelGUI extends JFrame {
 		contentPane.add(btnEditarHabitacion);
 		btnEditarHabitacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(isHotelValid()){
-					sendHotel();
-					administratorFrame.setVisible(true);
-					new ThankYouPopUpGUI();
-					EditHotelGUI.this.dispose();
-				}
+				EditHotelGUI.this.setVisible(false);
+				new JListRoomGUI(controller.getRooms(new Hotel("Hola")), EditHotelGUI.this);
 			}
 		});
 		
@@ -190,14 +203,6 @@ public class EditHotelGUI extends JFrame {
 	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
 	}
 	
-	protected void sendHotel(){
-		String city = cityTf.getText().trim();
-		String hotelName = hotelNameTf.getText().trim();
-		String direction = directionTf.getText().trim();
-		String stars =  starTf.getText().trim();
-		String recreation = recreationTf.getText().trim();
-		
-	}
 	
 	
 	protected boolean isHotelValid(){
@@ -238,8 +243,9 @@ public class EditHotelGUI extends JFrame {
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
+			return false;
 		}
-		return !error;
+		return  controller.isValidHotel(city, hotelName,direction, stars, recreation, false);
 	}
 
 }

@@ -5,14 +5,20 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.ParseException;
+
+import javax.swing.JFormattedTextField;
 
 public class SearchGUI extends JFrame {
 
@@ -27,7 +33,9 @@ public class SearchGUI extends JFrame {
 	private JButton searchBtn;
 	private JButton advancedSearchBtn;
 	private JLabel editUserLbl;
-
+	private JFormattedTextField checkOutTextField;
+	private JFormattedTextField checkInTextField;
+	private JButton btnBuscar;
 
 
 	/**
@@ -40,7 +48,6 @@ public class SearchGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setVisible(true);
 		
 		messageLbl = new JLabel("Busca las mejores ofertas online:");
 		messageLbl.setBounds(10, 77, 276, 14);
@@ -56,15 +63,15 @@ public class SearchGUI extends JFrame {
 		cityTf.setColumns(10);
 		
 		roomsCb = new JComboBox(new String[] {"1","2","3","4","5","6","7"});
+		roomsCb.setBounds(10, 328, 156, 20);
 		roomsCb.setRenderer(new MyComboBoxRenderer("Cantidad de Habitaciones"));
 		roomsCb.setSelectedIndex(-1);
-		roomsCb.setBounds(10, 328, 156, 20);
 		contentPane.add(roomsCb);
 		
 		peopleCb = new JComboBox(new String[] {"1","2","3","4","5","6","7"});
+		peopleCb.setBounds(239, 328, 156, 20);
 		peopleCb.setRenderer(new MyComboBoxRenderer("Cantidad de Personas"));
 		peopleCb.setSelectedIndex(-1);
-		peopleCb.setBounds(239, 328, 156, 20);
 		contentPane.add(peopleCb);
 		
 		chekInLbl = new JLabel("Check-In");
@@ -84,9 +91,37 @@ public class SearchGUI extends JFrame {
 		contentPane.add(advancedSearchBtn);
 		
 		editUserLbl = new JLabel("Edit User");
-		editUserLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		editUserLbl.setBounds(448, 13, 74, 29);
+		editUserLbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		contentPane.add(editUserLbl);
+		
+		MaskFormatter dateMask = null;
+        try {
+          
+            dateMask = new MaskFormatter("##/##/####");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+		
+		checkInTextField = new JFormattedTextField();
+		checkInTextField.setBounds(55, 167, 124, 20);
+		contentPane.add(checkInTextField);
+		
+		checkOutTextField = new JFormattedTextField();
+		checkOutTextField.setBounds(262, 167, 124, 20);
+		contentPane.add(checkOutTextField);
+		
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(258, 105, 89, 23);
+		contentPane.add(btnBuscar);
+		
+		btnBuscar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		editUserLbl.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -119,6 +154,7 @@ public class SearchGUI extends JFrame {
 			}
 
         });
+		this.setVisible(true);
 	}
 
 	@Override

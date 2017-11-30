@@ -12,6 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+
+import Controller.Controller;
+import model.Hotel;
+
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
@@ -37,11 +41,13 @@ public class AddRoomGUI extends JFrame {
 	private JComboBox guestNumberCB;
 	private JComboBox bathrooTypeCb;
 	private JFormattedTextField formattedTextField;
-	private JFrame editRoomFrame;
+	private JFrame editHotelFrame;
 	private JLabel errorLbl;
 	private Timer deleteErrorMessage;
+	private Controller controller;
 	
-	public AddRoomGUI(JFrame editRoomFrame) {
+	public AddRoomGUI(JFrame editHotelFrame) {
+		controller = new Controller();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 531);
 		contentPane = new JPanel();
@@ -49,7 +55,7 @@ public class AddRoomGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setVisible(true);
-		this.editRoomFrame = editRoomFrame;
+		this.editHotelFrame = editHotelFrame;
 		tipeOfRoomLbl = new JLabel("Tipo de Habitacion");
 		tipeOfRoomLbl.setBounds(10, 94, 98, 14);
 		contentPane.add(tipeOfRoomLbl);
@@ -93,7 +99,7 @@ public class AddRoomGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(isRoomValid()){
 					sendRoom();
-					editRoomFrame.setVisible(true);
+					editHotelFrame.setVisible(true);
 					new ThankYouPopUpGUI();
 					AddRoomGUI.this.dispose();
 				}
@@ -107,7 +113,7 @@ public class AddRoomGUI extends JFrame {
 		contentPane.add(cancelBtn);
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				editRoomFrame.setVisible(true);
+				editHotelFrame.setVisible(true);
 				AddRoomGUI.this.dispose();
 			}
 		});
@@ -204,8 +210,9 @@ public class AddRoomGUI extends JFrame {
 		if(error)
 		{
 			errorLbl.setText("Complete los campos en rojo");
+			deleteErrorMessage.start();
 		}
 		
-		return !error;
+		return controller.isValidRoom(new Hotel("HOla"),tipeOfRoom,characteristics,getNumber,bathRoomType,price,true);
 	}
 }

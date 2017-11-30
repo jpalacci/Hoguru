@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+
+import model.Room;
+
 import javax.swing.JFormattedTextField;
 
 public class EditRoomGUI extends JFrame {
@@ -37,11 +40,12 @@ public class EditRoomGUI extends JFrame {
 	private JComboBox numerOfguestCb;
 	private JComboBox bathRoomTypeCb;
 	private JFormattedTextField priceTff;
-	private JFrame hotelFrame;
+	private JFrame editHotelFrame;
 	private JLabel errorLbl;
 	private Timer deleteErrorMessage;
+	private Room room;
 	
-	public EditRoomGUI(JFrame hotelFrame) {
+	public EditRoomGUI(JFrame editHotelFrame, Room room) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 531);
 		contentPane = new JPanel();
@@ -49,11 +53,11 @@ public class EditRoomGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setVisible(true);
-		this.hotelFrame = hotelFrame;
+		this.editHotelFrame = editHotelFrame;
 		typeOfRoomLbl = new JLabel("Tipo de Habitacion");
 		typeOfRoomLbl.setBounds(10, 94, 98, 14);
 		contentPane.add(typeOfRoomLbl);
-		
+		this.room = room;
 		numberOfGuestLbl = new JLabel("Cantidad de Huespedes");
 		numberOfGuestLbl.setBounds(10, 129, 121, 14);
 		contentPane.add(numberOfGuestLbl);
@@ -93,7 +97,7 @@ public class EditRoomGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(isRoomValid()){
 					sendRoom();
-					hotelFrame.setVisible(true);
+					editHotelFrame.setVisible(true);
 					new ThankYouPopUpGUI();
 					EditRoomGUI.this.dispose();
 				}
@@ -107,7 +111,7 @@ public class EditRoomGUI extends JFrame {
 		contentPane.add(cancelBtn);
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				hotelFrame.setVisible(true);
+				editHotelFrame.setVisible(true);
 				EditRoomGUI.this.dispose();
 			}
 		});

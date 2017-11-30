@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+
+import Controller.Controller;
+
 import javax.swing.JPasswordField;
 import java.awt.Label;
 import java.awt.Button;
@@ -27,6 +30,7 @@ public class LoginGUI {
 	private JButton acceptBtn;
 	private JLabel errorLbl;
 	private Timer deleteErrorMessage;
+	private Controller controller;
 
 	/**
 	 * Launch the application.
@@ -55,6 +59,9 @@ public class LoginGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		controller = new Controller();
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 316);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -123,13 +130,18 @@ public class LoginGUI {
 			public void actionPerformed(ActionEvent e) {
 				int userType = isValid(userTf.getText() ,new String(passwordField.getPassword()));
 				if(userType == 1){
-					SearchGUI searchGUI = new SearchGUI();
+					SearchHotelsGUI searchHotelsGUI = new SearchHotelsGUI();
 					frame.dispose();
 				}
 				else if(userType == 2)
 				{
 					new AdministratorGUI();
 					frame.dispose();
+				}
+				else
+				{
+					errorLbl.setText("El usuario es Incorrecto");
+					deleteErrorMessage.start();
 				}
 				
 			}
@@ -174,17 +186,7 @@ public class LoginGUI {
 			deleteErrorMessage.start();
 			return 0;
 		}
-		return checkWithDataBase(trimUserName, trimPassword);
+		return controller.isValidUser(trimUserName, trimPassword);
 	}
 
-	private int checkWithDataBase(String userName, String password) {
-		if(userName.equals("Admin"))
-		{
-			return 2;
-		}
-		else
-		{
-		 return 1;
-		}
-	}
 }

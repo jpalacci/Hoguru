@@ -1,23 +1,34 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.Controller;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.Font;
 
 public class AdministratorGUI extends JFrame {
 
 	private JPanel contentPane;
-
+	private JList<String> list;
+	private Controller controller;
 	
 	public AdministratorGUI() {
+		controller = new Controller();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 519, 198);
 		contentPane = new JPanel();
@@ -38,7 +49,7 @@ public class AdministratorGUI extends JFrame {
 		JButton btnEditarHotel = new JButton("Editar Hotel");
 		btnEditarHotel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new EditHotelGUI(AdministratorGUI.this);
+				new JListHotelGUI(controller.getHotels(), AdministratorGUI.this);
 				AdministratorGUI.this.setVisible(false);
 			}
 		});
