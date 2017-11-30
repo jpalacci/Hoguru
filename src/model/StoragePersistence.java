@@ -64,7 +64,6 @@ public class StoragePersistence {
            stmt = con.createStatement();
            //stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
            rs = stmt.executeQuery(cSql);
-           rs.next();
            //System.out.println(rs.getString(1));
         } catch(SQLException ex) {
 			System.err.println("Error de Sql (query): "  + ex.getMessage());
@@ -73,6 +72,8 @@ public class StoragePersistence {
         return rs;
 
         }
-        
-      
+
+
+
+
 }

@@ -15,7 +15,7 @@ public class Reservation {
 	
 	private Calendar checkOut;
 
-	Map<Room , String> rooms;
+	Map<Room, String> rooms;
 
 
 	public Reservation(double amount, User username, long reservationNumber, Calendar checkIn, Calendar checkOut) {
@@ -33,7 +33,11 @@ public class Reservation {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+    public void setRooms(Map<Room, String> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
@@ -61,11 +65,31 @@ public class Reservation {
 		this.checkIn = checkIn;
 	}
 
-	public Calendar getCheckOut() {
+	public Calendar getCheckOut()
+	{
 		return checkOut;
 	}
 
 	public void setCheckOut(Calendar checkOut) {
 		this.checkOut = checkOut;
 	}
+
+	public String getCalendarString(Calendar c)
+    {
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        char hyphen = '-';
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(year);
+        sb.append(hyphen);
+        sb.append(month);
+        sb.append(hyphen);
+        sb.append(day);
+
+        return sb.toString();
+    }
+
 }
