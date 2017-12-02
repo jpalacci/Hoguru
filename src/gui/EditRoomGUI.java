@@ -212,4 +212,23 @@ public class EditRoomGUI extends JFrame {
 		return !error;
 	}
 
+	public JTextField getTypeOfRoomTf() {
+		return typeOfRoomTf;
+	}
+
+	public JTextField getCharacteristicTf() {
+		return characteristicTf;
+	}
+
+	public JComboBox getNumerOfguestCb() {
+		return numerOfguestCb;
+	}
+
+	public JComboBox getBathRoomTypeCb() {
+		return bathRoomTypeCb;
+	}
+
+	public JFormattedTextField getPriceTff() {
+		return priceTff;
+	}
 }

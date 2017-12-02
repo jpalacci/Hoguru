@@ -215,4 +215,37 @@ public class AddRoomGUI extends JFrame {
 		
 		return controller.isValidRoom(new Hotel("HOla"),tipeOfRoom,characteristics,getNumber,bathRoomType,price,true);
 	}
+
+	public JTextField getTipoOfRoomTf() {
+		return tipoOfRoomTf;
+	}
+
+	public void setTipoOfRoomTf(JTextField tipoOfRoomTf) {
+		this.tipoOfRoomTf = tipoOfRoomTf;
+	}
+
+	public JTextField getCharacteristicTf() {
+		return characteristicTf;
+	}
+
+	public void setCharacteristicTf(JTextField characteristicTf) {
+		this.characteristicTf = characteristicTf;
+	}
+
+	public JComboBox getGuestNumberCB() {
+		return guestNumberCB;
+	}
+
+	public void setGuestNumberCB(JComboBox guestNumberCB) {
+		this.guestNumberCB = guestNumberCB;
+	}
+
+	public JFormattedTextField getFormattedTextField() {
+		return formattedTextField;
+	}
+
+	public JComboBox getBathrooTypeCb() {
+
+		return bathrooTypeCb;
+	}
 }
