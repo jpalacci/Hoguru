@@ -36,7 +36,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("invalidprice");
         boolean error = !screen.isValid();
 
-        assertFalse(error);
+        assertTrue(error);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("$134");
         boolean error = !screen.isValid();
 
-        assertFalse(error);
+        assertTrue(error);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("$134");
         boolean error = !screen.isValid();
 
-        assertFalse(error);
+        assertTrue(error);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("$134");
         boolean error = !screen.isValid();
 
-        assertFalse(error);
+        assertTrue(error);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("invalid price");
         boolean error = !screen.isValid();
 
-        assertFalse(error);
+        assertTrue(error);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class RoomCRUD {
         screen.getPriceTff().setText("$1234");
 
         boolean error = !screen.isValid();
-        assertTrue(error);
+        assertFalse(error);
     }
 
     @Test

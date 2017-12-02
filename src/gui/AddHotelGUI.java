@@ -236,4 +236,24 @@ public class AddHotelGUI extends JFrame {
 		}
 		return controller.isValidHotel(city, hotelName,direction, stars, recreation, true);
 	}
+
+	public JTextField getCityTf() {
+		return cityTf;
+	}
+
+	public JTextField getHotelNameTf() {
+		return hotelNameTf;
+	}
+
+	public JTextField getDirectionTf() {
+		return directionTf;
+	}
+
+	public JTextField getStarTf() {
+		return starTf;
+	}
+
+	public JTextField getRecreationTf() {
+		return recreationTf;
+	}
 }

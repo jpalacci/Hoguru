@@ -248,4 +248,23 @@ public class EditHotelGUI extends JFrame {
 		return  controller.isValidHotel(city, hotelName,direction, stars, recreation, false);
 	}
 
+	public JTextField getCityTf() {
+		return cityTf;
+	}
+
+	public JTextField getHotelNameTf() {
+		return hotelNameTf;
+	}
+
+	public JTextField getDirectionTf() {
+		return directionTf;
+	}
+
+	public JTextField getStarTf() {
+		return starTf;
+	}
+
+	public JTextField getRecreationTf() {
+		return recreationTf;
+	}
 }
