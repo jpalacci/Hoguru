@@ -63,4 +63,17 @@ public class Controller {
 		list.add(new Room("HOTEL3",1));
 		return list;
 	}
+
+	public void getSearch() {
+		
+		
+	}
+
+	public boolean isEditUserValid(String mail, String password1, String password2, String name, String lastName, String documentNumber, String telephone, String street, String postalCode, String streetNumber, String place, String province, String country ) {
+		if(name.equals("pepito")){
+			return true;
+		}
+		return false;
+	}
+	
 }

@@ -160,8 +160,18 @@ public class EditRoomGUI extends JFrame {
 	        };
 	        
 	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
+	     loadRoom();
 	}
 	
+	private void loadRoom() {
+		//TODO
+//		typeOfRoomTf.setText(//TODO);
+//		characteristicTf.getText().trim();
+//		numerOfguestCb.getSelectedItem();
+//		bathRoomTypeCb.getSelectedItem();
+//		priceTff.getText();
+	}
+
 	protected void sendRoom(){
 		String tipeOfRoom =  typeOfRoomTf.getText().trim();
 		String characteristics = characteristicTf.getText().trim();

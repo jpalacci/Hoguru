@@ -22,6 +22,8 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import Controller.Controller;
+
 public class EditUserGUI extends JFrame {
 
 	private JPanel contentPane;
@@ -57,8 +59,10 @@ public class EditUserGUI extends JFrame {
 	private JFrame searchFrame;
 	private JLabel errorLbl;
 	private Timer deleteErrorMessage;
+	private Controller controller;
 	
 	public EditUserGUI(JFrame searchFrame) {
+		controller = new Controller();
 		setBounds(100, 100, 523, 546);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -383,9 +387,15 @@ Boolean error = false;
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
+			return true;
 		}
-		
-		return !error;
+		else if(!controller.isEditUserValid(mail, password1, password2, name, lastName, documentNumber, telephone, street, postalCode, streetNumber, place, province, country )){
+			errorLbl.setText("Usar isn't valid");
+			deleteErrorMessage.start();
+		}
+		return true;
 	}
+	
+	
 
 }
