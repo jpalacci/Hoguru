@@ -34,9 +34,21 @@ public class DataBaseFacade
 
     public boolean addUser(User user)
     {
-        return r.ejecutasql("INSERT INTO USUARIOS VALUES('" + user.getEmail() + "','" + user.getPassword() + "','" + user.getUserName() + "','" + user.getName()
-                + "','" + user.getSurname() + "','"
-                + user.getDocument()+"')");
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO USUARIOS VALUES('");
+        sb.append(user.getEmail());
+        sb.append("','");
+        sb.append(user.getPassword());
+        sb.append("','");
+        sb.append(user.getUserName());
+        sb.append("','");
+        sb.append("','");
+        sb.append(user.getSurname());
+        sb.append("','");
+        sb.append(user.getDocument());
+        sb.append("')");
+
+        return r.ejecutasql(sb.toString());
         //Faltan mas atributos de las tablas... no están las variables ni getterns necesarios en User y Person
     }
 
@@ -84,8 +96,11 @@ public class DataBaseFacade
             {
                 User user = getUser(res.getString("username"));
                 Calendar checkIn = Calendar.getInstance();
+
+
                 checkIn.setTime(res.getDate("check_in"));
                 Calendar checkOut = Calendar.getInstance();
+
                 checkOut.setTime(res.getDate("check_out"));
 
                 reservation = new Reservation(res.getDouble("total_amount"), user,
@@ -116,7 +131,7 @@ public class DataBaseFacade
         String checkOut = r.getCalendarString(r.getCheckOut());
 
         return this.r.ejecutasql("INSERT INTO RESERVAS VALUES('"+userName+"','"+r.getReservationNumber()+"','"+checkIn+"','"+
-        checkOut+"',"+100+","+10+",'"+"SHERATON')");
+        checkOut+"',"+100+","+10+",'"+"SHERATON')"); //Faltan datos en los objetos
     }
 
 
@@ -129,7 +144,16 @@ public class DataBaseFacade
 
     public boolean addHotelAdministrator(HotelAdministrator admin, String hotelName)
     {
-        return false;
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO USUARIOS_HOTEL VALUES('");
+        sb.append(admin.getPassword());
+        sb.append("','");
+        sb.append(admin.getUserName());
+        sb.append("','");
+        sb.append(hotelName);
+        sb.append("')");
+        return r.ejecutasql(sb.toString());
+
     }
 
     /**
@@ -140,7 +164,13 @@ public class DataBaseFacade
 
     public boolean addHotel(Hotel h)
     {
-        return r.ejecutasql("INSERT INTO HOTELES VALUES('"+h.getName()+"','"+h.getDirection()+"'");
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO HOTELES VALUES('");
+        sb.append(h.getName());
+        sb.append("','");
+        sb.append(h.getDirection());
+        sb.append("')");
+        return r.ejecutasql(sb.toString());
     }
 
     /**
@@ -179,6 +209,7 @@ public class DataBaseFacade
     public boolean addRoomToHotel(Room r, String hotelName)
     {
         return true;
+
     }
 
     /**
@@ -188,21 +219,32 @@ public class DataBaseFacade
      * @return
      */
 
-    public boolean deleteRoomFromHotel(String idRoom, String hotelName) {
-        return true;
+    public boolean deleteRoomFromHotel(String idRoom, String hotelName)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM HABITACIONES WHERE room_number = ");
+        sb.append(idRoom);
+        sb.append("AND hotel_name = ");
+        sb.append(hotelName);
+        return r.ejecutasql(sb.toString());
+
     }
 
 
     public static void main(String[] args) {
         DataBaseFacade db = getInstance();
         db.r.conectar("u2017b-1", "passwordING1");
-        User u = db.getUser("ADAS");
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.DAY_OF_MONTH, 10);
-        c.set(Calendar.MONTH, 10);
-        c.set(Calendar.YEAR, 2010);
-        Reservation r = new Reservation(10, u, 100, c, c);
-        db.addReservation(r, "ADAS");
+        User u = new User("test@test.com", "password", "test", "test", "test", "test");
+        User u2 = db.getUser(u.getUserName());
+        Hotel h = new Hotel("W HOTEL");
+        db.addHotel(h);
+        Hotel h2 = db.getHotel(h.getName());
+        System.out.println("Nombre hotel " + h2.getName());
+        Reservation r = db.getReservation(1);
+        System.out.println(r.getCalendarString(r.getCheckOut()));
+
+
+
 
     }
 
