@@ -16,6 +16,11 @@ public class Reservation {
 	private Calendar checkOut;
 
 	Map<Room, String> rooms;
+	
+	public static Reservation getReservation(long reservationNumber) {
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.getReservation(reservationNumber);
+	}
 
 
 	public Reservation(double amount, User username, long reservationNumber, Calendar checkIn, Calendar checkOut) {

@@ -13,59 +13,73 @@ public class Hotel {
 	private int rate; 
 	
 	public Hotel(String name) {
-		//query to data base
-		
 		this.name=name;
 	}
 	
-	public Hotel getHotel(String name) {
-		//QUERY TO DATA BASE
-		return  new Hotel("TODO");
+	public static Hotel getHotel(String name) {
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.getHotel(name);
+
 	}
-
 	
-	public boolean addRoom(String type, int roomNumber, int capacity, double price, String view) {
+	public boolean addHotel() {
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.addHotel(this);
+	}
+	
+	public boolean removeHotel() {
 		
-		//QUERY TO DATA BASE
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.removeHotel(this.name);
+		
+	}
+	
+	
+	public boolean addRoom(String type, int roomNumber, int capacity , VIEW_TYPE view , String description) {
+		
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		
+		return db.addRoomToHotel(new Room(capacity , roomNumber , name ,type , view));
 
-        return true;
 		
 	}
 	
 	public boolean deleteRoom(int roomNumber) {
-		//QUERY TO DATA BASEm
-
-        return true;
+		
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		
+		return db.deleteRoomFromHotel(roomNumber, name);
 	}
 	
 	public boolean addPhoto(String photo) {
 		
-		//QUERY TO DATA BASE
-
-        return true;
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		
+		return db.addPhotoToHotel(photo,name);
 		
 	}
 	
-	public boolean addComment(String user,  Comment c) {
+	public boolean addComment( String comment , String nombreUsuario ,  int rate, Calendar date) {
 
-		//QUERY TO DATA  BASE
-	    return true;
+		Comment c = new Comment(comment, nombreUsuario , rate , date);
+		return c.addComment();
 	}
 
 	
 	public boolean deleteComment(String user, Calendar c) {
 		
+		DataBaseFacade db = DataBaseFacade.getInstance();
 		
-		// QUERY TO DATABASE
-        return true;
+		return db.removeComment(user, name, c);
 		
 	}
 	
 	public boolean deletePhoto(String photo) {
 		
-		//QUERY TO DATABASE
 
-        return true;
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		
+		return db.removePhotoFromHotel(name, photo);
 		
 	}
 	

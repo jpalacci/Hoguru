@@ -206,7 +206,7 @@ public class DataBaseFacade
      * @return
      */
 
-    public boolean addRoomToHotel(Room r, String hotelName)
+    public boolean addRoomToHotel(Room r)
     {
         return true;
 
@@ -219,7 +219,7 @@ public class DataBaseFacade
      * @return
      */
 
-    public boolean deleteRoomFromHotel(String idRoom, String hotelName)
+    public boolean deleteRoomFromHotel(int idRoom, String hotelName)
     {
         StringBuilder sb = new StringBuilder();
         sb.append("DELETE FROM HABITACIONES WHERE room_number = ");
@@ -228,6 +228,60 @@ public class DataBaseFacade
         sb.append(hotelName);
         return r.ejecutasql(sb.toString());
 
+    }
+    
+    public boolean addComment(Comment c) {
+    	//TODO
+    	return true ;
+    }
+    
+    public boolean removeComment(String nombreUsuario , String nombreHotel , Calendar date) {
+    	
+    	//TODO
+    	
+    	return true;
+    }
+    
+    public boolean removeHotel(String hotelName) {
+    	//TODO
+    	return true;
+    }
+    
+    public RoomType getRoomType(String type, String hotelName) {
+    	//TODO
+    	
+    	return new RoomType(hotelName , "TODO" , type , 20.0);
+    }
+    
+    public boolean addPhotoToHotel(String photo , String hotelName) {
+    	//TODO
+    	return true;
+    }
+    
+    public boolean removePhotoFromHotel(String hotelName , String photo) {
+    	
+    	//TODO
+    	
+    	return true;
+    	
+    }
+    
+    public Room getRoom(int roomNumber , String hotelName) {
+    	//TODO
+    	
+    	//tambien setear demas propiedades que no estan en el constructor;
+    	Room r = new Room( hotelName , roomNumber);
+    	/*
+    	 * r.set . ..
+    	 */
+    	
+    	return r;
+    }
+    
+    public Comment getComment(String hotelName, String userName , Calendar date) {
+    	//TODO
+    	
+    	return new Comment("TODO" , userName , 0 , date);
     }
 
 
