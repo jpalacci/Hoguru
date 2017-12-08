@@ -3,15 +3,13 @@ package model;
 import java.util.Calendar;
 
 public class Comment {
-	private int rate;
 	
 	private String nombreUsuario;
 	private String hotelName;
 	private String comment;
 	private Calendar date;
 	
-	public Comment(String comment , String nombreUsuario ,  int rate, Calendar date) {
-		this.rate=rate;
+	public Comment(String comment , String nombreUsuario , Calendar date) {
 		this.comment=comment;
 		this.nombreUsuario=nombreUsuario;
 		this.date=date;
@@ -33,5 +31,24 @@ public class Comment {
 		return db.addComment(this);
 	
 	}
-	
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public Calendar getDate() {
+		return date;
+	}
 }

@@ -8,7 +8,7 @@ public class Person {
     private String surname;
     private DOCUMENT_TYPE docType;
     private String document;
-    private Address adress ;
+    private Address address ;
     private String phoneNumber;
     private PHONE_TYPE phoneType;
 
@@ -25,7 +25,7 @@ public class Person {
         this.surname = surname;
         this.docType = docType;
         this.document = document;
-        this.adress = adress;
+        this.address = adress;
         this.phoneNumber = phoneNumber;
         this.phoneType = phoneType;
     }
@@ -71,11 +71,11 @@ public class Person {
     }
 
     public Address getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(Address adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 
     public String getPhoneNumber() {
@@ -93,5 +93,7 @@ public class Person {
     public void setPhoneType(PHONE_TYPE phoneType) {
         this.phoneType = phoneType;
     }
+
+
 }
 

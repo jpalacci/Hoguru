@@ -29,10 +29,30 @@ public class Room {
 		
 		return db.getRoom(roomNumber, hotel);
 	}
-	
+
+	public int getNumber() {
+		return number;
+	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public VIEW_TYPE getView() {
+		return view;
+	}
+
 	/*
-	 * This constructor uses the Builder Patron because it internally generates a RoomType
-	 */
+                 * This constructor uses the Builder Patron because it internally generates a RoomType
+                 */
 	public Room(int capacity , int number , String hotelName, String type , VIEW_TYPE view  ) {
 		this.capacity = capacity;
 		this.number = number;
@@ -68,7 +88,26 @@ public class Room {
 		
 		return increment;
 	}
-	
-	
 
+	public void setType(String type)
+	{
+		this.type = type;
+	}
+
+	public void setView(VIEW_TYPE v)
+	{
+		view = v;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
 }

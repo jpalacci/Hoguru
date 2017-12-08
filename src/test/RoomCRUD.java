@@ -91,9 +91,9 @@ public class RoomCRUD {
 
     @Test
     void deleteRoom(){
-        Hotel hotel = new Hotel("testHotel");
-        hotel.addRoom("room",123,2,2345.2,"mountain");
-        EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
+//        Hotel hotel = new Hotel("testHotel");
+//        hotel.addRoom("room",123,2,2345.2,"mountain");
+//        EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
         //TODO falta la opcion de eliminar habitacion
     }
 

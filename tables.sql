@@ -44,7 +44,6 @@ CREATE TABLE HABITACIONES
 	capacity int,
 	room_number int,
 	hotel_name text,
-	price float,
 	room_view text,
 	PRIMARY KEY(room_number, hotel_name),
 	FOREIGN KEY(hotel_name) REFERENCES HOTELES(hotel_name) ON DELETE CASCADE,
@@ -58,7 +57,6 @@ CREATE TABLE RESERVAS
 	reservation_number int,
 	check_in date,
 	check_out date,
-	total_amount double,
 	room_number int,
 	hotel_name text,
 	PRIMARY KEY(reservation_number, room_number, hotel_name),
@@ -92,6 +90,7 @@ CREATE TABLE TIPOS_HAB
 	room_type text,
 	features text,
 	hotel_name text,
+	cost float,
 	PRIMARY KEY(room_type, hotel_name),
 	FOREIGN KEY(hotel_name) REFERENCES HOTELES ON DELETE CASCADE
 );

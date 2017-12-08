@@ -10,7 +10,7 @@ public class Hotel {
 	private String direction;
 	private List<String> basicInfo;
 	private List<Comment> comments; 
-	private int rate; 
+	private float rate;
 	
 	public Hotel(String name) {
 		this.name=name;
@@ -33,8 +33,11 @@ public class Hotel {
 		return db.removeHotel(this.name);
 		
 	}
-	
-	
+
+	public float getRate() {
+		return rate;
+	}
+
 	public boolean addRoom(String type, int roomNumber, int capacity , VIEW_TYPE view , String description) {
 		
 		DataBaseFacade db = DataBaseFacade.getInstance();
@@ -90,6 +93,24 @@ public class Hotel {
 	public String getDirection() {
 		return direction;
 	}
-	
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	public void setBasicInfo(List<String> basicInfo) {
+		this.basicInfo = basicInfo;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public void setRate(float rate) {
+		this.rate = rate;
+	}
 }

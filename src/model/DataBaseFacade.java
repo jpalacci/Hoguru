@@ -1,8 +1,12 @@
 package model;
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *  Generamos una abstraccion sobre la conexion con la base de datos aplicando el patron de Facade
@@ -35,6 +39,7 @@ public class DataBaseFacade
     public boolean addUser(User user)
     {
         StringBuilder sb = new StringBuilder();
+        Address address = user.getAdress();
         sb.append("INSERT INTO USUARIOS VALUES('");
         sb.append(user.getEmail());
         sb.append("','");
@@ -42,14 +47,28 @@ public class DataBaseFacade
         sb.append("','");
         sb.append(user.getUserName());
         sb.append("','");
+        sb.append(user.getName());
         sb.append("','");
         sb.append(user.getSurname());
         sb.append("','");
         sb.append(user.getDocument());
+        sb.append("','");
+        sb.append(address.getCountry());
+        sb.append("','");
+        sb.append(address.getProvince());
+        sb.append("','");
+        sb.append(address.getCity());
+        sb.append("','");
+        sb.append(address.getStreet());
+        sb.append("','");
+        sb.append(address.getStreet_number());
+        sb.append("','");
+        sb.append(address.getPostalCode());
+        sb.append("','");
+        sb.append(user.getPhoneNumber());
+        sb.append(user.getPhoneType());
         sb.append("')");
-
         return r.ejecutasql(sb.toString());
-        //Faltan mas atributos de las tablas... no están las variables ni getterns necesarios en User y Person
     }
 
     /**
@@ -68,6 +87,11 @@ public class DataBaseFacade
             if(res.next())
             {
                 u = new User(res.getString("email"), res.getString("password"), res.getString("username"), res.getString("name"), res.getString("surname"), res.getString("document"));
+                Address address = new Address(res.getString("country"), res.getString("province"), res.getString("city"),
+                        res.getString("street"), res.getString("street_number"), res.getString("cp"));
+                u.setAdress(address);
+                u.setPhoneNumber(res.getString("phone"));
+                u.setPhoneType(PHONE_TYPE.valueOf(res.getString("phone_type")));
                 return u;
 
             }
@@ -90,26 +114,32 @@ public class DataBaseFacade
     public Reservation getReservation(long reservationNumber)
     {
         ResultSet res = r.gXrGenerico("SELECT * FROM RESERVAS WHERE reservation_number = " + reservationNumber);
-        Reservation reservation;
+        Reservation reservation = null;
+        List<Room> rooms = new LinkedList<>();
+        boolean first = true;
         try {
-            if (res.next())
+            while(res.next())
             {
-                User user = getUser(res.getString("username"));
-                Calendar checkIn = Calendar.getInstance();
-
-
-                checkIn.setTime(res.getDate("check_in"));
-                Calendar checkOut = Calendar.getInstance();
-
-                checkOut.setTime(res.getDate("check_out"));
-
-                reservation = new Reservation(res.getDouble("total_amount"), user,
-                        res.getInt("reservation_number"), checkIn, checkOut);
-
-                return reservation;
+                if(first)
+                {
+                    User user = getUser(res.getString("username"));
+                    Calendar checkIn = Calendar.getInstance();
+                    checkIn.setTime(res.getDate("check_in"));
+                    Calendar checkOut = Calendar.getInstance();
+                    checkOut.setTime(res.getDate("check_out"));
+                    reservation = new Reservation(user,
+                            res.getInt("reservation_number"), checkIn, checkOut);
+                    first = false;
+                }
+                Room r = getRoom(res.getInt("room_number"), res.getString("hotel_name"));
+                rooms.add(r);
 
             }
-            return null;
+            if(reservation != null)
+            {
+                reservation.setRooms(rooms);
+            }
+            return reservation;
         }
         catch (Exception e)
         {
@@ -130,8 +160,26 @@ public class DataBaseFacade
         String checkIn = r.getCalendarString(r.getCheckIn());
         String checkOut = r.getCalendarString(r.getCheckOut());
 
-        return this.r.ejecutasql("INSERT INTO RESERVAS VALUES('"+userName+"','"+r.getReservationNumber()+"','"+checkIn+"','"+
-        checkOut+"',"+100+","+10+",'"+"SHERATON')"); //Faltan datos en los objetos
+        for(Room room : r.getRooms())
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.append("INSERT INTO RESERVAS VALUES('");
+            sb.append(userName);
+            sb.append("',");
+            sb.append(r.getReservationNumber());
+            sb.append(",'");
+            sb.append(checkIn);
+            sb.append("','");
+            sb.append(checkOut);
+            sb.append("',");
+            sb.append(room.getNumber());
+            sb.append(",'");
+            sb.append(room.getHotelName());
+            sb.append("')");
+            this.r.ejecutasql(sb.toString());
+        }
+        return true;
+
     }
 
 
@@ -146,9 +194,9 @@ public class DataBaseFacade
     {
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO USUARIOS_HOTEL VALUES('");
-        sb.append(admin.getPassword());
-        sb.append("','");
         sb.append(admin.getUserName());
+        sb.append("','");
+        sb.append(admin.getPassword());
         sb.append("','");
         sb.append(hotelName);
         sb.append("')");
@@ -169,7 +217,9 @@ public class DataBaseFacade
         sb.append(h.getName());
         sb.append("','");
         sb.append(h.getDirection());
-        sb.append("')");
+        sb.append("',");
+        sb.append(h.getRate());
+        sb.append(")");
         return r.ejecutasql(sb.toString());
     }
 
@@ -188,12 +238,14 @@ public class DataBaseFacade
             if(res.next())
             {
                Hotel hotel = new Hotel(res.getString("hotel_name"));
-               return hotel; //Faltan mas parametros de constructor
+               hotel.setDirection(res.getString("address"));
+               hotel.setRate(res.getFloat("rate"));
+               return hotel;
             }
         }
         catch (Exception e)
         {
-            System.out.println("OCURRIO UN ERROR");
+            System.out.println("Ocurrió un error al insertar el hotel");
             return null;
         }
         return null;
@@ -202,13 +254,25 @@ public class DataBaseFacade
     /**
      * Add a Room to a Hotel
      * @param r
-     * @param hotelName
+     * @param
      * @return
      */
 
     public boolean addRoomToHotel(Room r)
     {
-        return true;
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO HABITACIONES VALUES('");
+        sb.append(r.getType());
+        sb.append("',");
+        sb.append(r.getCapacity());
+        sb.append(",");
+        sb.append(r.getNumber());
+        sb.append(",'");
+        sb.append(r.getHotelName());
+        sb.append("','");
+        sb.append(r.getView());
+        sb.append("')");
+        return this.r.ejecutasql(sb.toString());
 
     }
 
@@ -224,80 +288,186 @@ public class DataBaseFacade
         StringBuilder sb = new StringBuilder();
         sb.append("DELETE FROM HABITACIONES WHERE room_number = ");
         sb.append(idRoom);
-        sb.append("AND hotel_name = ");
+        sb.append(" AND hotel_name = '");
         sb.append(hotelName);
+        sb.append("'");
         return r.ejecutasql(sb.toString());
 
     }
     
-    public boolean addComment(Comment c) {
-    	//TODO
-    	return true ;
+    public boolean addComment(Comment c)
+    {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("INSERT INTO COMENTARIOS VALUES('");
+    	sb.append(c.getHotelName());
+    	sb.append("','");
+    	sb.append(c.getNombreUsuario());
+        sb.append("','");
+        sb.append(c.getComment());
+        sb.append("','");
+        sb.append(c.getDate().getTime().toString());
+        sb.append("')");
+        return r.ejecutasql(sb.toString());
     }
     
-    public boolean removeComment(String nombreUsuario , String nombreHotel , Calendar date) {
-    	
-    	//TODO
-    	
-    	return true;
+    public boolean removeComment(String nombreUsuario , String nombreHotel , Calendar date)
+    {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM COMENTARIOS WHERE hotel_name = '");
+        sb.append(nombreHotel);
+        sb.append("' AND username = '");
+        sb.append(nombreUsuario);
+        sb.append("' AND comment_date = '");
+        sb.append(date.getTime().toString());
+        sb.append("'");
+        return r.ejecutasql(sb.toString());
     }
     
-    public boolean removeHotel(String hotelName) {
-    	//TODO
-    	return true;
+    public boolean removeHotel(String hotelName)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM HOTELES WHERE hotel_name = '");
+        sb.append(hotelName);
+        sb.append("'");
+        return r.ejecutasql(sb.toString());
     }
     
-    public RoomType getRoomType(String type, String hotelName) {
-    	//TODO
-    	
-    	return new RoomType(hotelName , "TODO" , type , 20.0);
+    public RoomType getRoomType(String type, String hotelName)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM TIPOS_HAB WHERE room_type = ");
+        sb.append("'");
+        sb.append(type);
+        sb.append("' AND hotel_name = '");
+        sb.append(hotelName);
+        sb.append("'");
+        ResultSet res = r.gXrGenerico(sb.toString());
+        try
+        {
+            if(res.next())
+            {
+                RoomType roomType = new RoomType(res.getString("hotel_name"), res.getString("features"), res.getString("room_type"), res.getFloat("cost"));
+                return roomType;
+            }
+            return null;
+        }
+        catch (Exception e )
+        {
+            return null;
+        }
     }
     
-    public boolean addPhotoToHotel(String photo , String hotelName) {
-    	//TODO
-    	return true;
+    public boolean addPhotoToHotel(String photo , String hotelName)
+    {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("INSERT INTO FOTOS VALUES('");
+    	sb.append(hotelName);
+    	sb.append("','");
+    	sb.append(photo);
+    	sb.append("')");
+    	return r.ejecutasql(sb.toString());
     }
     
-    public boolean removePhotoFromHotel(String hotelName , String photo) {
+    public boolean removePhotoFromHotel(String hotelName , String photo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM FOTOS WHERE hotel_name = ");
+        sb.append("'");
+        sb.append(hotelName);
+        sb.append("' AND photo = ");
+        sb.append("'");
+        sb.append(photo);
+        sb.append("'");
+        return r.ejecutasql(sb.toString());
     	
-    	//TODO
-    	
-    	return true;
-    	
+
+    }
+
+    public boolean addRoomType(RoomType roomType)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO TIPOS_HAB VALUES('");
+        sb.append(roomType.getType());
+        sb.append("','");
+        sb.append(roomType.getDescription());
+        sb.append("','");
+        sb.append(roomType.getHotelName());
+        sb.append("',");
+        sb.append(roomType.getCost());
+        sb.append(")");
+        return r.ejecutasql(sb.toString());
+
+    }
+
+    
+    public Room getRoom(int roomNumber, String hotelName)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM HABITACIONES WHERE room_number = ");
+        sb.append(roomNumber);
+        sb.append(" AND hotel_name = '");
+        sb.append(hotelName);
+        sb.append("'");
+
+        try
+        {
+            ResultSet res = r.gXrGenerico(sb.toString());
+            if(res.next())
+            {
+                Room room = new Room(res.getString("hotel_name"), res.getInt("room_number"));
+                room.setView(VIEW_TYPE.valueOf(res.getString("room_view")));
+                room.setType(res.getString("room_type"));
+                room.setCapacity(res.getInt("capacity"));
+                return room;
+            }
+            return null;
+        }
+        catch (Exception e )
+        {
+            return null;
+        }
+
     }
     
-    public Room getRoom(int roomNumber , String hotelName) {
-    	//TODO
-    	
-    	//tambien setear demas propiedades que no estan en el constructor;
-    	Room r = new Room( hotelName , roomNumber);
-    	/*
-    	 * r.set . ..
-    	 */
-    	
-    	return r;
-    }
-    
-    public Comment getComment(String hotelName, String userName , Calendar date) {
-    	//TODO
-    	
-    	return new Comment("TODO" , userName , 0 , date);
+    public Comment getComment(String hotelName, String userName , Calendar date)
+    {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("SELECT * FROM COMENTARIOS WHERE hotel_name = '");
+    	sb.append(hotelName);
+    	sb.append("' AND username = '");
+    	sb.append(userName);
+    	sb.append("' AND comment_date = '");
+    	sb.append(date.getTime().toString());
+    	sb.append("'");
+
+    	ResultSet res = r.gXrGenerico(sb.toString());
+
+    	try
+        {
+            if(res.next())
+            {
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(res.getTimestamp("comment_date").getTime());
+                Comment c = new Comment(res.getString("comment"), res.getString("username"), cal);
+                c.setHotelName(res.getString("hotel_name"));
+                return c;
+            }
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+    	return null;
+
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         DataBaseFacade db = getInstance();
         db.r.conectar("u2017b-1", "passwordING1");
-        User u = new User("test@test.com", "password", "test", "test", "test", "test");
-        User u2 = db.getUser(u.getUserName());
-        Hotel h = new Hotel("W HOTEL");
-        db.addHotel(h);
-        Hotel h2 = db.getHotel(h.getName());
-        System.out.println("Nombre hotel " + h2.getName());
-        Reservation r = db.getReservation(1);
-        System.out.println(r.getCalendarString(r.getCheckOut()));
-
-
 
 
     }

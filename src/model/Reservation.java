@@ -1,11 +1,10 @@
 package model;
 
 import java.util.Calendar;
-import java.util.Map;
+import java.util.List;
 
 public class Reservation {
-	
-	private double amount;
+
 	
 	private User user;
 	
@@ -15,17 +14,17 @@ public class Reservation {
 	
 	private Calendar checkOut;
 
-	Map<Room, String> rooms;
+	List<Room> rooms;
 	
-	public static Reservation getReservation(long reservationNumber) {
+	public static Reservation getReservation(long reservationNumber)
+    {
 		DataBaseFacade db = DataBaseFacade.getInstance();
 		return db.getReservation(reservationNumber);
 	}
 
 
-	public Reservation(double amount, User username, long reservationNumber, Calendar checkIn, Calendar checkOut) {
-		this.amount=amount;
-		
+	public Reservation(User username, long reservationNumber, Calendar checkIn, Calendar checkOut) {
+
 		this.user=username;
 		
 		this.reservationNumber= reservationNumber;
@@ -34,39 +33,41 @@ public class Reservation {
 		this.checkOut= checkOut;
 	}
 
-	public double getAmount() {
-		return amount;
-	}
 
-    public void setRooms(Map<Room, String> rooms) {
+
+    public void setRooms(List<Room> rooms)
+    {
         this.rooms = rooms;
     }
 
-    public void setAmount(double amount) {
-		this.amount = amount;
-	}
 
-	public User getUser() {
+	public User getUser()
+    {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(User user)
+    {
 		this.user = user;
 	}
 
-	public long getReservationNumber() {
+	public long getReservationNumber()
+    {
 		return reservationNumber;
 	}
 
-	public void setReservationNumber(long reservationNumber) {
+	public void setReservationNumber(long reservationNumber)
+    {
 		this.reservationNumber = reservationNumber;
 	}
 
-	public Calendar getCheckIn() {
+	public Calendar getCheckIn()
+    {
 		return checkIn;
 	}
 
-	public void setCheckIn(Calendar checkIn) {
+	public void setCheckIn(Calendar checkIn)
+    {
 		this.checkIn = checkIn;
 	}
 
@@ -75,8 +76,14 @@ public class Reservation {
 		return checkOut;
 	}
 
-	public void setCheckOut(Calendar checkOut) {
+	public void setCheckOut(Calendar checkOut)
+    {
 		this.checkOut = checkOut;
+	}
+
+	public List<Room> getRooms()
+    {
+		return rooms;
 	}
 
 	public String getCalendarString(Calendar c)
