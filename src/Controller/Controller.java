@@ -63,4 +63,46 @@ public class Controller {
 		list.add(new Room("HOTEL3",1));
 		return list;
 	}
+
+	public void getSearch() {
+		
+		
+	}
+
+	public boolean isEditUserValid(String mail, String password1, String password2, String name, String lastName, String documentNumber, String telephone, String street, String postalCode, String streetNumber, String place, String province, String country ) {
+		if(name.equals("pepito")){
+			return true;
+		}
+		return false;
+	}
+
+	public void deleteHotel(Hotel hotel) {
+		System.out.println(hotel.toString());
+	}
+
+	public void deleteRoom(Room room) {
+		System.out.println(room.toString());
+	}
+	
+	public LinkedList<String> getProvinces(String country){
+		LinkedList<String> list = new LinkedList<String>();
+		if(country.equals("Argetina")){
+			list.add("BSAS");
+			list.add("Cordoba");
+		}
+		else if(country.equals("Holanda")){
+			list.add("mfkrf");
+			list.add("femkso");
+		}
+		return list;
+		
+	}
+	
+	public LinkedList<String> getCoutries(){
+		LinkedList<String> list = new LinkedList<String>();
+		list.add("Argentina");
+		list.add("Holanda");
+		return list;
+	}
+	
 }

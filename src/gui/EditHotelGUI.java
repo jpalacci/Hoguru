@@ -201,10 +201,22 @@ public class EditHotelGUI extends JFrame {
 	        };
 
 	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
+	     loadHotel();
 	}
 	
 	
 	
+	private void loadHotel() {
+		//cityTf.setText(//TODO);
+		hotelNameTf.setText(hotel.getName());
+		directionTf.setText(hotel.getDirection());
+		//starTf.setText(//TODO);
+		//recreationTf.setText(//TODO);
+		
+	}
+
+
+
 	protected boolean isHotelValid(){
 		String city = cityTf.getText().trim();
 		String hotelName = hotelNameTf.getText().trim();

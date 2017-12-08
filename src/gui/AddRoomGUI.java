@@ -211,6 +211,7 @@ public class AddRoomGUI extends JFrame {
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
+			return error;
 		}
 		
 		return controller.isValidRoom(new Hotel("HOla"),tipeOfRoom,characteristics,getNumber,bathRoomType,price,true);

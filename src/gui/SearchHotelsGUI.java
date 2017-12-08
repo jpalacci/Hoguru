@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import Controller.Controller;
+
 public class SearchHotelsGUI extends JFrame {
 
 	private JPanel contentPane;
@@ -35,9 +37,11 @@ public class SearchHotelsGUI extends JFrame {
 	private JFormattedTextField checkOutTextField;
 	private JFormattedTextField checkInTextField;
 	private JButton btnBuscar;
+	private Controller controller;
 
 	
 	public SearchHotelsGUI() {
+		controller = new Controller();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 568, 438);
 		contentPane = new JPanel();
@@ -116,8 +120,12 @@ public class SearchHotelsGUI extends JFrame {
 		btnBuscar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				if(isValidSearch()){
+					controller.getSearch();
+				}
 			}
+
+		
 		});
 		
 		editUserLbl.addMouseListener(new MouseListener() {
@@ -154,5 +162,10 @@ public class SearchHotelsGUI extends JFrame {
         });
 		
 		
+	}
+	
+	private boolean isValidSearch() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }
