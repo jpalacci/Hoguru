@@ -262,7 +262,13 @@ public class EditUserGUI extends JFrame {
 	            }
 	        };
 
-	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
+	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s
+	     loadUser();
+	}
+
+	private void loadUser() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	protected void sendRegistration() {

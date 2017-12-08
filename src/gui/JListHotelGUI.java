@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -27,11 +28,13 @@ import java.awt.event.ActionEvent;
 public class JListHotelGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JList list;
+	private JList<Hotel> list;
 	private DefaultListModel<Hotel> listModel;
 	private JScrollPane listScroller;
 	private JFrame editHotelFrame;
 	private final JButton Cancel = new JButton("Cancel");
+	private Controller controller;
+	
 	public JListHotelGUI(List<Hotel> hotelList, JFrame editHotelFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 304, 225);
@@ -39,7 +42,7 @@ public class JListHotelGUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+		controller = new Controller();
 		this.editHotelFrame = editHotelFrame;
 		
 		listModel = new DefaultListModel<Hotel>();
@@ -56,11 +59,11 @@ public class JListHotelGUI extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.add(listScroller);
 		list = new JList<Hotel>(listModel);
-		list.setBounds(0, 0, 282, 161);
-		contentPane.add(list);
-		list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);//TODO not working
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
+		list.setBounds(0, 0, 282, 161);
+		contentPane.add(list);
+		
 		Cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -94,10 +97,15 @@ public class JListHotelGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				 if (list.getSelectedIndex() == -1) {
 					 return;
-			     } else{
-			    	 LinkedList<Hotel> h = new LinkedList<Hotel>();
-			    	//TODO
-			    	 //controller.deleteHotels(list.get);
+			     } else{			    
+			    	 int[] indices = list.getSelectedIndices();
+			    	 DefaultListModel<Hotel> model = (DefaultListModel<Hotel>) list.getModel();
+
+			    	 for(int i = 0 ; i <= indices.length; i++){
+						controller.deleteHotel(model.getElementAt(indices[i]-i));
+						model.remove(indices[i]-i);
+			    	 }
+			    	
 			     }
 			}
 		});
