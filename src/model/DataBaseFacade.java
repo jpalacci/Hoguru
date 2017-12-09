@@ -182,6 +182,46 @@ public class DataBaseFacade
 
     }
 
+    public boolean addRoomTypeToHotel(RoomType roomType)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO TIPOS_HAB VALUES('");
+        sb.append(roomType.getType());
+        sb.append("','");
+        sb.append(roomType.getDescription());
+        sb.append("','");
+        sb.append(roomType.getHotelName());
+        sb.append("')");
+        return r.ejecutasql(sb.toString());
+    }
+
+    public RoomType getRoomTypeFromHotel(String type, String hotelName)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM TIPOS_HAB WHERE room_type = '");
+        sb.append(type);
+        sb.append("' AND hotel_name = '");
+        sb.append(hotelName);
+        sb.append("'");
+        ResultSet res = r.gXrGenerico(sb.toString());
+        try
+        {
+            if(res.next())
+            {
+                RoomType rt = new RoomType(res.getString("hotel_name"), res.getString("feature"), res.getString("room_type"), res.getFloat("cost"));
+                return rt;
+            }
+            return null;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+    }
+
+
+
 
     /**
      * Adds a Hotel administrator to the DB
