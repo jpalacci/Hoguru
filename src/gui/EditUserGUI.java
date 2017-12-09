@@ -401,7 +401,62 @@ Boolean error = false;
 		}
 		return true;
 	}
-	
-	
+
+	public JTextField getMailTf() {
+		return mailTf;
+	}
+
+	public JTextField getNameTf() {
+		return nameTf;
+	}
+
+	public JTextField getLastNameTf() {
+		return lastNameTf;
+	}
+
+	public JTextField getPlaceTf() {
+		return placeTf;
+	}
+
+	public JTextField getStreetTf() {
+		return streetTf;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public JPasswordField getPasswordConfirmationField() {
+		return passwordConfirmationField;
+	}
+
+	public JComboBox getProvinceCb() {
+		return provinceCb;
+	}
+
+	public JComboBox getCountryCb() {
+		return countryCb;
+	}
+
+	public JCheckBox getAcceptConditionChckbx() {
+		return acceptConditionChckbx;
+	}
+
+	public JFormattedTextField getDocumentNumberFtf() {
+		return DocumentNumberFtf;
+	}
+
+	public JFormattedTextField getNumberFtf() {
+		return numberFtf;
+	}
+
+	public JFormattedTextField getPostCodeFtf() {
+		return postCodeFtf;
+	}
+
+	public JFormattedTextField getTelephoneFtf() {
+		return telephoneFtf;
+	}
+
 
 }
