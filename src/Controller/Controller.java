@@ -1,14 +1,17 @@
 package Controller;
 
 import java.util.LinkedList;
+
 import java.util.List;
 
 import model.Hotel;
 import model.Room;
+import model.VIEW_TYPE;
 
 public class Controller {
 			
-	
+	public static LinkedList<Hotel> hotels = new LinkedList<Hotel>();
+	public static LinkedList<Room> rooms = new LinkedList<Room>();
 	
 	public int isValidUser(String userName, String password){
 		if(userName.equals("Admin"))
@@ -25,25 +28,32 @@ public class Controller {
 		}
 	}
 		
-	public boolean isValidHotel(String city, String name, String direction, String stars, String recreation, boolean isNewHotel){
-		if(name.equals("1")){
-			return true;
-		}else{
-			return false;	
-		}
-		
+	public boolean isValidHotel(String name, String direction,float rate, boolean isNewHotel){
+			Hotel h = new Hotel(name);
+			h.setRate(rate);
+			h.setDirection(direction);
+			return hotels.add(h);
 	}
 	
-	public boolean isValidRoom(Hotel hotel, String tipeOfRoom, String characteristics, String getNumber, String bathRoomtype, String price, boolean isNewRoom){
-		return true;
+	public boolean isValidRoom(Hotel hotel, String tipeOfRoom, VIEW_TYPE viewType, int number,int capacity, boolean isNewRoom){
+			Room r = new Room(hotel.getName(),number);
+			r.setCapacity(capacity);
+			r.setType(tipeOfRoom);
+			r.setView(viewType);
+			return rooms.add(r);
+	}
+	
+	public List<String> getRoomTypes(Hotel hotel){
+		List<String> s = new LinkedList<String>();
+		s.add("CAMA DOBLE");
+		s.add("CAMA SIMPLE");
+		s.add("AAAAA");
+		s.add("BBB");
+		return s;
 	}
 	
 	public List<Hotel> getHotels(){
-		List<Hotel> list = new LinkedList<Hotel>();
-		list.add(new Hotel("HOTEL1"));
-		list.add(new Hotel("HOTEL2"));
-		list.add(new Hotel("HOTEL3"));
-		return list;
+		return hotels;
 		
 	}
 	
@@ -57,11 +67,7 @@ public class Controller {
 	}
 	
 	public List<Room> getRooms(Hotel hotel){
-		List<Room> list = new LinkedList<Room>();
-		list.add(new Room("HOTEL1", 1));
-		list.add(new Room("HOTEL2",1));
-		list.add(new Room("HOTEL3",1));
-		return list;
+		return rooms;
 	}
 
 	public void getSearch() {
@@ -77,11 +83,11 @@ public class Controller {
 	}
 
 	public void deleteHotel(Hotel hotel) {
-		System.out.println(hotel.toString());
+		hotels.remove(hotel);
 	}
 
 	public void deleteRoom(Room room) {
-		System.out.println(room.toString());
+		rooms.remove(room);
 	}
 	
 	public LinkedList<String> getProvinces(String country){

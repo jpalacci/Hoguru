@@ -62,30 +62,6 @@ public class Hotel {
 		
 	}
 	
-	public boolean addComment( String comment , String nombreUsuario ,  int rate, Calendar date) {
-
-		Comment c = new Comment(comment, nombreUsuario , rate , date);
-		return c.addComment();
-	}
-
-	
-	public boolean deleteComment(String user, Calendar c) {
-		
-		DataBaseFacade db = DataBaseFacade.getInstance();
-		
-		return db.removeComment(user, name, c);
-		
-	}
-	
-	public boolean deletePhoto(String photo) {
-		
-
-		DataBaseFacade db = DataBaseFacade.getInstance();
-		
-		return db.removePhotoFromHotel(name, photo);
-		
-	}
-	
 	public String getName() {
 		return name;
 	}
@@ -113,4 +89,32 @@ public class Hotel {
 	public void setRate(float rate) {
 		this.rate = rate;
 	}
+	
+	public boolean addComment( String comment , String nombreUsuario ,  int rate, Calendar date) {
+
+		//Comment c = new Comment(comment, nombreUsuario , rate , date);
+		//return c.addComment();
+		return false;
+		//TODO
+	}
+
+	
+	public boolean deleteComment(String user, Calendar c) {
+		
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		
+		return db.removeComment(user, name, c);
+		
+	}
+	
+	public boolean deletePhoto(String photo) {
+		
+
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		
+		return db.removePhotoFromHotel(name, photo);
+		
+	}
+	
+	
 }
