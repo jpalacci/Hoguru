@@ -170,6 +170,7 @@ public class HotelCRUD {
         assertTrue(error);
     }
 
+    @Test
     void modifyHotelWithInvalidStars() {
         Hotel hotel = new Hotel("hotel");
         EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
