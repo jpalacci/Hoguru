@@ -503,14 +503,16 @@ public class DataBaseFacade
 
     }
 
-    public List<Room> getAvailableRooms(Calendar checkIn, Calendar checkOut)
+    public List<Room> getAvailableRooms(Calendar checkIn, Calendar checkOut, int capacity, String city)
     {
         String sCheckIn = CalendarTranslator.calendarToString(checkIn);
         String sCheckOut = CalendarTranslator.calendarToString(checkOut);
         List<Room> rooms = new LinkedList<>();
 
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM HABITACIONES WHERE NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
+        sb.append("SELECT * FROM HABITACIONES WHERE capacity = ");
+        sb.append(capacity);
+        sb.append(" AND NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
                 "HABITACIONES.room_number AND HABITACIONES.hotel_name = RESERVAS.hotel_name AND ((");
         sb.append("'");
         sb.append(sCheckOut);
@@ -532,6 +534,7 @@ public class DataBaseFacade
         sb.append(sCheckOut);
         sb.append("')))");
         ResultSet res = r.gXrGenerico(sb.toString());
+        System.out.println(sb.toString());
         try
         {
             while(res.next())
@@ -551,6 +554,30 @@ public class DataBaseFacade
 
     }
 
+    public List<Hotel> getHotels()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM HOTELES");
+        ResultSet res = r.gXrGenerico(sb.toString());
+        List<Hotel> hotels = new LinkedList<>();
+        try
+        {
+            while(res.next())
+            {
+                Hotel h = new Hotel(res.getString("hotel_name"));
+                h.setDirection(res.getString("address"));
+                h.setRate(res.getFloat("rate"));
+                hotels.add(h);
+            }
+            return hotels;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+
 
     public static void main(String[] args)
     {
@@ -565,14 +592,13 @@ public class DataBaseFacade
         checkOut.set(Calendar.YEAR, 2018);
         checkOut.set(Calendar.MONTH, Calendar.FEBRUARY);
         checkOut.set(Calendar.DAY_OF_MONTH, 9);
-        db.getAvailableRooms(checkIn, checkOut);
 
-        List<Room> rooms = db.getAvailableRooms(checkIn, checkOut);
-        for(Room r : rooms)
-        {
-            System.out.println(r.getNumber());
-        }
+        checkOut.set(Calendar.HOUR, 10);
+        checkOut.set(Calendar.MINUTE, 00);
+        checkOut.set(Calendar.SECOND, 04);
 
+
+        db.getAvailableRooms(checkIn, checkOut, 3, "New York");
 
 
     }

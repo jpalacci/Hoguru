@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c242240-2ad9-4cdf-8dee-68435cdfe606" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/SearchGUI.java" afterPath="$PROJECT_DIR$/src/gui/SearchGUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/DataBaseFacade.java" afterPath="$PROJECT_DIR$/src/model/DataBaseFacade.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/VIEW_TYPE.java" afterPath="$PROJECT_DIR$/src/model/VIEW_TYPE.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/EditUserTest.java" afterPath="$PROJECT_DIR$/src/test/EditUserTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/RoomCRUD.java" afterPath="$PROJECT_DIR$/src/test/RoomCRUD.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,9 +50,22 @@
       <file leaf-file-name="DataBaseFacade.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/DataBaseFacade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="26" />
+            <state relative-caret-position="-225">
+              <caret line="536" column="40" lean-forward="false" selection-start-line="536" selection-start-column="40" selection-end-line="536" selection-end-column="40" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hotel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Hotel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="36" column="16" lean-forward="false" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+              <folding>
+                <element signature="e#681#682#0" expanded="true" />
+                <element signature="e#699#700#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,8 +168,8 @@
         <option value="$PROJECT_DIR$/src/test/EditUserTest.java" />
         <option value="$PROJECT_DIR$/src/test/RoomCRUD.java" />
         <option value="$PROJECT_DIR$/src/model/CalendarTranslator.java" />
-        <option value="$PROJECT_DIR$/src/model/DataBaseFacade.java" />
         <option value="$PROJECT_DIR$/src/model/VIEW_TYPE.java" />
+        <option value="$PROJECT_DIR$/src/model/DataBaseFacade.java" />
       </list>
     </option>
   </component>
@@ -378,11 +386,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17681000" />
+    <option name="totallyTimeSpent" value="19249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -392,7 +399,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3282353" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3282353" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -441,22 +448,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/DataBaseFacade.java</url>
-          <line>569</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/model/DataBaseFacade.java</url>
-          <line>505</line>
-          <properties class="model.DataBaseFacade" method="getAvailableRooms">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
@@ -605,8 +596,8 @@
         <state relative-caret-position="495">
           <caret line="36" column="16" lean-forward="false" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
           <folding>
-            <element signature="e#681#682#0" expanded="false" />
-            <element signature="e#699#700#0" expanded="false" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
             <element signature="e#1987#1988#0" expanded="false" />
           </folding>
         </state>
@@ -640,7 +631,7 @@
           <folding>
             <element signature="e#1903#1904#0" expanded="false" />
             <element signature="e#1918#1919#0" expanded="false" />
-            <element signature="e#1991#1992#0" expanded="true" />
+            <element signature="e#1991#1992#0" expanded="false" />
             <element signature="e#2029#2030#0" expanded="false" />
             <element signature="e#2056#2057#0" expanded="false" />
             <element signature="e#2103#2104#0" expanded="false" />
@@ -797,18 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Hotel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="36" column="16" lean-forward="false" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-          <folding>
-            <element signature="e#681#682#0" expanded="false" />
-            <element signature="e#699#700#0" expanded="false" />
-            <element signature="e#1987#1988#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Comment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -892,24 +871,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/RoomType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding>
-            <element signature="e#749#750#0" expanded="true" />
-            <element signature="e#772#773#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Room.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="24" />
           <folding>
-            <element signature="e#1960#1961#0" expanded="true" />
-            <element signature="e#1991#1992#0" expanded="true" />
+            <element signature="e#1960#1961#0" expanded="false" />
+            <element signature="e#1991#1992#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -922,10 +890,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/RoomType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding>
+            <element signature="e#749#750#0" expanded="true" />
+            <element signature="e#772#773#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Hotel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="36" column="16" lean-forward="false" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+          <folding>
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/DataBaseFacade.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="26" />
+        <state relative-caret-position="-225">
+          <caret line="536" column="40" lean-forward="false" selection-start-line="536" selection-start-column="40" selection-end-line="536" selection-end-column="40" />
           <folding />
         </state>
       </provider>
