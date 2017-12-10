@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -29,6 +30,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.text.MaskFormatter;
 
 import Controller.Controller;
+import javafx.scene.control.SelectionMode;
 import model.Hotel;
 import model.Person;
 import model.User;
@@ -131,6 +133,7 @@ public class SearchHotelsGUI extends JFrame {
 		
 		list = new JList<Hotel>(listModel);
 		list.setLayoutOrientation(JList.VERTICAL);
+		list.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
 		list.setVisibleRowCount(-1);
 		list.setBounds(10, 180, 512, 208);
 		contentPane.add(list);
@@ -159,6 +162,7 @@ public class SearchHotelsGUI extends JFrame {
 					
 				}
 				List<Hotel> hotelList = controller.getAvaillableHotels(cityTf.getText().trim(), checkIn, checkOut, (Integer) peopleCb.getSelectedItem());
+				listModel.clear();
 				for(Hotel h: hotelList){
 					listModel.addElement(h);
 				}

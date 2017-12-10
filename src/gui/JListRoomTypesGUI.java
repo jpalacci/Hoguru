@@ -28,7 +28,8 @@ public class JListRoomTypesGUI extends JFrame {
 	private JScrollPane listScroller;
 	private JFrame hotelFrame;
 	private Hotel hotel;
-	Controller controller;
+	private Controller controller;
+	
 	
 	public JListRoomTypesGUI(Hotel hotel, JFrame hotelFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +44,7 @@ public class JListRoomTypesGUI extends JFrame {
 		
 		listModel = new DefaultListModel<RoomType>();
 
-		//TODO controller to fetch types and load it to listModel
+		//TODO controller
 		
 
 		listScroller = new JScrollPane();

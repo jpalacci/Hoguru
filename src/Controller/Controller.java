@@ -144,6 +144,7 @@ public class Controller {
 
     public long addReservation(String userName , Calendar checkIn , Calendar checkOut , Room room  ){
         Reservation r = new Reservation(userName , checkIn , checkOut , room);
+        r.addReservation();
         return r.getReservationNumber();
     }
 	

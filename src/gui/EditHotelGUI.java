@@ -121,6 +121,11 @@ public class EditHotelGUI extends JFrame {
 		contentPane.add(viewRoomsBtn);
 		
 		addTypeBtn = new JButton("Agregar Tipos de Habitacion");
+		addTypeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new AddRoomTypeGUI(hotel, EditHotelGUI.this);
+			}
+		});
 		addTypeBtn.setBounds(194, 253, 168, 23);
 		contentPane.add(addTypeBtn);
 		

@@ -186,7 +186,7 @@ public class AddHotelGUI extends JFrame {
 			return false;
 		}
 		
-		return controller.isValidHotel(hotelName,direction, rateNumber, true);
+		return controller.isValidHotel(hotelName,direction, rateNumber, true, city);
 	}
 
 	
