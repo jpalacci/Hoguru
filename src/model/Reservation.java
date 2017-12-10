@@ -17,6 +17,10 @@ public class Reservation {
 
 	Room room;
 
+	public String getUser(){
+		return user;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -123,5 +127,11 @@ public class Reservation {
 
         return sb.toString();
     }
+
+    public static boolean deleteReservation(long reservationNumber){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		//return db.deleteReservation(reservationNumber);
+		return true;
+	}
 
 }

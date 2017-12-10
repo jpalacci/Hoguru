@@ -88,6 +88,27 @@ public class Controller {
 
 	}
 
+	public Reservation getReservation(long reservationNumber){
+	    Reservation r = Reservation.getReservation(reservationNumber);
+	    if(r.getUser().equals(actualPerson.getUserName())){
+	        return r;
+        }else{
+	        return null;
+        }
+    }
+
+    public boolean deleteReservation(long reservationNumber){
+        Reservation r = Reservation.getReservation(reservationNumber);
+        if(r == null){
+            return false;
+        }
+        if(r.getUser().equals(actualPerson.getUserName())){
+            return Reservation.deleteReservation(reservationNumber);
+        }else{
+            return false;
+        }
+    }
+
 	public boolean isValidRoom(Hotel hotel, String tipeOfRoom, VIEW_TYPE viewType, int number,int capacity, boolean isNewRoom){
 			Room r = new Room(hotel.getName(),number);
 			r.setCapacity(capacity);
