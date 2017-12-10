@@ -138,8 +138,7 @@ public class Room {
 
 	public boolean updateRoom(Room r ){
 		DataBaseFacade db = DataBaseFacade.getInstance();
-		//return db.editRoom(r);
-		return true;
+		return db.editRoom(r);
 	}
 
     @Override
