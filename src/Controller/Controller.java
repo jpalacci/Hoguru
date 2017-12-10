@@ -87,7 +87,7 @@ public class Controller {
             }
 
 	}
-	
+
 	public boolean isValidRoom(Hotel hotel, String tipeOfRoom, VIEW_TYPE viewType, int number,int capacity, boolean isNewRoom){
 			Room r = new Room(hotel.getName(),number);
 			r.setCapacity(capacity);

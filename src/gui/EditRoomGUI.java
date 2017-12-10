@@ -195,7 +195,7 @@ public class EditRoomGUI extends JFrame {
 			return false;
 		}
 		
-		return controller.isValidRoom(hotel,tipeOfRoom,viewType,getNumber,roomNumber,true);
+		return controller.isValidRoom(hotel,tipeOfRoom,viewType,roomNumber,getNumber,false);
 	}
 
 	
