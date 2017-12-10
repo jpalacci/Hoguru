@@ -146,6 +146,11 @@ public class Hotel {
 		return list;
 	}
 
+	public boolean updateHotel(){
+        DataBaseFacade db = DataBaseFacade.getInstance();
+        return db.editHotel(this);
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +
