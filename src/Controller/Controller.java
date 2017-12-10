@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.*;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -13,6 +14,20 @@ public class Controller {
 
 	public static User actualPerson  =  new User("pepe",  "abc","@", "pepe","pepito", DOCUMENT_TYPE.DNI, "001", new Address("country", "province", "city", "street", "street_number", "postalCode"),"15-55", PHONE_TYPE.PERSONAL);
 	
+	public static void main(String args[]){
+        Controller.connect();
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    LoginGUI window = new LoginGUI();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
 	public boolean addRoomTypeToHotel(String hotelName , String description , String type , double cost){
 	    RoomType r = new RoomType(hotelName , description , type , cost);
 	   return  r.addRoomType();
