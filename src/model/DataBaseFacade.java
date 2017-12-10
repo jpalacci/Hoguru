@@ -175,18 +175,6 @@ public class DataBaseFacade
 
     }
 
-    public boolean addRoomTypeToHotel(RoomType roomType)
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.append("INSERT INTO TIPOS_HAB VALUES('");
-        sb.append(roomType.getType());
-        sb.append("','");
-        sb.append(roomType.getDescription());
-        sb.append("','");
-        sb.append(roomType.getHotelName());
-        sb.append("')");
-        return r.ejecutasql(sb.toString());
-    }
 
     public RoomType getRoomTypeFromHotel(String type, String hotelName)
     {
@@ -670,6 +658,34 @@ public class DataBaseFacade
 
 
     }
+
+    public List<Room> getRoomsFromHotel(String hotelName)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM HABITACIONES WHERE hotel_name = '");
+        sb.append(hotelName);
+        sb.append("'");
+        ResultSet res = r.gXrGenerico(sb.toString());
+        List<Room> rooms = new LinkedList<>();
+        try
+        {
+            while(res.next())
+            {
+                Room r = new Room(res.getString("hotel_name"), res.getInt("room_number"));
+                r.setType(res.getString("room_type"));
+                r.setView(VIEW_TYPE.valueOf("room_type"));
+                r.setCapacity(res.getInt("capacity"));
+                rooms.add(r);
+
+            }
+            return rooms;
+        }
+        catch (Exception e)
+        {
+            return rooms;
+        }
+    }
+
 
     /*
     public static void main(String[] args)
