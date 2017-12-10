@@ -68,6 +68,7 @@ public class DataBaseFacade
         sb.append(address.getPostalCode());
         sb.append("','");
         sb.append(user.getPhoneNumber());
+        sb.append("','");
         sb.append(user.getPhoneType());
         sb.append("')");
         return r.ejecutasql(sb.toString());
@@ -220,6 +221,30 @@ public class DataBaseFacade
             return null;
         }
 
+    }
+
+    List<RoomType> getRoomTypesFromHotel(String hotelName)
+    {
+        List<RoomType> roomTypes = new LinkedList<>();
+        ResultSet res;
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM TIPOS_HAB WHERE hotel_name = '");
+        sb.append(hotelName);
+        sb.append("'");
+        res = r.gXrGenerico(sb.toString());
+        try
+        {
+            while(res.next())
+            {
+                RoomType roomType = new RoomType(res.getString("hotel_name"), res.getString("features"), res.getString("room_type"), res.getFloat("cost"));
+                roomTypes.add(roomType);
+            }
+            return roomTypes;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
 
@@ -606,7 +631,9 @@ public class DataBaseFacade
         }
 
     }
-    
+
+
+
     public static void main(String[] args)
     {
         DataBaseFacade db = getInstance();
