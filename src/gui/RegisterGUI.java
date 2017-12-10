@@ -141,7 +141,7 @@ public class RegisterGUI {
 		
 		
 		countryCb = new JComboBox<String>();
-		countryCb.setModel(new DefaultComboBoxModel<String>(controller.getCoutries()));
+		countryCb.setModel(new DefaultComboBoxModel<String>(controller.getCountries()));
 		countryCb.setBounds(319, 269, 141, 20);
 		countryCb.addItemListener(new ItemListener(){
 		

@@ -1,15 +1,12 @@
 package test;
 
 import gui.EditUserGUI;
-import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EditUserTest {
-    @Test
+ //   @Test
     void editUserWithValidFields() {
 //        EditUserGUI screen = new EditUserGUI(new JFrame());
 //        screen.getAcceptConditionChckbx().doClick();
@@ -32,7 +29,7 @@ public class EditUserTest {
 //        assertTrue(screen.isValid());
     }
 
-    @Test
+    //@Test
     void editUserWithIncompleteFields() {
 //        EditUserGUI screen = new EditUserGUI(new JFrame());
 //        screen.getAcceptConditionChckbx().doClick();
@@ -55,7 +52,7 @@ public class EditUserTest {
 //        assertFalse(screen.isValid());
     }
 
-    @Test
+    //@Test
     void editUserWithoutAcceptingCondition() {
 //        EditUserGUI screen = new EditUserGUI(new JFrame());
 //        screen.getCountryCb().setSelectedIndex(0);

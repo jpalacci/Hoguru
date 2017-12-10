@@ -36,6 +36,7 @@ public class LoginGUI {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		Controller.connect();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

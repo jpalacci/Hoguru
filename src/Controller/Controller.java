@@ -5,30 +5,27 @@ import java.util.LinkedList;
 import java.util.List;
 
 import gui.LoginGUI;
-import model.Address;
-import model.DOCUMENT_TYPE;
-import model.Hotel;
-import model.PHONE_TYPE;
-import model.Person;
-import model.Room;
-import model.User;
-import model.VIEW_TYPE;
+import model.*;
 
 public class Controller {
 			
 	public static LinkedList<Hotel> hotels = new LinkedList<Hotel>();
 	public static LinkedList<Room> rooms = new LinkedList<Room>();
-	public static User actualPerson  ;
+	public static User actualPerson  =  new User("pepe",  "abc","@", "pepe","pepito", DOCUMENT_TYPE.DNI, "001", new Address("country", "province", "city", "street", "street_number", "postalCode"),"15-55", PHONE_TYPE.PERSONAL);
+	;
 	
 	public int isValidUser(String userName, String password){
 		//TODO se deberia cargar la persona para pasarla en getActivePerson
-		if(userName.equals("Admin"))
+		if(User.isAdmin(userName ,password))
 		{
+		    actualPerson = null;
 			return 2;
 		}
-		else if(userName.equals(actualPerson.getName()))
+		User user = User.getUser(userName , password);
+		if(user !=  null)
 		{
-		 return 1;
+		    actualPerson = user;
+		    return 1;
 		}
 		else
 		{
@@ -64,7 +61,8 @@ public class Controller {
 			Hotel h = new Hotel(name);
 			h.setRate(rate);
 			h.setDirection(direction);
-			return hotels.add(h);
+			return h.addHotel();
+			//return hotels.add(h);
 	}
 	
 	public boolean isValidRoom(Hotel hotel, String tipeOfRoom, VIEW_TYPE viewType, int number,int capacity, boolean isNewRoom){
@@ -72,7 +70,8 @@ public class Controller {
 			r.setCapacity(capacity);
 			r.setType(tipeOfRoom);
 			r.setView(viewType);
-			return rooms.add(r);
+			return r.addRoom();
+			//return rooms.add(r);
 	}
 	
 	public List<String> getRoomTypes(Hotel hotel){
@@ -85,8 +84,7 @@ public class Controller {
 	}
 	
 	public List<Hotel> getHotels(){
-		return hotels;
-		
+	    return Hotel.getHotels();
 	}
 	
 	public List<Hotel> getAvaillableHotels(String Destination, String chekInDate, String checkOutDate){
@@ -137,7 +135,7 @@ public class Controller {
 		
 	}
 	
-	public String[] getCoutries(){
+	public String[] getCountries(){
 		LinkedList<String> list = new LinkedList<String>();
 		list.add("Argentina");
 		list.add("Holanda");
@@ -150,5 +148,8 @@ public class Controller {
 		LoginGUI window = new LoginGUI();
 		window.frame.setVisible(true);
 	}
+	public static  void connect(){
+        DataBaseFacade.connect();
+    }
 	
 }

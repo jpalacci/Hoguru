@@ -1,7 +1,6 @@
 package model;
 //import com.sun.org.apache.regexp.internal.RE;
 
-import com.sun.org.apache.regexp.internal.RE;
 
 import java.sql.ResultSet;
 import java.util.Calendar;
@@ -632,12 +631,17 @@ public class DataBaseFacade
 
     }
 
+    public static void connect(){
 
-
-    public static void main(String[] args)
-    {
         DataBaseFacade db = getInstance();
         db.r.conectar("u2017b-1", "passwordING1");
+
+    }
+
+    /*
+    public static void main(String[] args)
+    {
+
         Calendar checkIn = Calendar.getInstance();
         checkIn.set(Calendar.YEAR, 2018);
         checkIn.set(Calendar.MONTH, Calendar.JANUARY);
@@ -657,5 +661,6 @@ public class DataBaseFacade
 
 
     }
+    */
 
 }
