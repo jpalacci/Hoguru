@@ -7,7 +7,6 @@ public class Hotel {
 	
 	private String name;
 	private String direction;
-	private List<String> basicInfo;
 	private List<Comment> comments; 
 	private float rate;
 	private String city;
@@ -101,10 +100,6 @@ public class Hotel {
 		this.direction = direction;
 	}
 
-	public void setBasicInfo(List<String> basicInfo) {
-		this.basicInfo = basicInfo;
-	}
-
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
@@ -112,32 +107,8 @@ public class Hotel {
 	public void setRate(float rate) {
 		this.rate = rate;
 	}
-	
-	public boolean addComment( String comment , String nombreUsuario ,  int rate, Calendar date) {
 
-		//Comment c = new Comment(comment, nombreUsuario , rate , date);
-		//return c.addComment();
-		return false;
-		//TODO
-	}
 
-	
-	public boolean deleteComment(String user, Calendar c) {
-		
-		DataBaseFacade db = DataBaseFacade.getInstance();
-		
-		return db.removeComment(user, name, c);
-		
-	}
-	
-	public boolean deletePhoto(String photo) {
-		
-
-		DataBaseFacade db = DataBaseFacade.getInstance();
-		
-		return db.removePhotoFromHotel(name, photo);
-		
-	}
 
 	public static List<Hotel> getHotels(){
 
@@ -174,6 +145,19 @@ public class Hotel {
 		list.addAll(hotels);
 		return list;
 	}
-	
-	
+
+	public boolean updateHotel(){
+        DataBaseFacade db = DataBaseFacade.getInstance();
+        return db.editHotel(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "name='" + name + '\'' +
+                ", direction='" + direction + '\'' +
+                ", rate=" + rate +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

@@ -135,4 +135,13 @@ public class Room {
 		DataBaseFacade db = DataBaseFacade.getInstance();
 		return db.getRoomsFromHotel(hotelName);
 	}
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "type='" + type + '\'' +
+                ", capacity=" + capacity +
+                ", view=" + view +
+                '}';
+    }
 }

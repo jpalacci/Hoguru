@@ -506,7 +506,7 @@ public class DataBaseFacade
             {
                 Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(res.getTimestamp("comment_date").getTime());
-                Comment c = new Comment(res.getString("comment"), res.getString("username"), cal);
+                Comment c = new Comment(res.getString("comment"), res.getString("username"), cal , hotelName);
                 c.setHotelName(res.getString("hotel_name"));
                 return c;
             }

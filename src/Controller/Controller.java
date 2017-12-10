@@ -41,7 +41,7 @@ public class Controller {
     public boolean loadNewUser(String email, String name, String surname, DOCUMENT_TYPE docType, String document, String country, String province, String city, String street, String street_number, String postalCode, String phoneNumber, PHONE_TYPE phoneType, String password){
 
 		Address address = new Address(country, province, city, street, street_number, postalCode);
-		User p = new User( name, password ,email ,name, surname, docType, document, address,phoneNumber, phoneType);
+		User p = new User( email, password ,email ,name, surname, docType, document, address,phoneNumber, phoneType);
 		actualPerson = p;
         p.addUser();
 		return true;
@@ -67,7 +67,12 @@ public class Controller {
 			h.setRate(rate);
 			h.setDirection(direction);
 			h.setCity(city);
-			return h.addHotel();
+			if(isNewHotel){
+                return h.addHotel();
+            }else{
+                return h.updateHotel();
+            }
+
 	}
 	
 	public boolean isValidRoom(Hotel hotel, String tipeOfRoom, VIEW_TYPE viewType, int number,int capacity, boolean isNewRoom){
@@ -146,6 +151,16 @@ public class Controller {
         Reservation r = new Reservation(userName , checkIn , checkOut , room);
         r.addReservation();
         return r.getReservationNumber();
+    }
+
+    public boolean addComment(String comment , String userName , Calendar date, String hotelName ){
+        Comment m = new Comment(comment, userName , date, hotelName);
+        return m.addComment();
+    }
+
+    public boolean deleteComment(String userName , String hotelName, Calendar d){
+        Comment m = new Comment("a" , userName , d , hotelName);
+        return m.delete();
     }
 	
 }
