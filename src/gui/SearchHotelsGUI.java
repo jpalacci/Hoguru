@@ -81,7 +81,7 @@ public class SearchHotelsGUI extends JFrame {
 		contentPane.add(cityTf);
 		cityTf.setColumns(10);
 		
-		peopleCb = new JComboBox(new String[] {"1","2","3","4","5","6","7"});
+		peopleCb = new JComboBox(new Integer[] {1,2,3,4,5,6,7});
 		peopleCb.setBounds(253, 111, 156, 20);
 		peopleCb.setRenderer(new MyComboBoxRenderer("Cantidad de Personas"));
 		peopleCb.setSelectedIndex(-1);
@@ -162,6 +162,7 @@ public class SearchHotelsGUI extends JFrame {
 				for(Hotel h: hotelList){
 					listModel.addElement(h);
 				}
+				list.setModel(listModel);
 			}
 
 		
