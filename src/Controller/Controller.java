@@ -10,9 +10,7 @@ import model.*;
 
 
 public class Controller {
-			
-	public static LinkedList<Hotel> hotels = new LinkedList<Hotel>();
-	public static LinkedList<Room> rooms = new LinkedList<Room>();
+
 	public static User actualPerson  =  new User("pepe",  "abc","@", "pepe","pepito", DOCUMENT_TYPE.DNI, "001", new Address("country", "province", "city", "street", "street_number", "postalCode"),"15-55", PHONE_TYPE.PERSONAL);
 	
 	public boolean addRoomTypeToHotel(String hotelName , String description , String type , double cost){
@@ -20,7 +18,7 @@ public class Controller {
 	   return  r.addRoomType();
     }
 	public int isValidUser(String userName, String password){
-		//TODO se deberia cargar la persona para pasarla en getActivePerson
+
 		if(User.isAdmin(userName ,password))
 		{
 		    actualPerson = null;
@@ -80,7 +78,11 @@ public class Controller {
 			r.setCapacity(capacity);
 			r.setType(tipeOfRoom);
 			r.setView(viewType);
-			return r.addRoom();
+			if(isNewRoom) {
+				return r.addRoom();
+			}else{
+				return r.updateRoom(r);
+			}
 	}
 	
 	public List<String> getRoomTypes(String  hotelName){

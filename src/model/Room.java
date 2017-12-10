@@ -136,10 +136,15 @@ public class Room {
 		return db.getRoomsFromHotel(hotelName);
 	}
 
+	public boolean updateRoom(Room r ){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		//return db.editRoom(r);
+		return true;
+	}
+
     @Override
     public String toString() {
-        return "Room{" +
-                "type='" + type + '\'' +
+        return "type='" + type  +
                 ", capacity=" + capacity +
                 ", view=" + view +
                 '}';
