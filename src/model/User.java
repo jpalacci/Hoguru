@@ -11,6 +11,12 @@ public class User extends Person{
         this.password = password;
     }
 
+    public User(String userName , String password ,String email, String name, String surname, DOCUMENT_TYPE docType, String document, Address adress, String phoneNumber, PHONE_TYPE phoneType ){
+        super(email,name, surname, docType, document, adress, phoneNumber,  phoneType);
+        this.userName = userName;
+        this.password = password;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -25,5 +31,10 @@ public class User extends Person{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean addUser(){
+        DataBaseFacade db = DataBaseFacade.getInstance();
+        return db.addUser(this);
     }
 }

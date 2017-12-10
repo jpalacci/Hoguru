@@ -18,7 +18,7 @@ public class Controller {
 			
 	public static LinkedList<Hotel> hotels = new LinkedList<Hotel>();
 	public static LinkedList<Room> rooms = new LinkedList<Room>();
-	public static Person actualPerson = new Person("@", "pepe","pepito", DOCUMENT_TYPE.DNI, "001", new Address("country", "province", "city", "street", "street_number", "postalCode"),"15-55", PHONE_TYPE.PERSONAL);
+	public static User actualPerson  ;
 	
 	public int isValidUser(String userName, String password){
 		//TODO se deberia cargar la persona para pasarla en getActivePerson
@@ -35,20 +35,21 @@ public class Controller {
 			return 0;
 		}
 	}
-	
-	public boolean loadNewUser(String email, String name, String surname, DOCUMENT_TYPE docType, String document, String country, String province, String city, String street, String street_number, String postalCode, String phoneNumber, PHONE_TYPE phoneType, String password){
+
+    public boolean loadNewUser(String email, String name, String surname, DOCUMENT_TYPE docType, String document, String country, String province, String city, String street, String street_number, String postalCode, String phoneNumber, PHONE_TYPE phoneType, String password){
 		//TODO aca es para crear un nuevo usuario no se donde proner las contrasenas y eso
 		Address address = new Address(country, province, city, street, street_number, postalCode);
-		Person p = new Person(email, name, surname, docType, document, address,phoneNumber, phoneType);
+		User p = new User( name, password ,email ,name, surname, docType, document, address,phoneNumber, phoneType);
 		actualPerson = p;
+        p.addUser();
 		return true;
 		
 	}
 	
 	public boolean changeUser(String email, String name, String surname, DOCUMENT_TYPE docType, String document, String country, String province, String city, String street, String street_number, String postalCode, String phoneNumber, PHONE_TYPE phoneType, String password){
 		//TODO aca es para cambiar un usuario ya existente
-		Address address = new Address(country, province, city, street, street_number, postalCode);
-		Person p = new Person(email, name, surname, docType, document, address,phoneNumber, phoneType);
+        Address address = new Address(country, province, city, street, street_number, postalCode);
+        User p = new User( name, password ,email ,name, surname, docType, document, address,phoneNumber, phoneType);
 		actualPerson = p;
 		return true;
 		
