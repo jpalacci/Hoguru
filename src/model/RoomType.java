@@ -78,6 +78,11 @@ public class RoomType {
 		DataBaseFacade db = DataBaseFacade.getInstance();
 		return db.addRoomType(this);
 	}
+
+	public static boolean deleteRoomType(String hotelName , String type){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.deleteRoomType(hotelName , type);
+	}
 	
 	
 	

@@ -32,6 +32,10 @@ public class Controller {
 	    RoomType r = new RoomType(hotelName , description , type , cost);
 	   return  r.addRoomType();
     }
+
+    public boolean deleteRoomTypeFromHotel(String hotelName , String type){
+	    return RoomType.deleteRoomType(hotelName , type);
+    }
 	public int isValidUser(String userName, String password){
 
 		if(User.isAdmin(userName ,password))
