@@ -46,7 +46,7 @@ public class JListRoomResultsGUI extends JFrame  {
 		
 		
 		listScroller = new JScrollPane();
-		listScroller.setBounds(100, 100, 304, 225);
+		listScroller.setBounds(0, 0, 282, 186);
 		listScroller.setPreferredSize(new Dimension(250, 80));
 
 		

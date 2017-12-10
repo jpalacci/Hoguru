@@ -133,7 +133,7 @@ public class SearchHotelsGUI extends JFrame {
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
 		list.setBounds(10, 180, 512, 208);
-		
+		contentPane.add(list);
 		list.addListSelectionListener(new ListSelectionListener(){
 
 			@Override

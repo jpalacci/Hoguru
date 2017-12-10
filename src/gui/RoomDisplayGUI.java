@@ -35,7 +35,7 @@ public class RoomDisplayGUI extends JFrame {
 	private JButton reserveBtn;
 	private Controller controller;
 	
-	public RoomDisplayGUI(Room Room, Calendar checkIn, Calendar checkOut, String city, int numberOfPeople, String userName) {
+	public RoomDisplayGUI(Room room, Calendar checkIn, Calendar checkOut, String city, int numberOfPeople, String userName) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 216);
 		contentPane = new JPanel();

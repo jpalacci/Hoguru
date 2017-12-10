@@ -20,6 +20,7 @@ import javax.swing.Timer;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.SwingConstants;
 
 public class EditHotelGUI extends JFrame {
 
@@ -33,19 +34,20 @@ public class EditHotelGUI extends JFrame {
 	private JButton cancelBtn;
 	private JLabel lblDatosDelHotel;
 	private JButton viewRoomsBtn;
-	private JButton addPhotoBtn;
+	private JButton addTypeBtn;
 	private JFrame administratorFrame;
 	private Timer deleteErrorMessage;
 	private JLabel errorLbl;
 	private Controller controller;
 	private JFormattedTextField rateFT;
 	private Hotel hotel;
+	private JTextField cityTf;
 	
 	public EditHotelGUI(JFrame administratorFrame, Hotel hotel) {
 		
 		controller = new Controller();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 421, 377);
+		setBounds(100, 100, 421, 434);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,7 +78,7 @@ public class EditHotelGUI extends JFrame {
 		contentPane.add(directionTf);
 		
 		editHotelBtn = new JButton("Editar Hotel");
-		editHotelBtn.setBounds(67, 289, 111, 23);
+		editHotelBtn.setBounds(67, 361, 111, 23);
 		contentPane.add(editHotelBtn);
 		editHotelBtn.addActionListener(new ActionListener(){
 			@Override
@@ -94,7 +96,7 @@ public class EditHotelGUI extends JFrame {
 		});
 		
 		cancelBtn = new JButton("Cancelar");
-		cancelBtn.setBounds(226, 289, 89, 23);
+		cancelBtn.setBounds(226, 361, 89, 23);
 		contentPane.add(cancelBtn);
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -115,25 +117,25 @@ public class EditHotelGUI extends JFrame {
 				dispose();
 			}
 		});
-		viewRoomsBtn.setBounds(20, 224, 121, 23);
+		viewRoomsBtn.setBounds(20, 300, 121, 23);
 		contentPane.add(viewRoomsBtn);
 		
-		addPhotoBtn = new JButton("Agregar Fotos");
-		addPhotoBtn.setBounds(195, 190, 121, 23);
-		contentPane.add(addPhotoBtn);
+		addTypeBtn = new JButton("Agregar Tipos de Habitacion");
+		addTypeBtn.setBounds(194, 253, 168, 23);
+		contentPane.add(addTypeBtn);
 		
 		errorLbl = new JLabel("");
 		errorLbl.setForeground(Color.RED);
-		errorLbl.setBounds(36, 262, 46, 14);
+		errorLbl.setBounds(30, 334, 285, 14);
 		contentPane.add(errorLbl);
 		
 		rateFT = new JFormattedTextField();
 		rateFT.setBounds(137, 159, 225, 20);
 		contentPane.add(rateFT);
 		
-		JButton viewPicturesBtn = new JButton("Ver Fotos");
-		viewPicturesBtn.setBounds(20, 190, 121, 23);
-		contentPane.add(viewPicturesBtn);
+		JButton viewTypesBtn = new JButton("Ver Tipos de Habitacion");
+		viewTypesBtn.setBounds(20, 253, 158, 23);
+		contentPane.add(viewTypesBtn);
 		
 		JButton addRoombtn = new JButton("Agregar Cuarto");
 		addRoombtn.addActionListener(new ActionListener() {
@@ -142,8 +144,19 @@ public class EditHotelGUI extends JFrame {
 				dispose();
 			}
 		});
-		addRoombtn.setBounds(194, 224, 121, 23);
+		addRoombtn.setBounds(194, 300, 121, 23);
 		contentPane.add(addRoombtn);
+		
+		cityTf = new JTextField();
+		cityTf.setText((String) null);
+		cityTf.setColumns(10);
+		cityTf.setBounds(137, 207, 225, 20);
+		contentPane.add(cityTf);
+		
+		JLabel cityLbl = new JLabel("Ciudad");
+		cityLbl.setHorizontalAlignment(SwingConstants.TRAILING);
+		cityLbl.setBounds(10, 210, 111, 14);
+		contentPane.add(cityLbl);
 		
 		 ActionListener al = new ActionListener() {
 
@@ -153,7 +166,7 @@ public class EditHotelGUI extends JFrame {
 	            	hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	directionTf.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	rateFT.setBorder(BorderFactory.createLineBorder(Color.black));
-	            	
+	            	cityTf.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	
 	            }
 	        };
@@ -168,6 +181,7 @@ public class EditHotelGUI extends JFrame {
 		hotelNameTf.setText(hotel.getName());
 		directionTf.setText(hotel.getDirection());
 		rateFT.setText(String.valueOf(hotel.getRate()));
+		cityTf.setText(String.valueOf(hotel.getCity()));
 	}
 
 
@@ -176,6 +190,7 @@ public class EditHotelGUI extends JFrame {
 		String hotelName = hotelNameTf.getText().trim();
 		String direction = directionTf.getText().trim();
 		String rate =  rateFT.getText().trim();
+		String city = cityTf.getText().trim();
 		float rateNumber;
 		boolean error = false;
 		
@@ -183,6 +198,11 @@ public class EditHotelGUI extends JFrame {
 		if(hotelName.equals(""))
 		{
 			hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(city.equals(""))
+		{
+			cityTf.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
 		if(direction.equals(""))
@@ -210,7 +230,7 @@ public class EditHotelGUI extends JFrame {
 			return false;
 		}
 		
-		return controller.isValidHotel(hotelName,direction, rateNumber, true);
+		return controller.isValidHotel(hotelName,direction, rateNumber, true, city);
 	}
 
 	
@@ -226,6 +246,4 @@ public class EditHotelGUI extends JFrame {
 	public JTextField getRateFT() {
 		return rateFT;
 	}
-
-
 }

@@ -31,13 +31,13 @@ public class AddHotelGUI extends JFrame {
 	private JButton createHotelBtn;
 	private JButton cancelBtn;
 	private JLabel lblDatosDelHotel;
-	private JButton viewPhotoBtn;
-	private JButton addPhotoBtn;
 	private JFrame administratorFrame;
 	private Timer deleteErrorMessage;
 	private JLabel errorLbl;
 	private Controller controller;
 	private JFormattedTextField rateFT;
+	private JLabel cityLbl;
+	private JTextField cityTf;
 	
 	public AddHotelGUI(JFrame administratorFrame) {
 		
@@ -106,14 +106,6 @@ public class AddHotelGUI extends JFrame {
 		lblDatosDelHotel.setBounds(10, 11, 168, 53);
 		contentPane.add(lblDatosDelHotel);
 		
-		viewPhotoBtn = new JButton("Ver Fotos");
-		viewPhotoBtn.setBounds(21, 217, 121, 23);
-		contentPane.add(viewPhotoBtn);
-		
-		addPhotoBtn = new JButton("Agregar Fotos");
-		addPhotoBtn.setBounds(197, 217, 121, 23);
-		contentPane.add(addPhotoBtn);
-		
 		errorLbl = new JLabel("");
 		errorLbl.setForeground(Color.RED);
 		errorLbl.setBounds(36, 262, 46, 14);
@@ -123,6 +115,15 @@ public class AddHotelGUI extends JFrame {
 		rateFT.setBounds(137, 159, 225, 20);
 		contentPane.add(rateFT);
 		
+		cityLbl = new JLabel("Ciudad");
+		cityLbl.setBounds(10, 206, 111, 14);
+		contentPane.add(cityLbl);
+		
+		cityTf = new JTextField();
+		cityTf.setColumns(10);
+		cityTf.setBounds(137, 203, 225, 20);
+		contentPane.add(cityTf);
+		
 		 ActionListener al = new ActionListener() {
 
 	            @Override
@@ -131,8 +132,7 @@ public class AddHotelGUI extends JFrame {
 	            	hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	directionTf.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	rateFT.setBorder(BorderFactory.createLineBorder(Color.black));
-	            	
-	            	
+	            	cityTf.setBorder(BorderFactory.createLineBorder(Color.black));
 	            }
 	        };
 
@@ -146,6 +146,7 @@ public class AddHotelGUI extends JFrame {
 		String hotelName = hotelNameTf.getText().trim();
 		String direction = directionTf.getText().trim();
 		String rate =  rateFT.getText().trim();
+		String city = cityTf.getText().trim();
 		float rateNumber;
 		boolean error = false;
 		
@@ -153,6 +154,11 @@ public class AddHotelGUI extends JFrame {
 		if(hotelName.equals(""))
 		{
 			hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			error = true;
+		}
+		if(city.equals(""))
+		{
+			cityTf.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
 		if(direction.equals(""))
