@@ -351,6 +351,16 @@ public class DataBaseFacade
         return r.ejecutasql(sb.toString());
 
     }
+
+    public boolean deleteUser(String username)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM USUARIOS WHERE username = '");
+        sb.append(username);
+        sb.append("'");
+        return r.ejecutasql(sb.toString());
+    }
+
     
     public boolean addComment(Comment c)
     {
