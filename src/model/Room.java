@@ -9,8 +9,26 @@ public class Room {
 	private int number;
 	private VIEW_TYPE view;
 	private String hotelName;
-	
-	public Room(String hotelName, int number) {
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Room)) return false;
+
+        Room room = (Room) o;
+
+        if (number != room.number) return false;
+        return hotelName != null ? hotelName.equals(room.hotelName) : room.hotelName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = number;
+        result = 31 * result + (hotelName != null ? hotelName.hashCode() : 0);
+        return result;
+    }
+
+    public Room(String hotelName, int number) {
 		this.hotelName = hotelName;
 		this.number = number;
 	}

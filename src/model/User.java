@@ -7,6 +7,24 @@ public class User extends Person{
     private final static String ADMIN_PASSWORD = "admin";
     private final static String ADMIN_USER = "admin";
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        if (!super.equals(o)) return false;
+
+        User user = (User) o;
+
+        return userName != null ? userName.equals(user.userName) : user.userName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        return result;
+    }
+
     public User(String email, String password, String userName, String name, String surname, String document) {
         super(email, name, surname, document);
         this.userName = userName;

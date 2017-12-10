@@ -10,7 +10,31 @@ public class Hotel {
 	private List<String> basicInfo;
 	private List<Comment> comments; 
 	private float rate;
-	
+	private String city;
+
+	public String getCity(){
+		return city;
+	}
+
+	public void setCity(String city){
+		this.city = city;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Hotel)) return false;
+
+		Hotel hotel = (Hotel) o;
+
+		return name.equals(hotel.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+
 	public Hotel(String name) {
 		this.name=name;
 	}

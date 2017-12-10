@@ -9,8 +9,27 @@ public class Comment {
 	private String comment;
 	private Calendar date;
 	private int rate;
-	
-	public Comment(String comment , String nombreUsuario ,  Calendar date) {
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Comment)) return false;
+
+		Comment comment = (Comment) o;
+
+		if (nombreUsuario != null ? !nombreUsuario.equals(comment.nombreUsuario) : comment.nombreUsuario != null)
+			return false;
+		return date != null ? date.equals(comment.date) : comment.date == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = nombreUsuario != null ? nombreUsuario.hashCode() : 0;
+		result = 31 * result + (date != null ? date.hashCode() : 0);
+		return result;
+	}
+
+	public Comment(String comment , String nombreUsuario , Calendar date) {
 		this.comment=comment;
 		this.nombreUsuario=nombreUsuario;
 		this.date=date;

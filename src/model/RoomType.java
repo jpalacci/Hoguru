@@ -9,7 +9,25 @@ public class RoomType {
 	private String description;
 	private String type;
 	private double cost;
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof RoomType)) return false;
+
+		RoomType roomType = (RoomType) o;
+
+		if (!hotelName.equals(roomType.hotelName)) return false;
+		return type.equals(roomType.type);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = hotelName.hashCode();
+		result = 31 * result + type.hashCode();
+		return result;
+	}
+
 	public RoomType(String hotelName , String description , String type , double cost) {
 		this.hotelName = hotelName;
 		this.description = description;

@@ -12,6 +12,21 @@ public class Person {
     private String phoneNumber;
     private PHONE_TYPE phoneType;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+
+        Person person = (Person) o;
+
+        return document.equals(person.document);
+    }
+
+    @Override
+    public int hashCode() {
+        return document.hashCode();
+    }
+
     public Person(String email, String name, String surname, String document) {
         this.email = email;
         this.name = name;

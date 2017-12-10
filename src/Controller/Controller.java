@@ -62,10 +62,11 @@ public class Controller {
 		return actualPerson;
 	}
 		
-	public boolean isValidHotel(String name, String direction,float rate, boolean isNewHotel){
+	public boolean isValidHotel(String name, String direction,float rate, boolean isNewHotel , String city){
 			Hotel h = new Hotel(name);
 			h.setRate(rate);
 			h.setDirection(direction);
+			h.setCity(city);
 			return h.addHotel();
 	}
 	
@@ -141,7 +142,7 @@ public class Controller {
         DataBaseFacade.connect();
     }
 
-    public long addReservation(String userName , Calendar checkIn , Calendar checkOut , Room room ){
+    public long addReservation(String userName , Calendar checkIn , Calendar checkOut , Room room  ){
         Reservation r = new Reservation(userName , checkIn , checkOut , room);
         return r.getReservationNumber();
     }

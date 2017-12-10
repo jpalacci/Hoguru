@@ -17,6 +17,21 @@ public class Reservation {
 
 	Room room;
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Reservation)) return false;
+
+		Reservation that = (Reservation) o;
+
+		return reservationNumber == that.reservationNumber;
+	}
+
+	@Override
+	public int hashCode() {
+		return (int) (reservationNumber ^ (reservationNumber >>> 32));
+	}
+
 	public Room getRoom(){
 		return room;
 	}
