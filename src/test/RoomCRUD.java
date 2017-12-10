@@ -6,8 +6,6 @@ import gui.EditRoomGUI;
 import javafx.scene.control.ComboBox;
 import model.Hotel;
 import model.Room;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -116,7 +114,7 @@ public class RoomCRUD {
 //        assertTrue(error);
 //    }
 
-    @Test
+   // @Test
     void modifyRoomWithInvalidCharacteristic(){
 //        EditRoomGUI screen = new EditRoomGUI(new JFrame(),new Room("hotel",123));
 //        screen.getTypeOfRoomTf().setText("test1");

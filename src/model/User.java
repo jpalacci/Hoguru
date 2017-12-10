@@ -4,6 +4,8 @@ public class User extends Person{
 
     private String userName;
     private String password;
+    private final static String ADMIN_PASSWORD = "admin";
+    private final static String ADMIN_USER = "admin";
 
     public User(String email, String password, String userName, String name, String surname, String document) {
         super(email, name, surname, document);
@@ -36,5 +38,31 @@ public class User extends Person{
     public boolean addUser(){
         DataBaseFacade db = DataBaseFacade.getInstance();
         return db.addUser(this);
+    }
+
+    public static boolean isAdmin(String userName , String password){
+        if(userName.equals(ADMIN_USER)) {
+
+            if (password.equals(ADMIN_PASSWORD)) {
+                return true;
+            } else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public static User getUser(String userName , String password){
+        DataBaseFacade db = DataBaseFacade.getInstance();
+        User u  = db.getUser(userName);
+        if( u != null){
+            if(u.password.equals(password)){
+                return u;
+            }else{
+                return null;
+            }
+        }
+        return u;
     }
 }

@@ -115,6 +115,14 @@ public class Hotel {
 		return db.removePhotoFromHotel(name, photo);
 		
 	}
+
+	public static List<Hotel> getHotels(){
+
+		DataBaseFacade db = DataBaseFacade.getInstance();
+
+		return db.getHotels();
+
+	}
 	
 	
 }
