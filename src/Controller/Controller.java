@@ -147,5 +147,15 @@ public class Controller {
         r.addReservation();
         return r.getReservationNumber();
     }
+
+    public boolean addComment(String comment , String userName , Calendar date, String hotelName ){
+        Comment m = new Comment(comment, userName , date, hotelName);
+        return m.addComment();
+    }
+
+    public boolean deleteComment(String userName , String hotelName, Calendar d){
+        Comment m = new Comment("a" , userName , d , hotelName);
+        return m.delete();
+    }
 	
 }

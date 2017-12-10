@@ -7,7 +7,6 @@ public class Hotel {
 	
 	private String name;
 	private String direction;
-	private List<String> basicInfo;
 	private List<Comment> comments; 
 	private float rate;
 	private String city;
@@ -101,10 +100,6 @@ public class Hotel {
 		this.direction = direction;
 	}
 
-	public void setBasicInfo(List<String> basicInfo) {
-		this.basicInfo = basicInfo;
-	}
-
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
@@ -115,10 +110,9 @@ public class Hotel {
 	
 	public boolean addComment( String comment , String nombreUsuario ,  int rate, Calendar date) {
 
-		//Comment c = new Comment(comment, nombreUsuario , rate , date);
-		//return c.addComment();
-		return false;
-		//TODO
+		Comment c = new Comment(comment, nombreUsuario ,  date);
+		return c.addComment();
+
 	}
 
 	
@@ -174,6 +168,14 @@ public class Hotel {
 		list.addAll(hotels);
 		return list;
 	}
-	
-	
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "name='" + name + '\'' +
+                ", direction='" + direction + '\'' +
+                ", rate=" + rate +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

@@ -29,7 +29,7 @@ public class Comment {
 		return result;
 	}
 
-	public Comment(String comment , String nombreUsuario , Calendar date) {
+	public Comment(String comment , String nombreUsuario , Calendar date , String hotelName) {
 		this.comment=comment;
 		this.nombreUsuario=nombreUsuario;
 		this.date=date;
