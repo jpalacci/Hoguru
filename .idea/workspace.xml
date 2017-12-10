@@ -84,8 +84,8 @@
       <file leaf-file-name="DataBaseFacade.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/DataBaseFacade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="705" column="39" lean-forward="false" selection-start-line="705" selection-start-column="39" selection-end-line="705" selection-end-column="39" />
+            <state relative-caret-position="332">
+              <caret line="545" column="20" lean-forward="false" selection-start-line="545" selection-start-column="20" selection-end-line="545" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -164,7 +164,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>HABITACIONES</find>
       <find>CHECK-OUT</find>
       <find>USUARIO</find>
       <find>habitacion</find>
@@ -194,6 +193,7 @@
       <find>UPDATE</find>
       <find>habitaciones</find>
       <find>deleteReser</find>
+      <find>NOT EXI</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -491,7 +491,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27702000" />
+    <option name="totallyTimeSpent" value="27896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -946,8 +946,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/DataBaseFacade.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="705" column="39" lean-forward="false" selection-start-line="705" selection-start-column="39" selection-end-line="705" selection-end-column="39" />
+        <state relative-caret-position="332">
+          <caret line="545" column="20" lean-forward="false" selection-start-line="545" selection-start-column="20" selection-end-line="545" selection-end-column="20" />
           <folding />
         </state>
       </provider>

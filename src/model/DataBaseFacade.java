@@ -200,7 +200,7 @@ public class DataBaseFacade
 
     }
 
-    List<RoomType> getRoomTypesFromHotel(String hotelName)
+    public List<RoomType> getRoomTypesFromHotel(String hotelName)
     {
         List<RoomType> roomTypes = new LinkedList<>();
         ResultSet res;
@@ -223,6 +223,18 @@ public class DataBaseFacade
             return null;
         }
     }
+
+    public boolean deleteRoomType(String hotelName, String type)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM TIPOS_HAB WHERE hotel_name = '");
+        sb.append(hotelName);
+        sb.append("' AND room_type = '");
+        sb.append(type);
+        sb.append("'");
+        return r.ejecutasql(sb.toString());
+    }
+
 
 
 
@@ -531,7 +543,7 @@ public class DataBaseFacade
         sb.append(capacity);
         sb.append(" AND city = '");
         sb.append(city);
-        sb.append(" AND NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
+        sb.append("' AND NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
                 "HABITACIONES.room_number AND HABITACIONES.hotel_name = RESERVAS.hotel_name AND ((");
         sb.append("'");
         sb.append(sCheckOut);
