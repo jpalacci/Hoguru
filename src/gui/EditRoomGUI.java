@@ -241,4 +241,6 @@ public class EditRoomGUI extends JFrame {
 	public JFormattedTextField getPriceTff() {
 		return priceTff;
 	}
+
+
 }

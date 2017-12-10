@@ -300,7 +300,7 @@ public class RegisterGUI {
 		
 	}
 
-	protected boolean isRegistrationValid() {
+	public boolean isRegistrationValid() {
 		String mail = mailTf.getText().trim();
 		String password1 = new String(passwordField.getPassword()).trim();
 		String password2 = new String(passwordConfirmationField.getPassword()).trim();

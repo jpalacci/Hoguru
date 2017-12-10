@@ -30,10 +30,7 @@ public class RegisterTest {
         screen.getPostCodeFtf().setText("1234");
         screen.getPlaceTf().setText("place");
 
-        /*TODO en la pantalla de alta de usuario hay que agrupar los ifs que verifican la
-         * entrada del usuario dentro de un metodo booleano de la clase que pueda ser usado aca.
-         */
-        assertTrue(true);
+        assertTrue(screen.isRegistrationValid());
     }
 
     @Test
@@ -56,10 +53,7 @@ public class RegisterTest {
         screen.getPostCodeFtf().setText("1234");
         screen.getPlaceTf().setText("place");
 
-        /*TODO en la pantalla de alta de usuario hay que agrupar los ifs que verifican la
-         * entrada del usuario dentro de un metodo booleano de la clase que pueda ser usado aca.
-         */
-        assertFalse(false);
+        assertFalse(screen.isRegistrationValid());
     }
 
     @Test
@@ -81,10 +75,7 @@ public class RegisterTest {
         screen.getPostCodeFtf().setText("1234");
         screen.getPlaceTf().setText("place");
 
-        /*TODO en la pantalla de alta de usuario hay que agrupar los ifs que verifican la
-         * entrada del usuario dentro de un metodo booleano de la clase que pueda ser usado aca.
-         */
-        assertFalse(false);
+        assertFalse(screen.isRegistrationValid());
     }
 
 

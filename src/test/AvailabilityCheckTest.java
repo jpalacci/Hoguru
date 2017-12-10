@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class AvailabilityCheckTest {
     @Test
     public void availabilityCheckWithCityText() {
@@ -16,6 +18,7 @@ public class AvailabilityCheckTest {
         JButton submit = tester.getSearchBtn();
         tester.getCityTf().setText("Hola");
         submit.doClick();
+        assertTrue(tester.isValid());
         //Assert.assertTrue(LO QUE PASE SI LA BUSQUEDA SE PRODUCE);
     }
 
@@ -25,7 +28,7 @@ public class AvailabilityCheckTest {
         JButton submit = tester.getSearchBtn();
         tester.getCityTf().setText("");
         submit.doClick();
-        //Assert.assertFalse(LO QUE PASE SI LA BUSQUEDA ES VACIA);
+        assertTrue(tester.isValid());
     }
 
 }
