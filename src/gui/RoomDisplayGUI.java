@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controller.Controller;
 import model.Room;
 
 import javax.swing.JLabel;
@@ -32,15 +33,16 @@ public class RoomDisplayGUI extends JFrame {
 	private JLabel roomPriceInformationLbl;
 	private JLabel roomPriceLbl;
 	private JButton reserveBtn;
+	private Controller controller;
 	
-	public RoomDisplayGUI(Room Room, Calendar checkIn, Calendar checkOut, String city) {
+	public RoomDisplayGUI(Room Room, Calendar checkIn, Calendar checkOut, String city, int numberOfPeople, String userName) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 216);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		this.controller = new Controller();
 		this.room = room;
 		
 		roomNumberExplanationLbl = new JLabel("Numero de cuarto");
@@ -90,7 +92,7 @@ public class RoomDisplayGUI extends JFrame {
 		reserveBtn = new JButton("Reservar");
 		reserveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				reserve();
+				controller.addReservation(userName, checkIn, checkOut, room);
 			}
 
 		});
@@ -110,9 +112,4 @@ public class RoomDisplayGUI extends JFrame {
 		
 	}
 
-	//TODO controller para reservar
-	private void reserve() {
-		
-		
-	}
 }

@@ -28,7 +28,7 @@ public class JListRoomResultsGUI extends JFrame  {
 	Controller controller;
 	List<Room> roomList;
 	
-	public JListRoomResultsGUI(Hotel hotel, Calendar checkIn,Calendar checkOut, String city ) {
+	public JListRoomResultsGUI(Hotel hotel, Calendar checkIn,Calendar checkOut, String city , int numberOfPeople, String userName) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 304, 225);
 		setVisible(true);
@@ -37,7 +37,7 @@ public class JListRoomResultsGUI extends JFrame  {
 		setContentPane(contentPane);
 		controller = new Controller();
 		
-		//TODO controller get rooms with hotel
+		roomList = controller.getAvaillableRoomsForHotel(hotel.getName(), city, checkIn, checkOut, numberOfPeople);
 		
 		listModel = new DefaultListModel<Room>();
 		for(Room r: roomList){
@@ -62,7 +62,7 @@ public class JListRoomResultsGUI extends JFrame  {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				Room selectedRoom =listModel.getElementAt(e.getFirstIndex()); 
-				new RoomDisplayGUI(selectedRoom, checkIn, checkOut, city);
+				new RoomDisplayGUI(selectedRoom, checkIn, checkOut, city, numberOfPeople, userName);
 			}
 			
 		});

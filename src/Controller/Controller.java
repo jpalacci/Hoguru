@@ -58,7 +58,7 @@ public class Controller {
 	}
 	
 	
-	public Person getActivePerson(){
+	public User getActivePerson(){
 		return actualPerson;
 	}
 		
