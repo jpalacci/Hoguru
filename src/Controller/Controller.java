@@ -58,7 +58,7 @@ public class Controller {
 	}
 	
 	
-	public Person getActivePerson(){
+	public User getActivePerson(){
 		return actualPerson;
 	}
 		
@@ -141,8 +141,8 @@ public class Controller {
         DataBaseFacade.connect();
     }
 
-    public long addReservation(String userName , Calendar checkIn , Calendar checkOut ){
-        Reservation r = new Reservation(userName , checkIn , checkOut);
+    public long addReservation(String userName , Calendar checkIn , Calendar checkOut , Room room ){
+        Reservation r = new Reservation(userName , checkIn , checkOut , room);
         return r.getReservationNumber();
     }
 	

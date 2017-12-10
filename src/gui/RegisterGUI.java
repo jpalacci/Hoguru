@@ -428,10 +428,9 @@ public class RegisterGUI {
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
-			return false;
 		}
 		
-		return controller.isPersonValid(mail, password1, password2, name, lastName, documentNumber, telephone, street, postalCode, streetNumber, place, province, country);
+		return !error;
 	}
 
 	public JTextField getMailTf() {

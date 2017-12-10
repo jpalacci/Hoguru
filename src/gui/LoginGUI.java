@@ -187,7 +187,7 @@ public class LoginGUI {
 			deleteErrorMessage.start();
 			return 0;
 		}
-		return controller.isValidUser(trimUserName, trimPassword);
+        return controller.isValidUser(trimUserName, trimPassword);
 	}
 
 	public JTextField getUserTf() {
