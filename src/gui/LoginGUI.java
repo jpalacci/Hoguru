@@ -32,22 +32,7 @@ public class LoginGUI {
 	private Timer deleteErrorMessage;
 	private Controller controller;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Controller.connect();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginGUI window = new LoginGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.

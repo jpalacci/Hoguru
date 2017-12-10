@@ -153,11 +153,11 @@ public class Hotel {
 
     @Override
     public String toString() {
-        return "Hotel{" +
-                "name='" + name + '\'' +
-                ", direction='" + direction + '\'' +
+        return
+                "" + name + ":" + '{' +
+                ", direction='" + direction +
                 ", rate=" + rate +
-                ", city='" + city + '\'' +
+                ", city='" + city  +
                 '}';
     }
 }
