@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Room {
 	
 	private String type;
@@ -109,5 +111,10 @@ public class Room {
 
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
+	}
+
+	public static List<Room> getRooms(String hotelName){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.getRoomsFromHotel(hotelName);
 	}
 }

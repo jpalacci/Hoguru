@@ -1,5 +1,8 @@
 package model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class RoomType {
 	
 	private String hotelName;
@@ -40,6 +43,22 @@ public class RoomType {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public static List<String> getRoomTypes(String hotelName){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		List<RoomType> list =  db.getRoomTypesFromHotel(hotelName);
+		if(db == null) return null;
+		List<String> result = new LinkedList<>();
+		for(RoomType rt : list){
+			result.add(rt.type);
+		}
+		return result;
+	}
+
+	public boolean addRoomType(){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.addRoomType(this);
 	}
 	
 	

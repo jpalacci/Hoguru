@@ -65,4 +65,14 @@ public class User extends Person{
         }
         return u;
     }
+
+    public boolean removeUser(){
+        DataBaseFacade db = DataBaseFacade.getInstance();
+        return db.deleteUser(this.userName);
+    }
+
+    public boolean editUser(){
+        DataBaseFacade db = DataBaseFacade.getInstance();
+        return db.editUser(this);
+    }
 }

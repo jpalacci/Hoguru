@@ -1,7 +1,6 @@
 package model;
 
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 
 public class Hotel {
@@ -122,6 +121,34 @@ public class Hotel {
 
 		return db.getHotels();
 
+	}
+
+	public static List<Room> getAvailableRooms(String hotelName , String Destination, Calendar chekInDate, Calendar checkOutDate , int persons){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		List<Room> list = db.getAvailableRooms( chekInDate , checkOutDate , persons ,Destination );
+		Set<Room> roomsToRemove  = new HashSet<>();
+		for(Room r : list){
+			if(!r.getHotelName().equals(hotelName)){
+				roomsToRemove.add(r);
+			}
+		}
+		list.removeAll(roomsToRemove);
+
+		return list;
+	}
+
+	public static List<Hotel> getAvailableHotels(String Destination, Calendar chekInDate, Calendar checkOutDate , int persons){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+
+		List<Room> availableRooms = db.getAvailableRooms(chekInDate , checkOutDate ,persons, Destination);
+
+		Set<Hotel> hotels = new HashSet<>();
+		for(Room r : availableRooms){
+			hotels.add(db.getHotel(r.getHotelName()));
+		}
+		List<Hotel> list = new LinkedList<>();
+		list.addAll(hotels);
+		return list;
 	}
 	
 	

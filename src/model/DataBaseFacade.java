@@ -127,8 +127,7 @@ public class DataBaseFacade
                     checkIn.setTime(res.getDate("check_in"));
                     Calendar checkOut = Calendar.getInstance();
                     checkOut.setTime(res.getDate("check_out"));
-                    reservation = new Reservation(user,
-                            res.getInt("reservation_number"), checkIn, checkOut);
+                    reservation = new Reservation(user.getUserName(), res.getInt("reservation_number"), checkIn, checkOut);
                     first = false;
                 Room r = getRoom(res.getInt("room_number"), res.getString("hotel_name"));
                 reservation.setRoom(r);

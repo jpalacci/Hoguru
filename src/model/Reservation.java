@@ -3,10 +3,11 @@ package model;
 import java.util.Calendar;
 import java.util.List;
 
+
 public class Reservation {
 
-	
-	private User user;
+	private static long reservationNumberInc = 1;
+	private String user;
 	
 	private long reservationNumber;
 	
@@ -14,7 +15,11 @@ public class Reservation {
 	
 	private Calendar checkOut;
 
-	List<Room> rooms;
+	Room room;
+
+	public Room getRoom(){
+		return room;
+	}
 	
 	public static Reservation getReservation(long reservationNumber)
     {
@@ -23,33 +28,33 @@ public class Reservation {
 	}
 
 
-	public Reservation(User username, long reservationNumber, Calendar checkIn, Calendar checkOut) {
+	public Reservation(String username, Calendar checkIn, Calendar checkOut) {
 
 		this.user=username;
 		
-		this.reservationNumber= reservationNumber;
+		this.reservationNumber= reservationNumberInc++;
 		
 		this.checkIn=checkIn;
 		this.checkOut= checkOut;
 	}
 
+	public Reservation(String username, long reservationNumber , Calendar checkIn, Calendar checkOut) {
+
+		this.user=username;
+
+		this.reservationNumber= reservationNumber;
+
+		this.checkIn=checkIn;
+		this.checkOut= checkOut;
+	}
 
 
-    public void setRooms(List<Room> rooms)
+    public void setRoom(Room room)
     {
-        this.rooms = rooms;
+        this.room = room;
     }
 
 
-	public User getUser()
-    {
-		return user;
-	}
-
-	public void setUser(User user)
-    {
-		this.user = user;
-	}
 
 	public long getReservationNumber()
     {
@@ -81,11 +86,10 @@ public class Reservation {
 		this.checkOut = checkOut;
 	}
 
-	public List<Room> getRooms()
-    {
-		return rooms;
+	public boolean addReservation(){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.addReservation(this , this.user);
 	}
-
 	public String getCalendarString(Calendar c)
     {
         int year = c.get(Calendar.YEAR);
