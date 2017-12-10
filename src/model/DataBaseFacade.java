@@ -531,7 +531,7 @@ public class DataBaseFacade
         sb.append(capacity);
         sb.append(" AND city = '");
         sb.append(city);
-        sb.append("' AND NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
+        sb.append(" AND NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
                 "HABITACIONES.room_number AND HABITACIONES.hotel_name = RESERVAS.hotel_name AND ((");
         sb.append("'");
         sb.append(sCheckOut);
@@ -652,6 +652,21 @@ public class DataBaseFacade
         sb.append("' WHERE username = ");
         sb.append("'");
         sb.append(u.getUserName());
+        sb.append("'");
+        return r.ejecutasql(sb.toString());
+    }
+
+    public boolean editHotel(Hotel h)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE HOTELES SET hotel_name = '");
+        sb.append(h.getName());
+        sb.append("', address = '");
+        sb.append(h.getDirection());
+        sb.append("', rate = '");
+        sb.append(h.getRate());
+        sb.append("', city = '");
+        sb.append(h.getCity());
         sb.append("'");
         return r.ejecutasql(sb.toString());
     }
