@@ -4,21 +4,29 @@ import java.util.LinkedList;
 
 import java.util.List;
 
+import gui.LoginGUI;
+import model.Address;
+import model.DOCUMENT_TYPE;
 import model.Hotel;
+import model.PHONE_TYPE;
+import model.Person;
 import model.Room;
+import model.User;
 import model.VIEW_TYPE;
 
 public class Controller {
 			
 	public static LinkedList<Hotel> hotels = new LinkedList<Hotel>();
 	public static LinkedList<Room> rooms = new LinkedList<Room>();
+	public static Person actualPerson = new Person("@", "pepe","pepito", DOCUMENT_TYPE.DNI, "001", new Address("country", "province", "city", "street", "street_number", "postalCode"),"15-55", PHONE_TYPE.PERSONAL);
 	
 	public int isValidUser(String userName, String password){
+		//TODO se deberia cargar la persona para pasarla en getActivePerson
 		if(userName.equals("Admin"))
 		{
 			return 2;
 		}
-		else if(userName.equals("Pepe"))
+		else if(userName.equals(actualPerson.getName()))
 		{
 		 return 1;
 		}
@@ -26,6 +34,29 @@ public class Controller {
 		{
 			return 0;
 		}
+	}
+	
+	public boolean loadNewUser(String email, String name, String surname, DOCUMENT_TYPE docType, String document, String country, String province, String city, String street, String street_number, String postalCode, String phoneNumber, PHONE_TYPE phoneType, String password){
+		//TODO aca es para crear un nuevo usuario no se donde proner las contrasenas y eso
+		Address address = new Address(country, province, city, street, street_number, postalCode);
+		Person p = new Person(email, name, surname, docType, document, address,phoneNumber, phoneType);
+		actualPerson = p;
+		return true;
+		
+	}
+	
+	public boolean changeUser(String email, String name, String surname, DOCUMENT_TYPE docType, String document, String country, String province, String city, String street, String street_number, String postalCode, String phoneNumber, PHONE_TYPE phoneType, String password){
+		//TODO aca es para cambiar un usuario ya existente
+		Address address = new Address(country, province, city, street, street_number, postalCode);
+		Person p = new Person(email, name, surname, docType, document, address,phoneNumber, phoneType);
+		actualPerson = p;
+		return true;
+		
+	}
+	
+	
+	public Person getActivePerson(){
+		return actualPerson;
 	}
 		
 	public boolean isValidHotel(String name, String direction,float rate, boolean isNewHotel){
@@ -75,11 +106,11 @@ public class Controller {
 		
 	}
 
-	public boolean isEditUserValid(String mail, String password1, String password2, String name, String lastName, String documentNumber, String telephone, String street, String postalCode, String streetNumber, String place, String province, String country ) {
+	public boolean isPersonValid(String mail, String password1, String password2, String name, String lastName, String documentNumber, String telephone, String street, String postalCode, String streetNumber, String place, String province, String country ) {
 		if(name.equals("pepito")){
 			return true;
 		}
-		return false;
+		return true;
 	}
 
 	public void deleteHotel(Hotel hotel) {
@@ -90,9 +121,9 @@ public class Controller {
 		rooms.remove(room);
 	}
 	
-	public LinkedList<String> getProvinces(String country){
+	public String[] getProvinces(String country){
 		LinkedList<String> list = new LinkedList<String>();
-		if(country.equals("Argetina")){
+		if(country.equals("Argentina")){
 			list.add("BSAS");
 			list.add("Cordoba");
 		}
@@ -100,15 +131,23 @@ public class Controller {
 			list.add("mfkrf");
 			list.add("femkso");
 		}
-		return list;
+		String[] array = list.toArray(new String[list.size()]);
+		return array;
 		
 	}
 	
-	public LinkedList<String> getCoutries(){
+	public String[] getCoutries(){
 		LinkedList<String> list = new LinkedList<String>();
 		list.add("Argentina");
 		list.add("Holanda");
-		return list;
+		String[] array = list.toArray(new String[list.size()]);
+		return array;
+	}
+
+	public void deleteActualUser() {
+		//TODO
+		LoginGUI window = new LoginGUI();
+		window.frame.setVisible(true);
 	}
 	
 }

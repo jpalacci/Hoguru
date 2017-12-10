@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.ParseException;
 
 import javax.swing.BorderFactory;
@@ -18,15 +20,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import Controller.Controller;
+import model.DOCUMENT_TYPE;
+import model.PHONE_TYPE;
+import model.Person;
 
 public class EditUserGUI extends JFrame {
 
-	private JPanel contentPane;
+	private JFrame frame;
+	private JFrame loginFrame;
 	private JTextField mailTf;
 	private JTextField nameTf;
 	private JTextField lastNameTf;
@@ -42,6 +49,7 @@ public class EditUserGUI extends JFrame {
 	private JLabel nameLbl;
 	private JLabel lastNameLbl;
 	private JLabel documentNumberLbl;
+	private JComboBox documentTypeCb;
 	private JComboBox provinceCb;
 	private JComboBox countryCb;
 	private JLabel placeLbl;
@@ -56,131 +64,161 @@ public class EditUserGUI extends JFrame {
 	private JFormattedTextField numberFtf;
 	private JFormattedTextField postCodeFtf;
 	private JFormattedTextField telephoneFtf;
-	private JFrame searchFrame;
 	private JLabel errorLbl;
 	private Timer deleteErrorMessage;
 	private Controller controller;
-	
-	public EditUserGUI(JFrame searchFrame) {
-		controller = new Controller();
-		setBounds(100, 100, 523, 546);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		setVisible(true);
-		this.searchFrame = searchFrame;
-		
+	private JComboBox<PHONE_TYPE> phoneTypeCB;
+	private Person person;
+	private JButton deleteUserBtn;
+	/**
+	 * Create the application.
+	 */
+	public EditUserGUI(JFrame searchFrame, Person person) {
+		this.loginFrame = searchFrame;
+		this.person = person;
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 523, 552);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		lblCompletaLosSiguientes = new JLabel("Completa los siguientes campos para registrarse");
 		lblCompletaLosSiguientes.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblCompletaLosSiguientes.setBounds(10, 11, 414, 29);
-		getContentPane().add(lblCompletaLosSiguientes);
-		
+		frame.getContentPane().add(lblCompletaLosSiguientes);
+		controller = new Controller();
 		mailLbl = new JLabel("Mail");
 		mailLbl.setBounds(10, 70, 46, 14);
-		getContentPane().add(mailLbl);
+		frame.getContentPane().add(mailLbl);
 		
 		label = new JLabel("Mail");
 		label.setBounds(10, 70, 46, 14);
-		getContentPane().add(label);
+		frame.getContentPane().add(label);
 		
 		passwordLbl = new JLabel("Contrasena");
 		passwordLbl.setBounds(10, 99, 68, 14);
-		getContentPane().add(passwordLbl);
+		frame.getContentPane().add(passwordLbl);
 		
 		passwordConfirmationLbl = new JLabel("Confirmar contrasena");
 		passwordConfirmationLbl.setBounds(10, 130, 141, 14);
-		getContentPane().add(passwordConfirmationLbl);
+		frame.getContentPane().add(passwordConfirmationLbl);
 		
 		nameLbl = new JLabel("Nombre");
 		nameLbl.setBounds(10, 161, 46, 14);
-		getContentPane().add(nameLbl);
+		frame.getContentPane().add(nameLbl);
 		
 		lastNameLbl = new JLabel("Apellido");
 		lastNameLbl.setBounds(10, 197, 46, 14);
-		getContentPane().add(lastNameLbl);
+		frame.getContentPane().add(lastNameLbl);
 		
 		documentNumberLbl = new JLabel("Numero de documento");
 		documentNumberLbl.setBounds(10, 231, 141, 14);
-		getContentPane().add(documentNumberLbl);
+		frame.getContentPane().add(documentNumberLbl);
 		
 		mailTf = new JTextField();
+		mailTf.setBackground(Color.WHITE);
+		mailTf.setForeground(Color.BLACK);
 		mailTf.setBounds(175, 67, 285, 20);
-		mailTf.setEditable(false);
-		getContentPane().add(mailTf);
+		frame.getContentPane().add(mailTf);
 		mailTf.setColumns(10);
+		mailTf.setEditable(false);
 		
 		nameTf = new JTextField();
 		nameTf.setColumns(10);
 		nameTf.setBounds(175, 158, 285, 20);
-		getContentPane().add(nameTf);
+		frame.getContentPane().add(nameTf);
 		
 		lastNameTf = new JTextField();
 		lastNameTf.setColumns(10);
 		lastNameTf.setBounds(175, 194, 285, 20);
-		getContentPane().add(lastNameTf);
+		frame.getContentPane().add(lastNameTf);
 		
-		provinceCb = new JComboBox();
-		provinceCb.setModel(new DefaultComboBoxModel(new String[] {"Provincia"}));
+		documentTypeCb = new JComboBox<DOCUMENT_TYPE>(DOCUMENT_TYPE.values());
+		documentTypeCb.setToolTipText("Tipo");
+		documentTypeCb.setBounds(319, 228, 141, 20);
+		frame.getContentPane().add(documentTypeCb);
+		
+		provinceCb = new JComboBox<String>();
 		provinceCb.setBounds(175, 269, 134, 20);
-		getContentPane().add(provinceCb);
+		frame.getContentPane().add(provinceCb);
 		
-		countryCb = new JComboBox();
-		countryCb.setModel(new DefaultComboBoxModel(new String[] {"Pais"}));
+		countryCb = new JComboBox<String>();
+		countryCb.setModel(new DefaultComboBoxModel<String>(controller.getCoutries()));
 		countryCb.setBounds(319, 269, 141, 20);
-		getContentPane().add(countryCb);
+		countryCb.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				String country = (String) e.getItem();
+				provinceCb.setModel(new DefaultComboBoxModel<String>(controller.getProvinces(country)));
+			}
+			
+		});
+		frame.getContentPane().add(countryCb);
 		
-		placeLbl = new JLabel("Localidad");
+		placeLbl = new JLabel("Ciudad");
 		placeLbl.setBounds(10, 303, 81, 14);
-		getContentPane().add(placeLbl);
+		frame.getContentPane().add(placeLbl);
 		
 		placeTf = new JTextField();
 		placeTf.setColumns(10);
 		placeTf.setBounds(175, 300, 285, 20);
-		getContentPane().add(placeTf);
+		frame.getContentPane().add(placeTf);
 		
 		streetLbl = new JLabel("Calle");
 		streetLbl.setBounds(10, 336, 46, 14);
-		getContentPane().add(streetLbl);
+		frame.getContentPane().add(streetLbl);
 		
 		streetTf = new JTextField();
 		streetTf.setColumns(10);
 		streetTf.setBounds(66, 333, 134, 20);
-		getContentPane().add(streetTf);
+		frame.getContentPane().add(streetTf);
 		
 		numberLbl = new JLabel("Numero");
 		numberLbl.setBounds(210, 336, 46, 14);
-		getContentPane().add(numberLbl);
+		frame.getContentPane().add(numberLbl);
 		
 		postCodeLbl = new JLabel("<html>codigo<br> postal</html>");
 		postCodeLbl.setBounds(335, 331, 46, 30);
-		getContentPane().add(postCodeLbl);
+		frame.getContentPane().add(postCodeLbl);
 		
 		telephoneLbl = new JLabel("Telefono");
 		telephoneLbl.setBounds(10, 380, 81, 14);
-		getContentPane().add(telephoneLbl);
+		frame.getContentPane().add(telephoneLbl);
 		
 		acceptConditionChckbx = new JCheckBox("Acepto los terminos y condiciones");
-		acceptConditionChckbx.setBounds(139, 443, 285, 23);
-		getContentPane().add(acceptConditionChckbx);
+		acceptConditionChckbx.setBounds(141, 449, 283, 23);
+		frame.getContentPane().add(acceptConditionChckbx);
 		
 		acceptBtn = new JButton("Aceptar");
-		acceptBtn.setBounds(139, 473, 89, 23);
-		getContentPane().add(acceptBtn);
-		acceptBtn.addActionListener(new ActionListener() {
+		acceptBtn.setBounds(141, 479, 89, 23);
+		frame.getContentPane().add(acceptBtn);
+		acceptBtn.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(isRegistrationValid())
-				{
-					sendRegistration();
+				if(isRegistrationValid()){
+					sendChanges();
+					loginFrame.setVisible(true);
+					new ThankYouPopUpGUI();
+					frame.dispose();
 				}
 			}
 		});
 		
 		cancelBtn = new JButton("Cancelar");
-		cancelBtn.setBounds(335, 473, 89, 23);
-		getContentPane().add(cancelBtn);
-		cancelBtn.addActionListener(new ActionListener() {
+		cancelBtn.setBounds(251, 479, 89, 23);
+		frame.getContentPane().add(cancelBtn);
+		cancelBtn.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				searchFrame.setVisible(true);
-				EditUserGUI.this.dispose();
+				loginFrame.setVisible(true);
+				frame.dispose();
 			}
 		});
 		
@@ -212,33 +250,48 @@ public class EditUserGUI extends JFrame {
 		
 		DocumentNumberFtf = new JFormattedTextField(DNIMask);
 		DocumentNumberFtf.setBounds(175, 228, 132, 20);
+		frame.getContentPane().add(DocumentNumberFtf);
 		DocumentNumberFtf.setEditable(false);
-		getContentPane().add(DocumentNumberFtf);
 		
 		numberFtf = new JFormattedTextField(numberMask);
 		numberFtf.setBounds(266, 333, 59, 20);
-		getContentPane().add(numberFtf);
+		frame.getContentPane().add(numberFtf);
 		
 		postCodeFtf = new JFormattedTextField(numberMask);
 		postCodeFtf.setBounds(390, 333, 70, 20);
-		getContentPane().add(postCodeFtf);
+		frame.getContentPane().add(postCodeFtf);
 		
 		telephoneFtf = new JFormattedTextField(phoneMask);
-		telephoneFtf.setBounds(139, 377, 285, 20);
-		getContentPane().add(telephoneFtf);
+		telephoneFtf.setBounds(113, 377, 170, 20);
+		frame.getContentPane().add(telephoneFtf);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(175, 96, 285, 20);
-		getContentPane().add(passwordField);
+		frame.getContentPane().add(passwordField);
 		
 		passwordConfirmationField = new JPasswordField();
 		passwordConfirmationField.setBounds(175, 127, 285, 20);
-		getContentPane().add(passwordConfirmationField);
+		frame.getContentPane().add(passwordConfirmationField);
 		
 		errorLbl = new JLabel("");
+		errorLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		errorLbl.setForeground(Color.RED);
-		errorLbl.setBounds(139, 418, 285, 14);
-		getContentPane().add(errorLbl);
+		errorLbl.setBounds(141, 420, 283, 14);
+		frame.getContentPane().add(errorLbl);
+		
+		phoneTypeCB = new JComboBox<PHONE_TYPE>(PHONE_TYPE.values());
+		phoneTypeCB.setBounds(319, 377, 141, 20);
+		frame.getContentPane().add(phoneTypeCB);
+		
+		deleteUserBtn = new JButton("Eliminar");
+		deleteUserBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.deleteActualUser();
+				dispose();
+			}
+		});
+		deleteUserBtn.setBounds(408, 479, 89, 23);
+		frame.getContentPane().add(deleteUserBtn);
 		
 		 ActionListener al = new ActionListener() {
 
@@ -262,32 +315,48 @@ public class EditUserGUI extends JFrame {
 	            }
 	        };
 
-	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s
-	     loadUser();
+	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
+	     loadPerson();
 	}
 
-	private void loadUser() {
-		// TODO Auto-generated method stub
+	private void loadPerson() {
+		mailTf.setText(person.getEmail());
+		nameTf.setText(person.getName());
+		lastNameTf.setText(person.getSurname());
+		DocumentNumberFtf.setText(person.getDocument());
+		telephoneFtf.setText(person.getPhoneNumber());
+		streetTf.setText(person.getAdress().getStreet());
+		postCodeFtf.setText(person.getAdress().getPostalCode());
+		numberFtf.setText(person.getAdress().getStreet_number());
+		placeTf.setText(person.getAdress().getCity());
+		countryCb.setSelectedItem(person.getAdress().getCountry());
+		provinceCb.setModel(new DefaultComboBoxModel<String>(controller.getProvinces(person.getAdress().getCountry())));
+		provinceCb.setSelectedItem(person.getAdress().getProvince());
+		phoneTypeCB.setSelectedItem(person.getPhoneType());
+		documentTypeCb.setSelectedItem(person.getDocType());
 		
 	}
 
-	protected void sendRegistration() {
+	protected void sendChanges() {
 		String mail = mailTf.getText().trim();
 		String password1 = new String(passwordField.getPassword()).trim();
 		String password2 = new String(passwordConfirmationField.getPassword()).trim();
 		String name = nameTf.getText().trim();
 		String lastName = lastNameTf.getText().trim();
-		String documentNumber = DocumentNumberFtf.getText().trim();
+		String document = DocumentNumberFtf.getText().trim();
 		String telephone = telephoneFtf.getText().trim();
 		String street = streetTf.getText().trim();
 		String postalCode = postCodeFtf.getText().trim();
 		String streetNumber = numberFtf.getText().trim();
-		String place = placeTf.getText().trim();
+		String city = placeTf.getText().trim();
 		String province = (String) provinceCb.getSelectedItem();
 		String country = (String) countryCb.getSelectedItem();
+		PHONE_TYPE phoneType = (PHONE_TYPE) phoneTypeCB.getSelectedItem();
+		DOCUMENT_TYPE documentType = (DOCUMENT_TYPE) documentTypeCb.getSelectedItem();
+		controller.changeUser(mail, lastName, name, documentType, document, country, province, city,street, streetNumber,  postalCode, telephone, phoneType, password1);
 		
 	}
-	
+
 	protected boolean isRegistrationValid() {
 		String mail = mailTf.getText().trim();
 		String password1 = new String(passwordField.getPassword()).trim();
@@ -303,7 +372,7 @@ public class EditUserGUI extends JFrame {
 		String province = (String) provinceCb.getSelectedItem();
 		String country = (String) countryCb.getSelectedItem();
 		
-Boolean error = false;
+		Boolean error = false;
 		
 		if(mail.equals(""))
 		{
@@ -393,13 +462,10 @@ Boolean error = false;
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
-			return true;
+			return false;
 		}
-		else if(!controller.isEditUserValid(mail, password1, password2, name, lastName, documentNumber, telephone, street, postalCode, streetNumber, place, province, country )){
-			errorLbl.setText("Usar isn't valid");
-			deleteErrorMessage.start();
-		}
-		return true;
+		
+		return controller.isPersonValid(mail, password1, password2, name, lastName, documentNumber, telephone, street, postalCode, streetNumber, place, province, country);
 	}
 
 	public JTextField getMailTf() {
@@ -430,6 +496,10 @@ Boolean error = false;
 		return passwordConfirmationField;
 	}
 
+	public JComboBox getDocumentTypeCb() {
+		return documentTypeCb;
+	}
+
 	public JComboBox getProvinceCb() {
 		return provinceCb;
 	}
@@ -457,6 +527,4 @@ Boolean error = false;
 	public JFormattedTextField getTelephoneFtf() {
 		return telephoneFtf;
 	}
-
-
 }

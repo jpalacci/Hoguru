@@ -30,9 +30,10 @@ public class JListRoomGUI extends JFrame {
 	private DefaultListModel<Room> listModel;
 	private JScrollPane listScroller;
 	private JFrame hotelFrame;
+	private Hotel hotel;
 	Controller controller;
 	
-	public JListRoomGUI(List<Room> roomList, JFrame hotelFrame) {
+	public JListRoomGUI(List<Room> roomList, Hotel hotel, JFrame hotelFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 304, 225);
 		setVisible(true);
@@ -41,6 +42,7 @@ public class JListRoomGUI extends JFrame {
 		setContentPane(contentPane);
 		controller = new Controller();
 		this.hotelFrame = hotelFrame;
+		this.hotel = hotel;
 		
 		listModel = new DefaultListModel<Room>();
 		for(Room r: roomList){
@@ -77,9 +79,9 @@ public class JListRoomGUI extends JFrame {
 					 return;
 			     } 
 				 if(list.getSelectedValuesList().size() == 1 ){
-					Hotel h = (Hotel)list.getSelectedValue();
+					Room r = (Room)list.getSelectedValue();
 			        JListRoomGUI.this.setVisible(false);
-			        new EditHotelGUI(hotelFrame, h);
+			        new EditRoomGUI(hotelFrame, hotel, r);
 			       
 				 }
 				 

@@ -111,8 +111,8 @@ public class AddRoomGUI extends JFrame {
 		viewTypeLbl.setBounds(10, 173, 121, 14);
 		contentPane.add(viewTypeLbl);
 		
-		viewTypeCB = new JComboBox<VIEW_TYPE>();
-		//viewTypeCB = new JComboBox<VIEW_TYPE>(VIEW_TYPE.values());
+		//viewTypeCB = new JComboBox<VIEW_TYPE>();
+		viewTypeCB = new JComboBox<VIEW_TYPE>(VIEW_TYPE.values());
 
 		viewTypeCB.setBounds(141, 170, 221, 20);
 		contentPane.add(viewTypeCB);

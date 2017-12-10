@@ -20,7 +20,7 @@ import java.awt.Color;
 
 public class LoginGUI {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField userTf;
 	private JPasswordField passwordField;
 	private Label userLbl;

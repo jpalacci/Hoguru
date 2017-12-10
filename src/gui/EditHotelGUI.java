@@ -29,10 +29,10 @@ public class EditHotelGUI extends JFrame {
 	private JLabel hotelNameLbl;
 	private JLabel directionLbl;
 	private JLabel starsLbl;
-	private JButton createHotelBtn;
+	private JButton editHotelBtn;
 	private JButton cancelBtn;
 	private JLabel lblDatosDelHotel;
-	private JButton viewPhotoBtn;
+	private JButton viewRoomsBtn;
 	private JButton addPhotoBtn;
 	private JFrame administratorFrame;
 	private Timer deleteErrorMessage;
@@ -75,10 +75,10 @@ public class EditHotelGUI extends JFrame {
 		directionTf.setBounds(137, 113, 225, 20);
 		contentPane.add(directionTf);
 		
-		createHotelBtn = new JButton("Editar Hotel");
-		createHotelBtn.setBounds(67, 289, 111, 23);
-		contentPane.add(createHotelBtn);
-		createHotelBtn.addActionListener(new ActionListener(){
+		editHotelBtn = new JButton("Editar Hotel");
+		editHotelBtn.setBounds(67, 289, 111, 23);
+		contentPane.add(editHotelBtn);
+		editHotelBtn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(isHotelValid()){
@@ -108,12 +108,18 @@ public class EditHotelGUI extends JFrame {
 		lblDatosDelHotel.setBounds(10, 11, 266, 53);
 		contentPane.add(lblDatosDelHotel);
 		
-		viewPhotoBtn = new JButton("Ver Fotos");
-		viewPhotoBtn.setBounds(21, 217, 121, 23);
-		contentPane.add(viewPhotoBtn);
+		viewRoomsBtn = new JButton("Ver Cuartos");
+		viewRoomsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new JListRoomGUI(controller.getRooms(hotel),hotel,EditHotelGUI.this);
+				dispose();
+			}
+		});
+		viewRoomsBtn.setBounds(20, 224, 121, 23);
+		contentPane.add(viewRoomsBtn);
 		
 		addPhotoBtn = new JButton("Agregar Fotos");
-		addPhotoBtn.setBounds(197, 217, 121, 23);
+		addPhotoBtn.setBounds(195, 190, 121, 23);
 		contentPane.add(addPhotoBtn);
 		
 		errorLbl = new JLabel("");
@@ -124,6 +130,20 @@ public class EditHotelGUI extends JFrame {
 		rateFT = new JFormattedTextField();
 		rateFT.setBounds(137, 159, 225, 20);
 		contentPane.add(rateFT);
+		
+		JButton viewPicturesBtn = new JButton("Ver Fotos");
+		viewPicturesBtn.setBounds(20, 190, 121, 23);
+		contentPane.add(viewPicturesBtn);
+		
+		JButton addRoombtn = new JButton("Agregar Cuarto");
+		addRoombtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new AddRoomGUI(EditHotelGUI.this, hotel);
+				dispose();
+			}
+		});
+		addRoombtn.setBounds(194, 224, 121, 23);
+		contentPane.add(addRoombtn);
 		
 		 ActionListener al = new ActionListener() {
 

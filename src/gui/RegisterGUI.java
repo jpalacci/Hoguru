@@ -6,10 +6,17 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.ParseException;
 
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
+
+import Controller.Controller;
+import model.DOCUMENT_TYPE;
+import model.PHONE_TYPE;
+
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
@@ -57,7 +64,8 @@ public class RegisterGUI {
 	private JFormattedTextField telephoneFtf;
 	private JLabel errorLbl;
 	private Timer deleteErrorMessage;
-
+	private Controller controller;
+	private JComboBox<PHONE_TYPE> phoneTypeCB;
 	/**
 	 * Create the application.
 	 */
@@ -79,7 +87,7 @@ public class RegisterGUI {
 		lblCompletaLosSiguientes.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblCompletaLosSiguientes.setBounds(10, 11, 414, 29);
 		frame.getContentPane().add(lblCompletaLosSiguientes);
-		
+		controller = new Controller();
 		mailLbl = new JLabel("Mail");
 		mailLbl.setBounds(10, 70, 46, 14);
 		frame.getContentPane().add(mailLbl);
@@ -125,23 +133,32 @@ public class RegisterGUI {
 		lastNameTf.setBounds(175, 194, 285, 20);
 		frame.getContentPane().add(lastNameTf);
 		
-		documentTypeCb = new JComboBox();
+		documentTypeCb = new JComboBox<DOCUMENT_TYPE>(DOCUMENT_TYPE.values());
 		documentTypeCb.setToolTipText("Tipo");
-		documentTypeCb.setModel(new DefaultComboBoxModel(new String[] {"DNI", "Pasaporte"}));
 		documentTypeCb.setBounds(319, 228, 141, 20);
 		frame.getContentPane().add(documentTypeCb);
 		
-		provinceCb = new JComboBox();
-		provinceCb.setModel(new DefaultComboBoxModel(new String[] {"Provincia"}));
+		
+		
+		countryCb = new JComboBox<String>();
+		countryCb.setModel(new DefaultComboBoxModel<String>(controller.getCoutries()));
+		countryCb.setBounds(319, 269, 141, 20);
+		countryCb.addItemListener(new ItemListener(){
+		
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				String country = (String) e.getItem();
+				provinceCb.setModel(new DefaultComboBoxModel<String>(controller.getProvinces(country)));
+			}
+			
+		});
+		
+		provinceCb = new JComboBox<String>();
 		provinceCb.setBounds(175, 269, 134, 20);
 		frame.getContentPane().add(provinceCb);
-		
-		countryCb = new JComboBox();
-		countryCb.setModel(new DefaultComboBoxModel(new String[] {"Pais"}));
-		countryCb.setBounds(319, 269, 141, 20);
 		frame.getContentPane().add(countryCb);
-		
-		placeLbl = new JLabel("Localidad");
+		provinceCb.setModel(new DefaultComboBoxModel<String>(controller.getProvinces((String)countryCb.getSelectedItem())));
+		placeLbl = new JLabel("Ciudad");
 		placeLbl.setBounds(10, 303, 81, 14);
 		frame.getContentPane().add(placeLbl);
 		
@@ -240,7 +257,7 @@ public class RegisterGUI {
 		frame.getContentPane().add(postCodeFtf);
 		
 		telephoneFtf = new JFormattedTextField(phoneMask);
-		telephoneFtf.setBounds(139, 377, 285, 20);
+		telephoneFtf.setBounds(113, 377, 170, 20);
 		frame.getContentPane().add(telephoneFtf);
 		
 		passwordField = new JPasswordField();
@@ -256,6 +273,10 @@ public class RegisterGUI {
 		errorLbl.setForeground(Color.RED);
 		errorLbl.setBounds(141, 420, 283, 14);
 		frame.getContentPane().add(errorLbl);
+		
+		phoneTypeCB = new JComboBox<PHONE_TYPE>(PHONE_TYPE.values());
+		phoneTypeCB.setBounds(319, 377, 141, 20);
+		frame.getContentPane().add(phoneTypeCB);
 		
 		 ActionListener al = new ActionListener() {
 
@@ -288,15 +309,17 @@ public class RegisterGUI {
 		String password2 = new String(passwordConfirmationField.getPassword()).trim();
 		String name = nameTf.getText().trim();
 		String lastName = lastNameTf.getText().trim();
-		String documentNumber = DocumentNumberFtf.getText().trim();
+		String document = DocumentNumberFtf.getText().trim();
 		String telephone = telephoneFtf.getText().trim();
 		String street = streetTf.getText().trim();
 		String postalCode = postCodeFtf.getText().trim();
 		String streetNumber = numberFtf.getText().trim();
-		String place = placeTf.getText().trim();
+		String city = placeTf.getText().trim();
 		String province = (String) provinceCb.getSelectedItem();
 		String country = (String) countryCb.getSelectedItem();
-		String documentType = (String) documentTypeCb.getSelectedItem();
+		PHONE_TYPE phoneType = (PHONE_TYPE) phoneTypeCB.getSelectedItem();
+		DOCUMENT_TYPE documentType = (DOCUMENT_TYPE) documentTypeCb.getSelectedItem();
+		controller.loadNewUser(mail, lastName, name, documentType, document, country, province, city,street, streetNumber,  postalCode, telephone, phoneType, password1);
 		
 	}
 
@@ -405,9 +428,10 @@ public class RegisterGUI {
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
+			return false;
 		}
 		
-		return !error;
+		return controller.isPersonValid(mail, password1, password2, name, lastName, documentNumber, telephone, street, postalCode, streetNumber, place, province, country);
 	}
 
 	public JTextField getMailTf() {
