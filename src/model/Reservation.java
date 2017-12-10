@@ -130,8 +130,8 @@ public class Reservation {
 
     public static boolean deleteReservation(long reservationNumber){
 		DataBaseFacade db = DataBaseFacade.getInstance();
-		//return db.deleteReservation(reservationNumber);
-		return true;
+		return db.deleteReservation(reservationNumber);
+		
 	}
 
 }
