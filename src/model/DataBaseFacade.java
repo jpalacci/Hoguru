@@ -263,7 +263,9 @@ public class DataBaseFacade
         sb.append(h.getDirection());
         sb.append("',");
         sb.append(h.getRate());
-        sb.append(")");
+        sb.append(",'");
+        sb.append(h.getCity());
+        sb.append("')");
         return r.ejecutasql(sb.toString());
     }
 
@@ -284,6 +286,7 @@ public class DataBaseFacade
                Hotel hotel = new Hotel(res.getString("hotel_name"));
                hotel.setDirection(res.getString("address"));
                hotel.setRate(res.getFloat("rate"));
+               hotel.setCity(res.getString("city"));
                return hotel;
             }
         }
@@ -581,6 +584,7 @@ public class DataBaseFacade
                 Hotel h = new Hotel(res.getString("hotel_name"));
                 h.setDirection(res.getString("address"));
                 h.setRate(res.getFloat("rate"));
+                h.setCity(res.getString("city"));
                 hotels.add(h);
             }
             return hotels;
