@@ -700,6 +700,14 @@ public class DataBaseFacade
         return this.r.ejecutasql(sb.toString());
     }
 
+    public boolean deleteReservation(long reservationNumber)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM RESERVAS WHERE reservation_number = ");
+        sb.append(reservationNumber);
+        return r.ejecutasql(sb.toString());
+    }
+
 
 
     public List<Room> getRoomsFromHotel(String hotelName)
