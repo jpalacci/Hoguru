@@ -15,7 +15,7 @@ import java.awt.*;
 public class RoomCRUD {
     @Test
     void addRoomWithValidParameters() {
-        AddRoomGUI screen = new AddRoomGUI(new JFrame());
+        AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTipoOfRoomTf().setText("test");
         screen.getCharacteristicTf().setText("test");
         screen.getGuestNumberCB().setSelectedIndex(0);
@@ -28,7 +28,7 @@ public class RoomCRUD {
 
     @Test
     void addRoomWithInvalidRoomType() {
-        AddRoomGUI screen = new AddRoomGUI(new JFrame());
+        AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTipoOfRoomTf().setText("");
         screen.getCharacteristicTf().setText("test1");
         screen.getGuestNumberCB().setSelectedIndex(1);
@@ -41,7 +41,7 @@ public class RoomCRUD {
 
     @Test
     void addRoomWithInvalidCharacteristic() {
-        AddRoomGUI screen = new AddRoomGUI(new JFrame());
+        AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTipoOfRoomTf().setText("test");
         screen.getCharacteristicTf().setText("");
         screen.getGuestNumberCB().setSelectedIndex(0);
@@ -54,7 +54,7 @@ public class RoomCRUD {
 
     @Test
     void addRoomWithNoGuestNumberSelected() {
-        AddRoomGUI screen = new AddRoomGUI(new JFrame());
+        AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTipoOfRoomTf().setText("test");
         screen.getCharacteristicTf().setText("test");
         screen.getBathrooTypeCb().setSelectedIndex(0);
@@ -66,7 +66,7 @@ public class RoomCRUD {
 
     @Test
     void addRoomWithNoBathRoomTypeSelected() {
-        AddRoomGUI screen = new AddRoomGUI(new JFrame());
+        AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTipoOfRoomTf().setText("test");
         screen.getCharacteristicTf().setText("test");
         screen.getGuestNumberCB().setSelectedIndex(0);
@@ -78,7 +78,7 @@ public class RoomCRUD {
 
     @Test
     void addRoomWithInvalidPrice() {
-        AddRoomGUI screen = new AddRoomGUI(new JFrame());
+        AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTipoOfRoomTf().setText("test1");
         screen.getCharacteristicTf().setText("test1");
         screen.getGuestNumberCB().setSelectedIndex(1);
@@ -89,13 +89,6 @@ public class RoomCRUD {
         assertTrue(error);
     }
 
-    @Test
-    void deleteRoom(){
-//        Hotel hotel = new Hotel("testHotel");
-//        hotel.addRoom("room",123,2,2345.2,"mountain");
-//        EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
-        //TODO falta la opcion de eliminar habitacion
-    }
 
     @Test
     void modifyRoomWithValidParameters(){

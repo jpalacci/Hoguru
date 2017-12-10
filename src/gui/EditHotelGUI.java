@@ -226,4 +226,6 @@ public class EditHotelGUI extends JFrame {
 	public JTextField getRateFT() {
 		return rateFT;
 	}
+
+
 }

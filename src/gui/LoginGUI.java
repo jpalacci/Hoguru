@@ -165,7 +165,7 @@ public class LoginGUI {
         deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
 	}
 	
-	private int isValid(String userName, String password){
+	public int isValid(String userName, String password){
 		String trimUserName = userName.trim();
 		String trimPassword = password.trim();
 		if(trimUserName.equals("") && trimPassword.equals(""))
@@ -189,4 +189,11 @@ public class LoginGUI {
 		return controller.isValidUser(trimUserName, trimPassword);
 	}
 
+	public JTextField getUserTf() {
+		return userTf;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
 }
