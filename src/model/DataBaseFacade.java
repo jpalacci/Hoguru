@@ -679,6 +679,25 @@ public class DataBaseFacade
 
     }
 
+    public boolean editRoom(Room r)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE HABITACIONES WHERE room_type = '");
+        sb.append(r.getType());
+        sb.append("', capacity = ");
+        sb.append(r.getCapacity());
+        sb.append(", room_number = ");
+        sb.append(r.getNumber());
+        sb.append(", hotel_name = '");
+        sb.append(r.getHotelName());
+        sb.append("', room_view = '");
+        sb.append(r.getView());
+        sb.append("'");
+        return this.r.ejecutasql(sb.toString());
+    }
+
+
+
     public List<Room> getRoomsFromHotel(String hotelName)
     {
         StringBuilder sb = new StringBuilder();
