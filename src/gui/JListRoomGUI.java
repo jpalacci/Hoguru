@@ -101,8 +101,8 @@ public class JListRoomGUI extends JFrame {
 			    	 DefaultListModel<Room> model = (DefaultListModel<Room>) list.getModel();
 
 			    	 for(int i = 0 ; i <= indices.length; i++){
-						controller.deleteRoom(model.getElementAt(indices[i]));
-						model.remove(indices[i]);
+						controller.deleteRoom(model.getElementAt(indices[i]-i));
+						model.remove(indices[i]-i);
 			    	 }
 			    	
 			     }

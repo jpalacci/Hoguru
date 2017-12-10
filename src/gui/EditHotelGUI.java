@@ -70,6 +70,7 @@ public class EditHotelGUI extends JFrame {
 		hotelNameTf = new JTextField();
 		hotelNameTf.setColumns(10);
 		hotelNameTf.setBounds(137, 75, 225, 20);
+		hotelNameTf.setEditable(false);
 		contentPane.add(hotelNameTf);
 		
 		directionTf = new JTextField();
@@ -235,7 +236,7 @@ public class EditHotelGUI extends JFrame {
 			return false;
 		}
 		
-		return controller.isValidHotel(hotelName,direction, rateNumber, true, city);
+		return controller.isValidHotel(hotelName,direction, rateNumber, false, city);
 	}
 
 	

@@ -678,7 +678,7 @@ public class DataBaseFacade
             {
                 Room r = new Room(res.getString("hotel_name"), res.getInt("room_number"));
                 r.setType(res.getString("room_type"));
-                r.setView(VIEW_TYPE.valueOf("room_type"));
+                r.setView(VIEW_TYPE.valueOf(res.getString("room_view")));
                 r.setCapacity(res.getInt("capacity"));
                 rooms.add(r);
 
