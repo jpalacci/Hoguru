@@ -118,13 +118,11 @@ public class DataBaseFacade
     {
         ResultSet res = r.gXrGenerico("SELECT * FROM RESERVAS WHERE reservation_number = " + reservationNumber);
         Reservation reservation = null;
-        List<Room> rooms = new LinkedList<>();
         boolean first = true;
         try {
-            while(res.next())
+            if(res.next())
             {
-                if(first)
-                {
+
                     User user = getUser(res.getString("username"));
                     Calendar checkIn = Calendar.getInstance();
                     checkIn.setTime(res.getDate("check_in"));
@@ -133,16 +131,11 @@ public class DataBaseFacade
                     reservation = new Reservation(user,
                             res.getInt("reservation_number"), checkIn, checkOut);
                     first = false;
-                }
                 Room r = getRoom(res.getInt("room_number"), res.getString("hotel_name"));
-                rooms.add(r);
-
+                reservation.setRoom(r);
+                return reservation;
             }
-            if(reservation != null)
-            {
-                reservation.setRooms(rooms);
-            }
-            return reservation;
+            return null;
         }
         catch (Exception e)
         {
@@ -162,9 +155,8 @@ public class DataBaseFacade
     {
         String checkIn = r.getCalendarString(r.getCheckIn());
         String checkOut = r.getCalendarString(r.getCheckOut());
+        Room room = r.getRoom();
 
-        for(Room room : r.getRooms())
-        {
             StringBuilder sb = new StringBuilder();
             sb.append("INSERT INTO RESERVAS VALUES('");
             sb.append(userName);
@@ -179,9 +171,8 @@ public class DataBaseFacade
             sb.append(",'");
             sb.append(room.getHotelName());
             sb.append("')");
-            this.r.ejecutasql(sb.toString());
-        }
-        return true;
+          return this.r.ejecutasql(sb.toString());
+
 
     }
 
@@ -631,6 +622,38 @@ public class DataBaseFacade
         }
 
     }
+
+    public boolean editUser(User u)
+    {
+        StringBuilder sb = new StringBuilder();
+        Address ad = u.getAdress();
+        sb.append("UPDATE USUARIOS SET email = '");
+        sb.append(u.getEmail());
+        sb.append("', password = '");
+        sb.append(u.getPassword());
+        sb.append("', username = '");
+        sb.append(u.getUserName());
+        sb.append("', document = '");
+        sb.append(u.getDocument());
+        sb.append("', country = '");
+        sb.append(ad.getCountry());
+        sb.append("', province = '");
+        sb.append(ad.getProvince());
+        sb.append("', city = '");
+        sb.append(ad.getCity());
+        sb.append("', street = '");
+        sb.append(ad.getStreet());
+        sb.append("', street_number = '");
+        sb.append(ad.getStreet_number());
+        sb.append("', cp = '");
+        sb.append(ad.getPostalCode());
+        sb.append("' WHERE username = ");
+        sb.append("'");
+        sb.append(u.getUserName());
+        sb.append("'");
+        return r.ejecutasql(sb.toString());
+    }
+
 
 
 
