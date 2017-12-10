@@ -51,7 +51,7 @@ public class Reservation {
 		
 		this.checkIn=checkIn;
 		this.checkOut= checkOut;
-		this.room = room;
+		this.room = r;
 	}
 
 	public Reservation(String username, long reservationNumber , Calendar checkIn, Calendar checkOut) {

@@ -38,6 +38,7 @@ public class RoomDisplayGUI extends JFrame {
 	public RoomDisplayGUI(Room room, Calendar checkIn, Calendar checkOut, String city, int numberOfPeople, String userName) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 216);
+		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -93,6 +94,7 @@ public class RoomDisplayGUI extends JFrame {
 		reserveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.addReservation(userName, checkIn, checkOut, room);
+				dispose();
 			}
 
 		});

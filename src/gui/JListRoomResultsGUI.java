@@ -24,7 +24,6 @@ public class JListRoomResultsGUI extends JFrame  {
 	private JPanel contentPane;
 	private JList<Room> list;
 	private DefaultListModel<Room> listModel;
-	private JScrollPane listScroller;
 	Controller controller;
 	List<Room> roomList;
 	
@@ -43,17 +42,11 @@ public class JListRoomResultsGUI extends JFrame  {
 		for(Room r: roomList){
 			listModel.addElement(r);
 		}
-		
-		
-		listScroller = new JScrollPane();
-		listScroller.setBounds(0, 0, 282, 186);
-		listScroller.setPreferredSize(new Dimension(250, 80));
 
 		
 		contentPane.setLayout(null);
-		contentPane.add(listScroller);
 		list = new JList<Room>(listModel);
-		list.setBounds(0, 0, 282, 157);
+		list.setBounds(0, 0, 282, 186);
 		contentPane.add(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
