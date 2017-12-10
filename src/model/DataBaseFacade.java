@@ -529,7 +529,9 @@ public class DataBaseFacade
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT * FROM HABITACIONES WHERE capacity >= ");
         sb.append(capacity);
-        sb.append(" AND NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
+        sb.append(" AND city = '");
+        sb.append(city);
+        sb.append("' AND NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
                 "HABITACIONES.room_number AND HABITACIONES.hotel_name = RESERVAS.hotel_name AND ((");
         sb.append("'");
         sb.append(sCheckOut);
