@@ -8,8 +8,9 @@ public class Comment {
 	private String hotelName;
 	private String comment;
 	private Calendar date;
+	private int rate;
 	
-	public Comment(String comment , String nombreUsuario , Calendar date) {
+	public Comment(String comment , String nombreUsuario ,  Calendar date) {
 		this.comment=comment;
 		this.nombreUsuario=nombreUsuario;
 		this.date=date;

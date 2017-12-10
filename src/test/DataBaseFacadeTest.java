@@ -9,7 +9,7 @@ import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DataBaseFacadeTest {
+public class DataBaseFacadeTest {
     @Test
     void addGetUser() {
 
@@ -27,7 +27,7 @@ class DataBaseFacadeTest {
 
     }
 
-
+/*
     @Test
     void addGetReservation() {
         long reservationNumber = 17;
@@ -47,6 +47,7 @@ class DataBaseFacadeTest {
         assertEquals(r.getUser() , r2.getUser());
 
     }
+    */
 
     @Test
     void addHotelAdministrator() {
