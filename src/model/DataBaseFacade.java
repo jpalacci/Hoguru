@@ -503,11 +503,76 @@ public class DataBaseFacade
 
     }
 
+    public List<Room> getAvailableRooms(Calendar checkIn, Calendar checkOut)
+    {
+        String sCheckIn = CalendarTranslator.calendarToString(checkIn);
+        String sCheckOut = CalendarTranslator.calendarToString(checkOut);
+        List<Room> rooms = new LinkedList<>();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM HABITACIONES WHERE NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
+                "HABITACIONES.room_number AND HABITACIONES.hotel_name = RESERVAS.hotel_name AND ((");
+        sb.append("'");
+        sb.append(sCheckOut);
+        sb.append("'");
+        sb.append(">= RESERVAS.check_in AND ");
+        sb.append("'");
+        sb.append(sCheckIn);
+        sb.append("'");
+        sb.append(" <= RESERVAS.check_in) OR (");
+        sb.append("'");
+        sb.append(sCheckOut);
+        sb.append("'");
+        sb.append(" >= RESERVAS.check_out AND '");
+        sb.append(sCheckOut);
+        sb.append("' <= RESERVAS.check_out) OR (");
+        sb.append("RESERVAS.check_in <= '");
+        sb.append(sCheckIn);
+        sb.append("' AND RESERVAS.check_out >= '");
+        sb.append(sCheckOut);
+        sb.append("')))");
+        ResultSet res = r.gXrGenerico(sb.toString());
+        try
+        {
+            while(res.next())
+            {
+                Room room = new Room(res.getString("hotel_name"), res.getInt("room_number"));
+                room.setType(res.getString("room_type"));
+                room.setCapacity(res.getInt("capacity"));
+                room.setView(VIEW_TYPE.valueOf(res.getString("room_view")));
+                rooms.add(room);
+            }
+            return rooms;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+    }
+
 
     public static void main(String[] args)
     {
         DataBaseFacade db = getInstance();
         db.r.conectar("u2017b-1", "passwordING1");
+        Calendar checkIn = Calendar.getInstance();
+        checkIn.set(Calendar.YEAR, 2018);
+        checkIn.set(Calendar.MONTH, Calendar.JANUARY);
+        checkIn.set(Calendar.DAY_OF_MONTH, 14);
+
+        Calendar checkOut = Calendar.getInstance();
+        checkOut.set(Calendar.YEAR, 2018);
+        checkOut.set(Calendar.MONTH, Calendar.FEBRUARY);
+        checkOut.set(Calendar.DAY_OF_MONTH, 9);
+        db.getAvailableRooms(checkIn, checkOut);
+
+        List<Room> rooms = db.getAvailableRooms(checkIn, checkOut);
+        for(Room r : rooms)
+        {
+            System.out.println(r.getNumber());
+        }
+
 
 
     }

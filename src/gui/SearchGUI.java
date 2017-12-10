@@ -125,8 +125,8 @@ public class SearchGUI extends JFrame {
 		editUserLbl.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new EditUserGUI(SearchGUI.this);
-				SearchGUI.this.setVisible(false);
+//				new EditUserGUI(SearchGUI.this);
+//				SearchGUI.this.setVisible(false);
 			}
 
 			@Override
