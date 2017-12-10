@@ -263,7 +263,9 @@ public class DataBaseFacade
         sb.append(h.getDirection());
         sb.append("',");
         sb.append(h.getRate());
-        sb.append(")");
+        sb.append(",'");
+        sb.append(h.getCity());
+        sb.append("')");
         return r.ejecutasql(sb.toString());
     }
 
@@ -284,6 +286,7 @@ public class DataBaseFacade
                Hotel hotel = new Hotel(res.getString("hotel_name"));
                hotel.setDirection(res.getString("address"));
                hotel.setRate(res.getFloat("rate"));
+               hotel.setCity(res.getString("city"));
                return hotel;
             }
         }
@@ -524,7 +527,7 @@ public class DataBaseFacade
         List<Room> rooms = new LinkedList<>();
 
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM HABITACIONES WHERE capacity = ");
+        sb.append("SELECT * FROM HABITACIONES WHERE capacity >= ");
         sb.append(capacity);
         sb.append(" AND NOT EXISTS(SELECT * FROM RESERVAS WHERE RESERVAS.room_number = " +
                 "HABITACIONES.room_number AND HABITACIONES.hotel_name = RESERVAS.hotel_name AND ((");
@@ -581,6 +584,7 @@ public class DataBaseFacade
                 Hotel h = new Hotel(res.getString("hotel_name"));
                 h.setDirection(res.getString("address"));
                 h.setRate(res.getFloat("rate"));
+                h.setCity(res.getString("city"));
                 hotels.add(h);
             }
             return hotels;

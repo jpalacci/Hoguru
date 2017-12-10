@@ -14,6 +14,7 @@ CREATE TABLE HOTELES
 	hotel_name text,
 	address text,
 	rate float,
+	city text,
 	PRIMARY KEY(hotel_name)
 );
 
