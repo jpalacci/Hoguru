@@ -50,8 +50,47 @@
       <file leaf-file-name="DataBaseFacade.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/DataBaseFacade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-225">
-              <caret line="536" column="40" lean-forward="false" selection-start-line="536" selection-start-column="40" selection-end-line="536" selection-end-column="40" />
+            <state relative-caret-position="8919">
+              <caret line="608" column="4" lean-forward="false" selection-start-line="608" selection-start-column="4" selection-end-line="608" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tables.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tables.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1305">
+              <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="95" selection-end-column="2" />
+              <folding>
+                <marker date="1512775571271" expanded="true" signature="0:231" ph="CREATE TABLE... USUARIOS_HOTEL" />
+                <marker date="1512775571271" expanded="true" signature="234:329" ph="CREATE TABLE... HOTELES" />
+                <marker date="1512775571271" expanded="true" signature="332:609" ph="CREATE TABLE... COMENTARIOS" />
+                <marker date="1512775571271" expanded="true" signature="612:761" ph="CREATE TABLE... FOTOS" />
+                <marker date="1512775571271" expanded="true" signature="765:1093" ph="CREATE TABLE... HABITACIONES" />
+                <marker date="1512775571271" expanded="true" signature="1096:1458" ph="CREATE TABLE... RESERVAS" />
+                <marker date="1512775571271" expanded="true" signature="1461:1717" ph="CREATE TABLE... USUARIOS" />
+                <marker date="1512775571271" expanded="true" signature="1720:1909" ph="CREATE TABLE... TIPOS_HAB" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HotelAdministrator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/HotelAdministrator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Room.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Room.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -90,31 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditUserTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/EditUserTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="76" column="40" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="76" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RoomCRUD.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/RoomCRUD.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1605">
               <caret line="117" column="0" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="117" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchGUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/SearchGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="128" column="49" lean-forward="true" selection-start-line="127" selection-start-column="16" selection-end-line="128" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -143,6 +162,7 @@
       <find>getRoomType</find>
       <find>room</find>
       <find>addUser</find>
+      <find>administrator</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -386,10 +406,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19249000" />
+    <option name="totallyTimeSpent" value="20091000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -798,31 +819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/HotelAdministrator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tables.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="95" selection-end-column="2" />
-          <folding>
-            <marker date="1512775571271" expanded="true" signature="0:231" ph="CREATE TABLE... USUARIOS_HOTEL" />
-            <marker date="1512775571271" expanded="true" signature="234:329" ph="CREATE TABLE... HOTELES" />
-            <marker date="1512775571271" expanded="true" signature="332:609" ph="CREATE TABLE... COMENTARIOS" />
-            <marker date="1512775571271" expanded="true" signature="612:761" ph="CREATE TABLE... FOTOS" />
-            <marker date="1512775571271" expanded="true" signature="765:1093" ph="CREATE TABLE... HABITACIONES" />
-            <marker date="1512775571271" expanded="true" signature="1096:1458" ph="CREATE TABLE... RESERVAS" />
-            <marker date="1512775571271" expanded="true" signature="1461:1717" ph="CREATE TABLE... USUARIOS" />
-            <marker date="1512775571271" expanded="true" signature="1720:1909" ph="CREATE TABLE... TIPOS_HAB" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/SearchGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -871,17 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Room.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="24" />
-          <folding>
-            <element signature="e#1960#1961#0" expanded="false" />
-            <element signature="e#1991#1992#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/LoginGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -912,10 +897,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Room.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/HotelAdministrator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tables.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="95" selection-end-column="2" />
+          <folding>
+            <marker date="1512775571271" expanded="true" signature="0:231" ph="CREATE TABLE... USUARIOS_HOTEL" />
+            <marker date="1512775571271" expanded="true" signature="234:329" ph="CREATE TABLE... HOTELES" />
+            <marker date="1512775571271" expanded="true" signature="332:609" ph="CREATE TABLE... COMENTARIOS" />
+            <marker date="1512775571271" expanded="true" signature="612:761" ph="CREATE TABLE... FOTOS" />
+            <marker date="1512775571271" expanded="true" signature="765:1093" ph="CREATE TABLE... HABITACIONES" />
+            <marker date="1512775571271" expanded="true" signature="1096:1458" ph="CREATE TABLE... RESERVAS" />
+            <marker date="1512775571271" expanded="true" signature="1461:1717" ph="CREATE TABLE... USUARIOS" />
+            <marker date="1512775571271" expanded="true" signature="1720:1909" ph="CREATE TABLE... TIPOS_HAB" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/DataBaseFacade.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
-          <caret line="536" column="40" lean-forward="false" selection-start-line="536" selection-start-column="40" selection-end-line="536" selection-end-column="40" />
+        <state relative-caret-position="8919">
+          <caret line="608" column="4" lean-forward="false" selection-start-line="608" selection-start-column="4" selection-end-line="608" selection-end-column="4" />
           <folding />
         </state>
       </provider>

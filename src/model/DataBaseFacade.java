@@ -1,6 +1,8 @@
 package model;
 //import com.sun.org.apache.regexp.internal.RE;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.sql.Date;
@@ -577,8 +579,34 @@ public class DataBaseFacade
         }
     }
 
+    public List<Room> getRooms()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM HABITACIONES");
+        ResultSet res = r.gXrGenerico(sb.toString());
+        List<Room> rooms = new LinkedList<>();
 
+        try
+        {
+            while(res.next())
+            {
+                Room r = new Room(res.getString("hotel_name"), res.getInt("room_number"));
+                r.setCapacity(res.getInt("capacity"));
+                r.setView(VIEW_TYPE.valueOf(res.getString("room_view")));
+                r.setHotelName(res.getString("hotel_name"));
+                r.setType(res.getString("room_type"));
+                rooms.add(r);
 
+            }
+            return rooms;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+    }
+    
     public static void main(String[] args)
     {
         DataBaseFacade db = getInstance();
