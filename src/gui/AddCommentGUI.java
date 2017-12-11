@@ -23,13 +23,14 @@ public class AddCommentGUI extends JFrame {
 	Controller controller = new Controller();
 	
 	public AddCommentGUI(String hotelName, String userName) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 236);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setVisible(true);
+		setResizable(false);
 		
 		JTextArea commentTa = new JTextArea();
 		commentTa.setBounds(0, 25, 434, 119);

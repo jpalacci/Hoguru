@@ -35,7 +35,7 @@ public class AdministratorGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setResizable(false);
 		JButton btnAgregarHotel = new JButton("Agregar Hotel");
 		btnAgregarHotel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

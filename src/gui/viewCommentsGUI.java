@@ -18,13 +18,14 @@ public class viewCommentsGUI extends JFrame {
 	private Controller controller = new Controller();
 	
 	public viewCommentsGUI(String hotelName) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setVisible(true);
+		setResizable(false);
 		JTextArea commentViewrTa = new JTextArea();
 		commentViewrTa.setBounds(0, 29, 434, 232);
 		contentPane.add(commentViewrTa);

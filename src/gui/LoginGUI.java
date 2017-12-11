@@ -52,7 +52,7 @@ public class LoginGUI {
 		frame.setBounds(100, 100, 450, 316);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setResizable(true);
 		userTf = new JTextField();
 		userTf.setBounds(137, 113, 184, 20);
 		frame.getContentPane().add(userTf);

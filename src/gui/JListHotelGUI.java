@@ -37,8 +37,9 @@ public class JListHotelGUI extends JFrame {
 	
 	public JListHotelGUI(List<Hotel> hotelList, JFrame editHotelFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 304, 225);
+		setBounds(100, 100, 527, 309);
 		setVisible(true);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,7 +62,7 @@ public class JListHotelGUI extends JFrame {
 		list = new JList<Hotel>(listModel);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
-		list.setBounds(0, 0, 282, 161);
+		list.setBounds(0, 0, 511, 235);
 		contentPane.add(list);
 		
 		Cancel.addActionListener(new ActionListener() {
@@ -70,7 +71,7 @@ public class JListHotelGUI extends JFrame {
 				editHotelFrame.setVisible(true);
 			}
 		});
-		Cancel.setBounds(0, 162, 88, 24);
+		Cancel.setBounds(0, 246, 88, 24);
 		contentPane.add(Cancel);
 		
 		JButton btnEdit = new JButton("Editar");
@@ -89,7 +90,7 @@ public class JListHotelGUI extends JFrame {
 	
 			}
 		});
-		btnEdit.setBounds(104, 162, 88, 24);
+		btnEdit.setBounds(230, 246, 88, 24);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("Borrar");
@@ -109,7 +110,7 @@ public class JListHotelGUI extends JFrame {
 			     }
 			}
 		});
-		btnDelete.setBounds(202, 163, 82, 24);
+		btnDelete.setBounds(429, 246, 82, 24);
 		contentPane.add(btnDelete);
 		
 	}

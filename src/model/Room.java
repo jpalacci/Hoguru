@@ -143,9 +143,9 @@ public class Room {
 
     @Override
     public String toString() {
-        return "type='" + type  +
-                ", capacity=" + capacity +
-                ", view=" + view +
-                '}';
+        return 	"Numero de cuarto: " + number +
+        		" Tipo: " + type  +
+                " Vista: " + view +
+                " Capacidad: " + capacity;
     }
 }

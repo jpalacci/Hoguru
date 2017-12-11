@@ -154,11 +154,10 @@ public class Hotel {
     @Override
     public String toString() {
         return
-                "" + name + ":" + '{' +
-                ", direction='" + direction +
-                ", rate=" + rate +
-                ", city='" + city  +
-                '}';
+                 name + ": " + System.lineSeparator() +
+                 " Estrellas: " + rate +
+                 " Direccion: " + direction +
+                " Ciudad: " + city;
     }
 
 

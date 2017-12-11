@@ -50,6 +50,7 @@ public class AddRoomGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setVisible(true);
+		setResizable(false);
 		this.editHotelFrame = editHotelFrame;
 		tipeOfRoomLbl = new JLabel("Tipo de Habitacion");
 		tipeOfRoomLbl.setBounds(10, 94, 152, 14);

@@ -33,8 +33,9 @@ public class JListRoomTypesGUI extends JFrame {
 	
 	public JListRoomTypesGUI(Hotel hotel, JFrame hotelFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 304, 225);
+		setBounds(100, 100, 599, 312);
 		setVisible(true);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -59,7 +60,7 @@ public class JListRoomTypesGUI extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.add(listScroller);
 		list = new JList<String>(listModel);
-		list.setBounds(0, 0, 282, 157);
+		list.setBounds(0, 0, 583, 238);
 		contentPane.add(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
@@ -71,7 +72,7 @@ public class JListRoomTypesGUI extends JFrame {
 				dispose();
 			}
 		});
-		Cancel.setBounds(0, 162, 93, 24);
+		Cancel.setBounds(105, 249, 150, 24);
 		contentPane.add(Cancel);
 		
 		
@@ -92,7 +93,7 @@ public class JListRoomTypesGUI extends JFrame {
 			     }
 			}
 		});
-		btnDelete.setBounds(198, 163, 86, 24);
+		btnDelete.setBounds(366, 249, 150, 24);
 		contentPane.add(btnDelete);
 		
 	}

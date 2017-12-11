@@ -66,9 +66,7 @@ public class RegisterGUI {
 	private Timer deleteErrorMessage;
 	private Controller controller;
 	private JComboBox<PHONE_TYPE> phoneTypeCB;
-	/**
-	 * Create the application.
-	 */
+	
 	public RegisterGUI(JFrame loginFrame) {
 		this.loginFrame = loginFrame;
 		initialize();
@@ -83,6 +81,7 @@ public class RegisterGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.setResizable(false);
 		lblCompletaLosSiguientes = new JLabel("Completa los siguientes campos para registrarse");
 		lblCompletaLosSiguientes.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblCompletaLosSiguientes.setBounds(10, 11, 414, 29);

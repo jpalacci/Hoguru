@@ -49,6 +49,7 @@ public class AddHotelGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setVisible(true);
+		setResizable(false);
 		this.administratorFrame = administratorFrame;
 		
 		hotelNameLbl = new JLabel("Nombre del Hotel");

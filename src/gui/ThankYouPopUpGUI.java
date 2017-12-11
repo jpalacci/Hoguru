@@ -29,7 +29,7 @@ public class ThankYouPopUpGUI {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
-		
+		frame.setResizable(false);
 		thanksLbl = new JLabel("Muchas Gracias");
 		thanksLbl.setFont(new Font("Tahoma", Font.BOLD, 22));
 		thanksLbl.setBounds(170, 47, 183, 37);

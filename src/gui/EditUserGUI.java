@@ -88,6 +88,7 @@ public class EditUserGUI extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		setResizable(false);
 		lblCompletaLosSiguientes = new JLabel("Completa los siguientes campos para registrarse");
 		lblCompletaLosSiguientes.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblCompletaLosSiguientes.setBounds(10, 11, 414, 29);

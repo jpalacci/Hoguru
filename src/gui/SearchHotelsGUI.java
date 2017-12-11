@@ -85,6 +85,7 @@ public class SearchHotelsGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		setVisible(true);
+		setResizable(false);
 		contentPane.setLayout(null);
 		
 		messageLbl = new JLabel("Busca las mejores ofertas online:");

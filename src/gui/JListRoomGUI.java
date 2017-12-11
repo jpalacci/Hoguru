@@ -35,8 +35,9 @@ public class JListRoomGUI extends JFrame {
 	
 	public JListRoomGUI(List<Room> roomList, Hotel hotel, JFrame hotelFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 304, 225);
+		setBounds(100, 100, 587, 327);
 		setVisible(true);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -58,7 +59,7 @@ public class JListRoomGUI extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.add(listScroller);
 		list = new JList<Room>(listModel);
-		list.setBounds(0, 0, 282, 157);
+		list.setBounds(0, 0, 571, 253);
 		contentPane.add(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
@@ -69,7 +70,7 @@ public class JListRoomGUI extends JFrame {
 				hotelFrame.setVisible(true);
 			}
 		});
-		Cancel.setBounds(0, 162, 87, 24);
+		Cancel.setBounds(0, 264, 87, 24);
 		contentPane.add(Cancel);
 		
 		JButton btnEdit = new JButton("Editar");
@@ -88,7 +89,7 @@ public class JListRoomGUI extends JFrame {
 	
 			}
 		});
-		btnEdit.setBounds(100, 162, 87, 24);
+		btnEdit.setBounds(237, 264, 87, 24);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("Borrar");
@@ -108,7 +109,7 @@ public class JListRoomGUI extends JFrame {
 			     }
 			}
 		});
-		btnDelete.setBounds(197, 163, 87, 24);
+		btnDelete.setBounds(484, 264, 87, 24);
 		contentPane.add(btnDelete);
 		
 	}
