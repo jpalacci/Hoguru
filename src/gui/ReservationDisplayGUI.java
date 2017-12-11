@@ -85,11 +85,11 @@ public class ReservationDisplayGUI extends JFrame {
 		contentPane.add(roomTypeLbl);
 		
 		numberOfPeopleInformationLbl = new JLabel("Cantidad de personas");
-		numberOfPeopleInformationLbl.setBounds(217, 167, 148, 14);
+		numberOfPeopleInformationLbl.setBounds(209, 167, 180, 14);
 		contentPane.add(numberOfPeopleInformationLbl);
 		
 		numberOfPeopleLbl = new JLabel("");
-		numberOfPeopleLbl.setBounds(361, 167, 63, 14);
+		numberOfPeopleLbl.setBounds(381, 167, 63, 14);
 		contentPane.add(numberOfPeopleLbl);
 		
 		roomPriceInformationLbl = new JLabel("Precio");

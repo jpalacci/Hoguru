@@ -78,11 +78,11 @@ public class RoomDisplayGUI extends JFrame {
 		contentPane.add(roomTypeLbl);
 		
 		numberOfPeopleInformationLbl = new JLabel("Cantidad de personas");
-		numberOfPeopleInformationLbl.setBounds(217, 102, 118, 14);
+		numberOfPeopleInformationLbl.setBounds(217, 102, 165, 14);
 		contentPane.add(numberOfPeopleInformationLbl);
 		
 		numberOfPeopleLbl = new JLabel("4");
-		numberOfPeopleLbl.setBounds(345, 102, 79, 14);
+		numberOfPeopleLbl.setBounds(392, 102, 32, 14);
 		contentPane.add(numberOfPeopleLbl);
 		
 		roomPriceInformationLbl = new JLabel("Precio");
@@ -104,10 +104,6 @@ public class RoomDisplayGUI extends JFrame {
 		});
 		reserveBtn.setBounds(286, 139, 89, 23);
 		contentPane.add(reserveBtn);
-		
-		JLabel writeCommentLbl = new JLabel("Escribe un comentario del hotel:");
-		writeCommentLbl.setBounds(10, 168, 213, 14);
-		contentPane.add(writeCommentLbl);
 		
 		loadRoom();
 	}

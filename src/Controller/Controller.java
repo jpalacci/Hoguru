@@ -12,7 +12,7 @@ import model.*;
 
 public class Controller {
 
-	public static User actualPerson  =  new User("pepe",  "abc","@", "pepe","pepito", DOCUMENT_TYPE.DNI, "001", new Address("country", "province", "city", "street", "street_number", "postalCode"),"15-55", PHONE_TYPE.PERSONAL);
+	public static User actualPerson;
 	
 	public static void main(String args[]){
         Controller.connect();

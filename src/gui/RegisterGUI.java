@@ -318,7 +318,7 @@ public class RegisterGUI {
 		String country = (String) countryCb.getSelectedItem();
 		PHONE_TYPE phoneType = (PHONE_TYPE) phoneTypeCB.getSelectedItem();
 		DOCUMENT_TYPE documentType = (DOCUMENT_TYPE) documentTypeCb.getSelectedItem();
-		if(controller.loadNewUser(mail, lastName, name, documentType, document, country, province, city,street, streetNumber,  postalCode, telephone, phoneType, password1)){
+		if(!controller.loadNewUser(mail, lastName, name, documentType, document, country, province, city,street, streetNumber,  postalCode, telephone, phoneType, password1)){
 			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
 			deleteErrorMessage.start();
 			return false;
