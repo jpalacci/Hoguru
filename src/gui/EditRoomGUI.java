@@ -136,6 +136,7 @@ public class EditRoomGUI extends JFrame {
 	            	roomTypeCb.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	guestNumberCB.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	roomNumberFT.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	viewTypeCB.setBorder(BorderFactory.createLineBorder(Color.black));
 	            }
 	        };
 
@@ -184,7 +185,7 @@ public class EditRoomGUI extends JFrame {
 		Integer roomNumber;
 		boolean error = false;
 
-		if(tipeOfRoom.equals(""))
+		if(tipeOfRoom == null)
 		{
 			roomTypeCb.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
@@ -201,10 +202,10 @@ public class EditRoomGUI extends JFrame {
 		}
 		if(room.equals(""))
 		{
-			viewTypeCB.setBorder(BorderFactory.createLineBorder(Color.red));
+			roomNumberFT.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
-		return error;
+		return !error;
 	}
 
 	public JComboBox getGuestNumberCB() {

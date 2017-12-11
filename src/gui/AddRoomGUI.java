@@ -88,7 +88,7 @@ public class AddRoomGUI extends JFrame {
 		contentPane.add(titleLbl);
 		
 		guestNumberCB = new JComboBox<Integer>();
-		for(int i = 0; i<10 ; i++){
+		for(int i = 1; i<10 ; i++){
 			guestNumberCB.addItem(i);
 		}
 		guestNumberCB.setBounds(172, 126, 221, 20);
@@ -100,7 +100,7 @@ public class AddRoomGUI extends JFrame {
 		
 		errorLbl = new JLabel("");
 		errorLbl.setForeground(Color.RED);
-		errorLbl.setBounds(40, 247, 46, 14);
+		errorLbl.setBounds(0, 247, 436, 14);
 		contentPane.add(errorLbl);
 		
 		JLabel viewTypeLbl = new JLabel("Vista");
@@ -111,6 +111,7 @@ public class AddRoomGUI extends JFrame {
 		viewTypeCB = new JComboBox<VIEW_TYPE>(VIEW_TYPE.values());
 
 		viewTypeCB.setBounds(172, 170, 221, 20);
+		viewTypeCB.setSelectedIndex(0);
 		contentPane.add(viewTypeCB);
 		
 		JLabel roomNumberLbl = new JLabel("Numero de Cuarto");
@@ -134,6 +135,7 @@ public class AddRoomGUI extends JFrame {
 	            	typeRoomCb.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	guestNumberCB.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	roomNumberFT.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	viewTypeCB.setBorder(BorderFactory.createLineBorder(Color.black));
 	            }
 	        };
 
@@ -159,6 +161,11 @@ public class AddRoomGUI extends JFrame {
 			deleteErrorMessage.start();
 			return false;
 		}
+		if(roomNumber < 0){
+			errorLbl.setText("Ponga un numero valido como numero de la habitacion");
+			deleteErrorMessage.start();
+			return false;
+		}
 		if(!controller.addRoom(hotel,tipeOfRoom,viewType,getNumber,roomNumber,true)){
 			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
 			deleteErrorMessage.start();
@@ -172,10 +179,9 @@ public class AddRoomGUI extends JFrame {
 		Integer getNumber = (Integer) guestNumberCB.getSelectedItem();
 		VIEW_TYPE viewType = (VIEW_TYPE) viewTypeCB.getSelectedItem();
 		String room = roomNumberFT.getText();
-		Integer roomNumber;
 		boolean error = false;
 
-		if(tipeOfRoom.equals(""))
+		if(tipeOfRoom == null)
 		{
 			typeRoomCb.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
@@ -192,7 +198,7 @@ public class AddRoomGUI extends JFrame {
 		}
 		if(room.equals(""))
 		{
-			viewTypeCB.setBorder(BorderFactory.createLineBorder(Color.red));
+			roomNumberFT.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
 
@@ -200,7 +206,7 @@ public class AddRoomGUI extends JFrame {
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
-			return error;
+			return !error;
 		}
 		return true;
 	}
