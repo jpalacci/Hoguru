@@ -207,6 +207,18 @@ public class EditHotelGUI extends JFrame {
 		if(error) {
 			return false;
 		}
+		try{
+			rateNumber = Float.parseFloat(rate);
+		}catch(Exception e){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas ");
+			deleteErrorMessage.start();
+			return false;
+		}
+		if(rateNumber < 0 || rateNumber > 10){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas ");
+			deleteErrorMessage.start();
+			return false;
+		}
 		if(!controller.addHotel(hotelName,direction, rateNumber, city, false)){
 			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
 			deleteErrorMessage.start();
@@ -250,18 +262,7 @@ public class EditHotelGUI extends JFrame {
 			deleteErrorMessage.start();
 			return false;
 		}
-		try{
-			rateNumber = Float.parseFloat(rate);
-		}catch(Exception e){
-			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas ");
-			deleteErrorMessage.start();
-			return false;
-		}
-		if(rateNumber < 0 || rateNumber > 10){
-			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas ");
-			deleteErrorMessage.start();
-			return false;
-		}
+
 		return true;
 	}
 

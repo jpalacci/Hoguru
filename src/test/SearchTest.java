@@ -15,10 +15,10 @@ public class SearchTest {
         //Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("City");
-        screen.getPeopleCb().setSelectedIndex(0);
-        screen.getCheckInTextField().setText("10/12/14");
+        screen.getPeopleCb().setSelectedIndex(1);
+        screen.getCheckInTextField().setText("10/12/2014");
         screen.getCheckOutTextField().setText("12/12/2018");
-        assertTrue(screen.isValid());
+        assertFalse(screen.isValid());
     }
 
     @Test

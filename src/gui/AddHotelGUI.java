@@ -145,7 +145,21 @@ public class AddHotelGUI extends JFrame {
 		String city = cityTf.getText().trim();
 		float rateNumber;
 		boolean error = !validFields();
+
 		if(error) {
+			return false;
+		}
+
+		try{
+			rateNumber = Float.parseFloat(rate);
+		}catch(Exception e){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
+			deleteErrorMessage.start();
+			return false;
+		}
+		if(rateNumber < 0 || rateNumber > 10 ){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
+			deleteErrorMessage.start();
 			return false;
 		}
 		if(!controller.addHotel(hotelName,direction, rateNumber, city, true)){
@@ -191,18 +205,7 @@ public class AddHotelGUI extends JFrame {
 			deleteErrorMessage.start();
 			return false;
 		}
-		try{
-			rateNumber = Float.parseFloat(rate);
-		}catch(Exception e){
-			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
-			deleteErrorMessage.start();
-			return false;
-		}
-		if(rateNumber < 0 || rateNumber > 10 ){
-			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
-			deleteErrorMessage.start();
-			return false;
-		}
+
 		return true;
 	}
 

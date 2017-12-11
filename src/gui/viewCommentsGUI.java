@@ -40,6 +40,6 @@ public class viewCommentsGUI extends JFrame {
 
 	private void loadComments(String hotelName) {
 		
-		controller.getComment(hotelName);
+		//controller.getComment(hotelName);
 	}
 }
