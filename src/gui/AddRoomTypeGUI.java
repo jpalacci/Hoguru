@@ -29,6 +29,7 @@ public class AddRoomTypeGUI extends JFrame {
 	private JFrame editHotelFrame;
 	private Controller controller;
 	private Timer deleteErrorMessage;
+	private JLabel errorLbl;
 
 	public AddRoomTypeGUI(Hotel hotel, JFrame editHotelFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,8 +79,10 @@ public class AddRoomTypeGUI extends JFrame {
 		JButton CreateBtn = new JButton("Agregar Tipo");
 		CreateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sendRoomTypeIfValid();
-				dispose();
+				if(sendRoomTypeIfValid()){
+					dispose();
+				};
+				
 			}
 
 		});
@@ -96,7 +99,7 @@ public class AddRoomTypeGUI extends JFrame {
 		cancelBtn.setBounds(221, 226, 151, 23);
 		contentPane.add(cancelBtn);
 		
-		JLabel errorLbl = new JLabel("");
+		errorLbl = new JLabel("");
 		errorLbl.setBounds(21, 201, 338, 14);
 		contentPane.add(errorLbl);
 		
@@ -115,7 +118,7 @@ public class AddRoomTypeGUI extends JFrame {
 		
 	}
 	
-	private void sendRoomTypeIfValid() {
+	private boolean sendRoomTypeIfValid() {
 		String name = nameTypeTf.getText().trim();
 		String description = descrpitionTf.getText().trim();
 		String price = priceTf.getText().trim();
@@ -134,11 +137,24 @@ public class AddRoomTypeGUI extends JFrame {
 			error = true;
 			nameTypeTf.setBorder(BorderFactory.createLineBorder(Color.red));
 		}
+		if(error){
+			errorLbl.setText("Complete los campos en rojo");
+			deleteErrorMessage.start();
+			return error;
+		}
 		try{
 			priceNumber = Double.parseDouble(price);
 		}catch(Exception e){
-			
+			errorLbl.setText("Ponga un numero valido para el precio");
+			deleteErrorMessage.start();
+			return error;
 		}
-		controller.addRoomTypeToHotel(hotel.getName(), description, name, priceNumber);
+		
+		if(!controller.addRoomTypeToHotel(hotel.getName(), description, name, priceNumber)){
+			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
+			deleteErrorMessage.start();
+			return error;
+		}
+		return true;
 	}
 }

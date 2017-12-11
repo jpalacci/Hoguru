@@ -42,6 +42,7 @@ public class EditHotelGUI extends JFrame {
 	private JFormattedTextField rateFT;
 	private Hotel hotel;
 	private JTextField cityTf;
+	private float rateNumber;
 	
 	public EditHotelGUI(JFrame administratorFrame, Hotel hotel) {
 		
@@ -53,6 +54,7 @@ public class EditHotelGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setVisible(true);
+		setResizable(false);
 		this.administratorFrame = administratorFrame;
 		this.hotel = hotel;
 		hotelNameLbl = new JLabel("Nombre del Hotel");
@@ -200,20 +202,17 @@ public class EditHotelGUI extends JFrame {
 		String direction = directionTf.getText().trim();
 		String rate =  rateFT.getText().trim();
 		String city = cityTf.getText().trim();
-		float rateNumber;
-		boolean error = validFields();
+		
+		boolean error = !validFields();
 		if(error) {
 			return false;
 		}
-		try{
-			rateNumber = Float.parseFloat(rate);
-		}catch(Exception e){
-			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas ");
+		if(!controller.addHotel(hotelName,direction, rateNumber, city, false)){
+			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
 			deleteErrorMessage.start();
 			return false;
 		}
-
-		return controller.addHotel(hotelName,direction, rateNumber, city, false);
+		return true;
 	}
 
 	public boolean validFields() {
@@ -221,7 +220,6 @@ public class EditHotelGUI extends JFrame {
 		String direction = directionTf.getText().trim();
 		String rate =  rateFT.getText().trim();
 		String city = cityTf.getText().trim();
-		float rateNumber;
 		boolean error = false;
 
 
@@ -249,6 +247,18 @@ public class EditHotelGUI extends JFrame {
 		if(error)
 		{
 			errorLbl.setText("Complete los campos en rojo");
+			deleteErrorMessage.start();
+			return false;
+		}
+		try{
+			rateNumber = Float.parseFloat(rate);
+		}catch(Exception e){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas ");
+			deleteErrorMessage.start();
+			return false;
+		}
+		if(rateNumber < 0 || rateNumber > 10){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas ");
 			deleteErrorMessage.start();
 			return false;
 		}

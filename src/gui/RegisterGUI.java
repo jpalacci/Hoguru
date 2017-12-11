@@ -198,9 +198,10 @@ public class RegisterGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(isRegistrationValid()){
-					sendRegistration();
-					loginFrame.setVisible(true);
-					frame.dispose();
+					if(sendRegistration()){
+						loginFrame.setVisible(true);
+						frame.dispose();
+					}
 				}
 			}
 		});
@@ -301,7 +302,7 @@ public class RegisterGUI {
 	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
 	}
 
-	protected void sendRegistration() {
+	protected boolean sendRegistration() {
 		String mail = mailTf.getText().trim();
 		String password1 = new String(passwordField.getPassword()).trim();
 		String password2 = new String(passwordConfirmationField.getPassword()).trim();
@@ -317,7 +318,12 @@ public class RegisterGUI {
 		String country = (String) countryCb.getSelectedItem();
 		PHONE_TYPE phoneType = (PHONE_TYPE) phoneTypeCB.getSelectedItem();
 		DOCUMENT_TYPE documentType = (DOCUMENT_TYPE) documentTypeCb.getSelectedItem();
-		controller.loadNewUser(mail, lastName, name, documentType, document, country, province, city,street, streetNumber,  postalCode, telephone, phoneType, password1);
+		if(controller.loadNewUser(mail, lastName, name, documentType, document, country, province, city,street, streetNumber,  postalCode, telephone, phoneType, password1)){
+			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
+			deleteErrorMessage.start();
+			return false;
+		}
+		return true;
 		
 	}
 

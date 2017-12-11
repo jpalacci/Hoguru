@@ -148,7 +148,7 @@ public class AddRoomGUI extends JFrame {
 		VIEW_TYPE viewType = (VIEW_TYPE) viewTypeCB.getSelectedItem();
 		String room = roomNumberFT.getText();
 		Integer roomNumber;
-		boolean error = fieldValidity();
+		boolean error = !fieldValidity();
 		if(error) {
 			return false;
 		}
@@ -159,8 +159,12 @@ public class AddRoomGUI extends JFrame {
 			deleteErrorMessage.start();
 			return false;
 		}
-
-		return controller.addRoom(hotel,tipeOfRoom,viewType,getNumber,roomNumber,true);
+		if(!controller.addRoom(hotel,tipeOfRoom,viewType,getNumber,roomNumber,true)){
+			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
+			deleteErrorMessage.start();
+			return false;
+		}
+		return true;
 	}
 
 	public boolean fieldValidity() {

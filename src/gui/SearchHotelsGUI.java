@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -14,6 +15,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
@@ -24,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -58,6 +61,8 @@ public class SearchHotelsGUI extends JFrame {
 	private JScrollPane listScroller;
 	private Calendar checkIn;
 	private Calendar checkOut;
+	private JLabel errorLbl;
+	private Timer deleteErrorMessage;
 
 
 	public JTextField getCityTf() {
@@ -104,7 +109,7 @@ public class SearchHotelsGUI extends JFrame {
 		peopleCb = new JComboBox(new Integer[] {1,2,3,4,5,6,7});
 		peopleCb.setBounds(318, 111, 153, 20);
 		peopleCb.setRenderer(new MyComboBoxRenderer("Cantidad de Personas"));
-		peopleCb.setSelectedIndex(-1);
+		peopleCb.setSelectedIndex(0);//starting with 1
 		contentPane.add(peopleCb);
 		
 		chekInLbl = new JLabel("Check-In");
@@ -153,7 +158,7 @@ public class SearchHotelsGUI extends JFrame {
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
 		list.setVisibleRowCount(-1);
-		list.setBounds(10, 180, 532, 208);
+		list.setBounds(10, 198, 532, 190);
 		contentPane.add(list);
 		list.addListSelectionListener(new ListSelectionListener(){
 
@@ -183,12 +188,23 @@ public class SearchHotelsGUI extends JFrame {
 		reservationButton.setBounds(389, 56, 153, 23);
 		contentPane.add(reservationButton);
 		
+		errorLbl = new JLabel("");
+		errorLbl.setBounds(10, 178, 494, 14);
+		contentPane.add(errorLbl);
+		
 		btnBuscar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				checkIn = CalendarTranslator.stringToCalendar(checkInTextField.getText().trim());
 				checkOut = CalendarTranslator.stringToCalendar(checkOutTextField.getText().trim());
 				if(checkIn == null || checkOut == null){
+					errorLbl.setText("Por favor ingrese una fecha valida");
+					deleteErrorMessage.start();
+					listModel.clear();
+					return;
+				}else if(cityTf.getText().trim().equals("")){
+					errorLbl.setText("Por favor ingrese una ciudad");
+					deleteErrorMessage.start();
 					listModel.clear();
 					return;
 				}
@@ -228,7 +244,15 @@ public class SearchHotelsGUI extends JFrame {
 
         });
 
+		 ActionListener al = new ActionListener() {
 
+	            @Override
+	            public void actionPerformed(ActionEvent arg0){
+	            	errorLbl.setText("");
+	            }
+	        };
+
+	     deleteErrorMessage = new Timer(5000,al); // Timer(TimeInMilliSeconds, ActionListener) 1000ms = 1s 
 		
 	}
 }

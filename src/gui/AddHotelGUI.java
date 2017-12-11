@@ -38,7 +38,7 @@ public class AddHotelGUI extends JFrame {
 	private JFormattedTextField rateFT;
 	private JLabel cityLbl;
 	private JTextField cityTf;
-	
+	private float rateNumber;
 	public AddHotelGUI(JFrame administratorFrame) {
 		
 		controller = new Controller();
@@ -84,10 +84,6 @@ public class AddHotelGUI extends JFrame {
 					administratorFrame.setVisible(true);
 					AddHotelGUI.this.dispose();
 				}
-				else{
-					errorLbl.setText("El hotel no se pudo crear, intentelo devuelta");
-					deleteErrorMessage.start();
-				}
 			}
 		});
 		
@@ -108,7 +104,7 @@ public class AddHotelGUI extends JFrame {
 		
 		errorLbl = new JLabel("");
 		errorLbl.setForeground(Color.RED);
-		errorLbl.setBounds(36, 262, 46, 14);
+		errorLbl.setBounds(10, 262, 384, 14);
 		contentPane.add(errorLbl);
 		
 		rateFT = new JFormattedTextField();
@@ -147,20 +143,16 @@ public class AddHotelGUI extends JFrame {
 		String direction = directionTf.getText().trim();
 		String rate =  rateFT.getText().trim();
 		String city = cityTf.getText().trim();
-		float rateNumber;
-		boolean error = validFields();
+		boolean error = !validFields();
 		if(error) {
 			return false;
 		}
-		try{
-			rateNumber = Float.parseFloat(rate);
-		}catch(Exception e){
-			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
+		if(!controller.addHotel(hotelName,direction, rateNumber, city, true)){
+			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
 			deleteErrorMessage.start();
 			return false;
 		}
-		
-		return controller.addHotel(hotelName,direction, rateNumber, city, true);
+		return true;
 	}
 
 	public boolean validFields() {
@@ -168,7 +160,7 @@ public class AddHotelGUI extends JFrame {
 		String direction = directionTf.getText().trim();
 		String rate =  rateFT.getText().trim();
 		String city = cityTf.getText().trim();
-		float rateNumber;
+		
 		boolean error = false;
 
 
@@ -195,6 +187,18 @@ public class AddHotelGUI extends JFrame {
 		if(error)
 		{
 			errorLbl.setText("Complete los campos en rojo");
+			deleteErrorMessage.start();
+			return false;
+		}
+		try{
+			rateNumber = Float.parseFloat(rate);
+		}catch(Exception e){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
+			deleteErrorMessage.start();
+			return false;
+		}
+		if(rateNumber < 0 || rateNumber > 10 ){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
 			deleteErrorMessage.start();
 			return false;
 		}

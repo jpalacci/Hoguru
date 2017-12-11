@@ -204,9 +204,10 @@ public class EditUserGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(isRegistrationValid()){
-					sendChanges();
-					loginFrame.setVisible(true);
-					frame.dispose();
+					if(sendChanges()){
+						loginFrame.setVisible(true);
+						frame.dispose();
+					}
 				}
 			}
 		});
@@ -337,7 +338,7 @@ public class EditUserGUI extends JFrame {
 		
 	}
 
-	protected void sendChanges() {
+	protected boolean sendChanges() {
 		String mail = mailTf.getText().trim();
 		String password1 = new String(passwordField.getPassword()).trim();
 		String password2 = new String(passwordConfirmationField.getPassword()).trim();
@@ -353,7 +354,12 @@ public class EditUserGUI extends JFrame {
 		String country = (String) countryCb.getSelectedItem();
 		PHONE_TYPE phoneType = (PHONE_TYPE) phoneTypeCB.getSelectedItem();
 		DOCUMENT_TYPE documentType = (DOCUMENT_TYPE) documentTypeCb.getSelectedItem();
-		controller.changeUser(mail, lastName, name, documentType, document, country, province, city,street, streetNumber,  postalCode, telephone, phoneType, password1);
+		if(!controller.changeUser(mail, lastName, name, documentType, document, country, province, city,street, streetNumber,  postalCode, telephone, phoneType, password1)){
+			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
+			deleteErrorMessage.start();
+			return false;
+		}
+		return true;
 		
 	}
 
