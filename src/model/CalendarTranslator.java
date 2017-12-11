@@ -22,5 +22,20 @@ public class CalendarTranslator {
             return sb.toString();
 
     }
+    
+    public static Calendar stringToCalendar(String s)
+    {
+           Calendar c = Calendar.getInstance();
+           int date, month, year;
+           try{
+        	   date = Integer.parseInt(s.substring(0,2));
+        	   month = Integer.parseInt(s.substring(3,5));
+        	   year = Integer.parseInt(s.substring(6,10));
+           }catch(Exception e1){
+        	   return null;
+           }
+           c.set(year, month, date);
+           return c;
+    }
 
 }

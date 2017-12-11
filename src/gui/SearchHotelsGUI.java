@@ -31,6 +31,7 @@ import javax.swing.text.MaskFormatter;
 
 import Controller.Controller;
 import javafx.scene.control.SelectionMode;
+import model.CalendarTranslator;
 import model.Hotel;
 import model.Person;
 import model.User;
@@ -141,6 +142,9 @@ public class SearchHotelsGUI extends JFrame {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
+				if(listModel.isEmpty()){
+					return;
+				}
 				Hotel selectedHotel = listModel.get(e.getFirstIndex());
 				new JListRoomResultsGUI(selectedHotel,checkIn, checkOut,cityTf.getText().trim(), (Integer) peopleCb.getSelectedItem(),user.getUserName()  );
 			}
@@ -160,15 +164,11 @@ public class SearchHotelsGUI extends JFrame {
 		btnBuscar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				checkIn = Calendar.getInstance();
-				checkOut = Calendar.getInstance();
-				try{
-					
-					SimpleDateFormat sdf = new SimpleDateFormat("DD:MM:YYYY", Locale.ENGLISH);
-					checkIn.setTime(sdf.parse(checkInTextField.getText()));// all done
-					checkOut.setTime(sdf.parse(checkOutTextField.getText()));// all done
-				}catch(Exception e1){
-					
+				checkIn = CalendarTranslator.stringToCalendar(checkInTextField.getText().trim());
+				checkOut = CalendarTranslator.stringToCalendar(checkOutTextField.getText().trim());
+				if(checkIn == null || checkOut == null){
+					listModel.clear();
+					return;
 				}
 				List<Hotel> hotelList = controller.getAvaillableHotels(cityTf.getText().trim(), checkIn, checkOut, (Integer) peopleCb.getSelectedItem());
 				listModel.clear();
