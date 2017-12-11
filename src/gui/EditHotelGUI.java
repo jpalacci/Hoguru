@@ -60,22 +60,22 @@ public class EditHotelGUI extends JFrame {
 		contentPane.add(hotelNameLbl);
 		
 		directionLbl = new JLabel("Direccion");
-		directionLbl.setBounds(10, 116, 46, 14);
+		directionLbl.setBounds(10, 116, 111, 14);
 		contentPane.add(directionLbl);
 		
 		starsLbl = new JLabel("Cantidad de Estrellas");
-		starsLbl.setBounds(10, 162, 111, 14);
+		starsLbl.setBounds(10, 162, 141, 14);
 		contentPane.add(starsLbl);
 		
 		hotelNameTf = new JTextField();
 		hotelNameTf.setColumns(10);
-		hotelNameTf.setBounds(137, 75, 225, 20);
+		hotelNameTf.setBounds(147, 75, 215, 20);
 		hotelNameTf.setEditable(false);
 		contentPane.add(hotelNameTf);
 		
 		directionTf = new JTextField();
 		directionTf.setColumns(10);
-		directionTf.setBounds(137, 113, 225, 20);
+		directionTf.setBounds(147, 113, 215, 20);
 		contentPane.add(directionTf);
 		
 		editHotelBtn = new JButton("Editar Hotel");
@@ -117,7 +117,7 @@ public class EditHotelGUI extends JFrame {
 				dispose();
 			}
 		});
-		viewRoomsBtn.setBounds(20, 300, 121, 23);
+		viewRoomsBtn.setBounds(30, 310, 121, 23);
 		contentPane.add(viewRoomsBtn);
 		
 		addTypeBtn = new JButton("Agregar Tipos de Habitacion");
@@ -126,7 +126,7 @@ public class EditHotelGUI extends JFrame {
 				new AddRoomTypeGUI(hotel, EditHotelGUI.this);
 			}
 		});
-		addTypeBtn.setBounds(194, 253, 168, 23);
+		addTypeBtn.setBounds(10, 276, 247, 23);
 		contentPane.add(addTypeBtn);
 		
 		errorLbl = new JLabel("");
@@ -135,7 +135,7 @@ public class EditHotelGUI extends JFrame {
 		contentPane.add(errorLbl);
 		
 		rateFT = new JFormattedTextField();
-		rateFT.setBounds(137, 159, 225, 20);
+		rateFT.setBounds(147, 159, 215, 20);
 		contentPane.add(rateFT);
 		
 		JButton viewTypesBtn = new JButton("Ver Tipos de Habitacion");
@@ -144,7 +144,7 @@ public class EditHotelGUI extends JFrame {
 				new JListRoomTypesGUI(hotel, EditHotelGUI.this);
 			}
 		});
-		viewTypesBtn.setBounds(20, 253, 158, 23);
+		viewTypesBtn.setBounds(10, 238, 247, 23);
 		contentPane.add(viewTypesBtn);
 		
 		JButton addRoombtn = new JButton("Agregar Cuarto");
@@ -154,17 +154,16 @@ public class EditHotelGUI extends JFrame {
 				dispose();
 			}
 		});
-		addRoombtn.setBounds(194, 300, 121, 23);
+		addRoombtn.setBounds(194, 310, 121, 23);
 		contentPane.add(addRoombtn);
 		
 		cityTf = new JTextField();
 		cityTf.setText((String) null);
 		cityTf.setColumns(10);
-		cityTf.setBounds(137, 207, 225, 20);
+		cityTf.setBounds(147, 207, 215, 20);
 		contentPane.add(cityTf);
 		
 		JLabel cityLbl = new JLabel("Ciudad");
-		cityLbl.setHorizontalAlignment(SwingConstants.TRAILING);
 		cityLbl.setBounds(10, 210, 111, 14);
 		contentPane.add(cityLbl);
 		

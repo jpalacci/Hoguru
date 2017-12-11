@@ -69,7 +69,7 @@ public class JListRoomGUI extends JFrame {
 				hotelFrame.setVisible(true);
 			}
 		});
-		Cancel.setBounds(0, 162, 72, 24);
+		Cancel.setBounds(0, 162, 87, 24);
 		contentPane.add(Cancel);
 		
 		JButton btnEdit = new JButton("Edit");
@@ -88,7 +88,7 @@ public class JListRoomGUI extends JFrame {
 	
 			}
 		});
-		btnEdit.setBounds(108, 162, 72, 24);
+		btnEdit.setBounds(100, 162, 87, 24);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("Delete");
@@ -108,7 +108,7 @@ public class JListRoomGUI extends JFrame {
 			     }
 			}
 		});
-		btnDelete.setBounds(212, 163, 72, 24);
+		btnDelete.setBounds(197, 163, 87, 24);
 		contentPane.add(btnDelete);
 		
 	}

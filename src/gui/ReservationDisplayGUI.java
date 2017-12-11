@@ -84,11 +84,11 @@ public class ReservationDisplayGUI extends JFrame {
 		contentPane.add(roomTypeLbl);
 		
 		numberOfPeopleInformationLbl = new JLabel("Cantidad de personas");
-		numberOfPeopleInformationLbl.setBounds(217, 167, 118, 14);
+		numberOfPeopleInformationLbl.setBounds(217, 167, 148, 14);
 		contentPane.add(numberOfPeopleInformationLbl);
 		
 		numberOfPeopleLbl = new JLabel("");
-		numberOfPeopleLbl.setBounds(345, 167, 79, 14);
+		numberOfPeopleLbl.setBounds(361, 167, 63, 14);
 		contentPane.add(numberOfPeopleLbl);
 		
 		roomPriceInformationLbl = new JLabel("Precio");
@@ -170,15 +170,28 @@ public class ReservationDisplayGUI extends JFrame {
 	}
 	
 	private void loadReservation(Reservation r) {
-		hotelNameLbl.setText(r.getRoom().getHotelName());
-		roomNumberLbl.setText(String.valueOf(r.getRoom().getNumber()));
-		viewType.setText(r.getRoom().getView().name());
-		roomTypeLbl.setText(r.getRoom().getType());
-		numberOfPeopleLbl.setText(String.valueOf(r.getRoom().getCapacity()));
-		roomPriceLbl.setText(String.valueOf(r.getRoom().getNightCost()));
-		checkInLbl.setText(CalendarTranslator.calendarToString(r.getCheckIn()));
-		checkOutLbl.setText(CalendarTranslator.calendarToString(r.getCheckOut()));
-		String city = controller.getHotel(r.getRoom().getHotelName()).getCity();
-		cityLbl.setText(city);
+		if(r == null){
+			hotelNameLbl.setText("");
+			roomNumberLbl.setText("");
+			viewType.setText("");
+			roomTypeLbl.setText("");
+			numberOfPeopleLbl.setText("");
+			roomPriceLbl.setText("");
+			checkInLbl.setText("");
+			checkOutLbl.setText("");
+			cityLbl.setText("");
+		}else{
+			hotelNameLbl.setText(r.getRoom().getHotelName());
+			roomNumberLbl.setText(String.valueOf(r.getRoom().getNumber()));
+			viewType.setText(r.getRoom().getView().name());
+			roomTypeLbl.setText(r.getRoom().getType());
+			numberOfPeopleLbl.setText(String.valueOf(r.getRoom().getCapacity()));
+			roomPriceLbl.setText(String.valueOf(r.getRoom().getNightCost()));
+			checkInLbl.setText(CalendarTranslator.calendarToString(r.getCheckIn()));
+			checkOutLbl.setText(CalendarTranslator.calendarToString(r.getCheckOut()));
+			String city = controller.getHotel(r.getRoom().getHotelName()).getCity();
+			cityLbl.setText(city);
+		}
+		
 	}
 }

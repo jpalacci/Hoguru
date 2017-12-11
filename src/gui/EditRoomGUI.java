@@ -63,7 +63,7 @@ public class EditRoomGUI extends JFrame {
 		guestNumberlbl.setBounds(10, 129, 121, 14);
 		contentPane.add(guestNumberlbl);
 		
-		creatRoomBtn = new JButton("Agregar Habitacion");
+		creatRoomBtn = new JButton("Editar Habitacion");
 		creatRoomBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(isRoomValid()){
@@ -72,11 +72,11 @@ public class EditRoomGUI extends JFrame {
 				}
 			}
 		});
-		creatRoomBtn.setBounds(40, 272, 137, 23);
+		creatRoomBtn.setBounds(20, 272, 157, 23);
 		contentPane.add(creatRoomBtn);
 		
 		cancelBtn = new JButton("Cancelar");
-		cancelBtn.setBounds(209, 272, 121, 23);
+		cancelBtn.setBounds(209, 272, 153, 23);
 		contentPane.add(cancelBtn);
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,9 +85,9 @@ public class EditRoomGUI extends JFrame {
 			}
 		});
 		
-		titleLbl = new JLabel("Datos de la Habitacion");
+		titleLbl = new JLabel("Datos de la Habitacion Para Editar");
 		titleLbl.setFont(new Font("Tahoma", Font.BOLD, 19));
-		titleLbl.setBounds(10, 11, 307, 53);
+		titleLbl.setBounds(10, 11, 406, 53);
 		contentPane.add(titleLbl);
 		
 		guestNumberCB = new JComboBox<Integer>();
@@ -110,8 +110,8 @@ public class EditRoomGUI extends JFrame {
 		viewTypeLbl.setBounds(10, 173, 121, 14);
 		contentPane.add(viewTypeLbl);
 		
-		//viewTypeCB = new JComboBox<VIEW_TYPE>();
-		viewTypeCB = new JComboBox<VIEW_TYPE>(VIEW_TYPE.values());
+		viewTypeCB = new JComboBox<VIEW_TYPE>();
+		//viewTypeCB = new JComboBox<VIEW_TYPE>(VIEW_TYPE.values());
 
 		viewTypeCB.setBounds(141, 170, 221, 20);
 		contentPane.add(viewTypeCB);

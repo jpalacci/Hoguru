@@ -56,11 +56,11 @@ public class AddHotelGUI extends JFrame {
 		contentPane.add(hotelNameLbl);
 		
 		directionLbl = new JLabel("Direccion");
-		directionLbl.setBounds(10, 116, 46, 14);
+		directionLbl.setBounds(10, 116, 98, 14);
 		contentPane.add(directionLbl);
 		
 		starsLbl = new JLabel("Cantidad de Estrellas");
-		starsLbl.setBounds(10, 162, 111, 14);
+		starsLbl.setBounds(10, 162, 126, 14);
 		contentPane.add(starsLbl);
 		
 		hotelNameTf = new JTextField();
@@ -74,7 +74,7 @@ public class AddHotelGUI extends JFrame {
 		contentPane.add(directionTf);
 		
 		createHotelBtn = new JButton("Crear Hotel");
-		createHotelBtn.setBounds(67, 289, 89, 23);
+		createHotelBtn.setBounds(67, 289, 126, 23);
 		contentPane.add(createHotelBtn);
 		createHotelBtn.addActionListener(new ActionListener(){
 			@Override
@@ -91,7 +91,7 @@ public class AddHotelGUI extends JFrame {
 		});
 		
 		cancelBtn = new JButton("Cancelar");
-		cancelBtn.setBounds(226, 289, 89, 23);
+		cancelBtn.setBounds(226, 289, 111, 23);
 		contentPane.add(cancelBtn);
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

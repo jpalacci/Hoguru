@@ -70,7 +70,7 @@ public class JListRoomTypesGUI extends JFrame {
 				dispose();
 			}
 		});
-		Cancel.setBounds(0, 162, 72, 24);
+		Cancel.setBounds(0, 162, 93, 24);
 		contentPane.add(Cancel);
 		
 		
@@ -91,7 +91,7 @@ public class JListRoomTypesGUI extends JFrame {
 			     }
 			}
 		});
-		btnDelete.setBounds(212, 163, 72, 24);
+		btnDelete.setBounds(198, 163, 86, 24);
 		contentPane.add(btnDelete);
 		
 	}

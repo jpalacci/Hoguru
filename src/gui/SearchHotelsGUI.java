@@ -84,7 +84,7 @@ public class SearchHotelsGUI extends JFrame {
 		cityTf.setColumns(10);
 		
 		peopleCb = new JComboBox(new Integer[] {1,2,3,4,5,6,7});
-		peopleCb.setBounds(253, 111, 156, 20);
+		peopleCb.setBounds(318, 111, 153, 20);
 		peopleCb.setRenderer(new MyComboBoxRenderer("Cantidad de Personas"));
 		peopleCb.setSelectedIndex(-1);
 		contentPane.add(peopleCb);
@@ -154,7 +154,7 @@ public class SearchHotelsGUI extends JFrame {
 				new ReservationDisplayGUI();
 			}
 		});
-		reservationButton.setBounds(419, 110, 123, 23);
+		reservationButton.setBounds(389, 56, 153, 23);
 		contentPane.add(reservationButton);
 		
 		btnBuscar.addActionListener(new ActionListener(){

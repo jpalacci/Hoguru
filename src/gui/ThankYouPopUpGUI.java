@@ -25,22 +25,22 @@ public class ThankYouPopUpGUI {
 	 */
 	private void initialize(long reservationCode) {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 226);
+		frame.setBounds(100, 100, 554, 226);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 		
 		thanksLbl = new JLabel("Muchas Gracias");
 		thanksLbl.setFont(new Font("Tahoma", Font.BOLD, 22));
-		thanksLbl.setBounds(125, 47, 183, 37);
+		thanksLbl.setBounds(170, 47, 183, 37);
 		frame.getContentPane().add(thanksLbl);
 		
 		explanationLbl = new JLabel("Se ha enviado un correo electronico a su mail para confirmar la reserva nro: " + String.valueOf(reservationCode));
-		explanationLbl.setBounds(30, 95, 355, 14);
+		explanationLbl.setBounds(30, 95, 498, 14);
 		frame.getContentPane().add(explanationLbl);
 		
 		acceptBtn = new JButton("Aceptar");
-		acceptBtn.setBounds(175, 143, 89, 23);
+		acceptBtn.setBounds(221, 142, 89, 23);
 		frame.getContentPane().add(acceptBtn);
 		acceptBtn.addActionListener(new ActionListener(){
 			@Override

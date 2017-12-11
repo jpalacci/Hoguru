@@ -70,7 +70,7 @@ public class JListHotelAdminGUI extends JFrame {
 				editHotelFrame.setVisible(true);
 			}
 		});
-		Cancel.setBounds(0, 162, 72, 24);
+		Cancel.setBounds(0, 162, 86, 24);
 		contentPane.add(Cancel);
 		
 		JButton btnEdit = new JButton("Edit");
@@ -89,7 +89,7 @@ public class JListHotelAdminGUI extends JFrame {
 	
 			}
 		});
-		btnEdit.setBounds(108, 162, 72, 24);
+		btnEdit.setBounds(102, 162, 86, 24);
 		contentPane.add(btnEdit);
 		
 		JButton btnDelete = new JButton("Delete");
@@ -109,7 +109,7 @@ public class JListHotelAdminGUI extends JFrame {
 			     }
 			}
 		});
-		btnDelete.setBounds(212, 163, 72, 24);
+		btnDelete.setBounds(198, 163, 86, 24);
 		contentPane.add(btnDelete);
 		
 	}

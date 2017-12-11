@@ -94,6 +94,9 @@ public class Controller {
 
 	public Reservation getReservation(long reservationNumber){
 	    Reservation r = Reservation.getReservation(reservationNumber);
+	    if(r == null){
+	    	return r;
+	    }
 	    if(r.getUser().equals(actualPerson.getUserName())){
 	        return r;
         }else{

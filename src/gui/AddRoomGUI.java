@@ -20,12 +20,12 @@ import model.VIEW_TYPE;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class AddRoomGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tipoOfRoomTf;
 	private JLabel tipeOfRoomLbl;
 	private JLabel guestNumberlbl;
 	private JButton creatRoomBtn;
@@ -39,6 +39,7 @@ public class AddRoomGUI extends JFrame {
 	private Controller controller;
 	private JComboBox<VIEW_TYPE> viewTypeCB;
 	private Hotel hotel;
+	private JComboBox<String> typeRoomCb;
 	
 	public AddRoomGUI(JFrame editHotelFrame, Hotel hotel) {
 		controller = new Controller();
@@ -51,17 +52,12 @@ public class AddRoomGUI extends JFrame {
 		setVisible(true);
 		this.editHotelFrame = editHotelFrame;
 		tipeOfRoomLbl = new JLabel("Tipo de Habitacion");
-		tipeOfRoomLbl.setBounds(10, 94, 98, 14);
+		tipeOfRoomLbl.setBounds(10, 94, 152, 14);
 		contentPane.add(tipeOfRoomLbl);
 		this.hotel = hotel;
 		guestNumberlbl = new JLabel("Cantidad de Huespedes");
-		guestNumberlbl.setBounds(10, 129, 121, 14);
+		guestNumberlbl.setBounds(10, 129, 152, 14);
 		contentPane.add(guestNumberlbl);
-		
-		tipoOfRoomTf = new JTextField();
-		tipoOfRoomTf.setBounds(137, 91, 225, 20);
-		contentPane.add(tipoOfRoomTf);
-		tipoOfRoomTf.setColumns(10);
 		
 		creatRoomBtn = new JButton("Agregar Habitacion");
 		creatRoomBtn.addActionListener(new ActionListener() {
@@ -72,11 +68,11 @@ public class AddRoomGUI extends JFrame {
 				}
 			}
 		});
-		creatRoomBtn.setBounds(40, 272, 137, 23);
+		creatRoomBtn.setBounds(40, 272, 159, 23);
 		contentPane.add(creatRoomBtn);
 		
 		cancelBtn = new JButton("Cancelar");
-		cancelBtn.setBounds(209, 272, 121, 23);
+		cancelBtn.setBounds(209, 272, 152, 23);
 		contentPane.add(cancelBtn);
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,11 +90,11 @@ public class AddRoomGUI extends JFrame {
 		for(int i = 0; i<10 ; i++){
 			guestNumberCB.addItem(i);
 		}
-		guestNumberCB.setBounds(141, 126, 221, 20);
+		guestNumberCB.setBounds(172, 126, 221, 20);
 		contentPane.add(guestNumberCB);
 		
 		roomNumberFT = new JFormattedTextField();
-		roomNumberFT.setBounds(137, 214, 225, 20);
+		roomNumberFT.setBounds(168, 214, 225, 20);
 		contentPane.add(roomNumberFT);
 		
 		errorLbl = new JLabel("");
@@ -113,19 +109,28 @@ public class AddRoomGUI extends JFrame {
 		//viewTypeCB = new JComboBox<VIEW_TYPE>();
 		viewTypeCB = new JComboBox<VIEW_TYPE>(VIEW_TYPE.values());
 
-		viewTypeCB.setBounds(141, 170, 221, 20);
+		viewTypeCB.setBounds(172, 170, 221, 20);
 		contentPane.add(viewTypeCB);
 		
 		JLabel roomNumberLbl = new JLabel("Numero de Cuarto");
-		roomNumberLbl.setBounds(10, 217, 121, 14);
+		roomNumberLbl.setBounds(10, 217, 148, 14);
 		contentPane.add(roomNumberLbl);
+		
+		typeRoomCb = new JComboBox<String>();
+		
+		List<String> roomTypes = controller.getRoomTypes(hotel.getName());
+		for(String rt: roomTypes){
+			typeRoomCb.addItem(rt);
+		}
+		typeRoomCb.setBounds(172, 91, 221, 20);
+		contentPane.add(typeRoomCb);
 		
 		 ActionListener al = new ActionListener() {
 
 	            @Override
 	            public void actionPerformed(ActionEvent arg0){
 	            	errorLbl.setText("");
-	            	tipoOfRoomTf.setBorder(BorderFactory.createLineBorder(Color.black));
+	            	typeRoomCb.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	guestNumberCB.setBorder(BorderFactory.createLineBorder(Color.black));
 	            	roomNumberFT.setBorder(BorderFactory.createLineBorder(Color.black));
 	            }
@@ -137,7 +142,7 @@ public class AddRoomGUI extends JFrame {
 	
 	
 	protected boolean isRoomValid(){
-		String tipeOfRoom =  tipoOfRoomTf.getText().trim();
+		String tipeOfRoom =  (String)typeRoomCb.getSelectedItem();
 		Integer getNumber = (Integer) guestNumberCB.getSelectedItem();
 		VIEW_TYPE viewType = (VIEW_TYPE) viewTypeCB.getSelectedItem();
 		String room = roomNumberFT.getText();
@@ -146,7 +151,7 @@ public class AddRoomGUI extends JFrame {
 		
 		if(tipeOfRoom.equals(""))
 		{
-			tipoOfRoomTf.setBorder(BorderFactory.createLineBorder(Color.red));
+			typeRoomCb.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
 		if(getNumber.equals(0))
@@ -182,15 +187,6 @@ public class AddRoomGUI extends JFrame {
 		return controller.isValidRoom(hotel,tipeOfRoom,viewType,getNumber,roomNumber,true);
 	}
 
-	public JTextField getTipoOfRoomTf() {
-		return tipoOfRoomTf;
-	}
-
-	public void setTipoOfRoomTf(JTextField tipoOfRoomTf) {
-		this.tipoOfRoomTf = tipoOfRoomTf;
-	}
-
-
 	public JComboBox getGuestNumberCB() {
 		return guestNumberCB;
 	}
@@ -202,6 +198,4 @@ public class AddRoomGUI extends JFrame {
 	public JFormattedTextField getFormattedTextField() {
 		return roomNumberFT;
 	}
-
-	
 }

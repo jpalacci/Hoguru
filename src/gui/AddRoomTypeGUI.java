@@ -39,7 +39,7 @@ public class AddRoomTypeGUI extends JFrame {
 		setVisible(true);
 		contentPane.setLayout(null);
 		
-		this.controller = controller;
+		this.controller = new Controller();
 		this.hotel = hotel;
 		this.editHotelFrame = editHotelFrame;
 		
@@ -78,6 +78,7 @@ public class AddRoomTypeGUI extends JFrame {
 		CreateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sendRoomTypeIfValid();
+				dispose();
 			}
 
 		});
