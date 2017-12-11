@@ -533,6 +533,35 @@ public class DataBaseFacade
         }
 
     }
+
+    public List<Comment> getComments(String hotelName){
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM COMENTARIOS WHERE hotel_name = '");
+        sb.append(hotelName);
+        sb.append("' ");
+        System.out.println(sb);
+
+        ResultSet res = r.gXrGenerico(sb.toString());
+        List<Comment> comments = new LinkedList<>();
+
+        try
+        {
+            while(res.next())
+            {
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(res.getTimestamp("comment_date").getTime());
+                Comment c = new Comment(res.getString("comment"), res.getString("username"), cal , hotelName);
+                c.setHotelName(res.getString("hotel_name"));
+                comments.add(c);
+            }
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+        return comments;
+    }
     
     public Comment getComment(String hotelName, String userName , Calendar date)
     {
@@ -790,6 +819,10 @@ public class DataBaseFacade
         {
             return rooms;
         }
+    }
+
+    public List<Comment> getComment(String hotelName){
+       return  Comment.getComments(hotelName);
     }
 
 

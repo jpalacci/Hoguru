@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class Comment {
 	
@@ -76,6 +77,11 @@ public class Comment {
 	public String toString() {
 		return  nombreUsuario + " -- " + "Comentario: " + comment
 				+System.lineSeparator()+ " Publicado en:" + date ;
+	}
+
+	public static List<Comment> getComments(String hotelName){
+		DataBaseFacade db = DataBaseFacade.getInstance();
+		return db.getComments( hotelName);
 	}
 	
 	
