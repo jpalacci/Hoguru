@@ -108,7 +108,14 @@ public class Reservation {
 
 	public boolean addReservation(){
 		DataBaseFacade db = DataBaseFacade.getInstance();
-		return db.addReservation(this , this.user);
+        Boolean res =  db.addReservation(this , this.user);
+        Reservation r = db.getReservation(user , checkIn , checkOut , room.getNumber() , room.getHotelName());
+		if(r == null){
+            System.out.println("EEORRORO");
+            return false;
+        }
+        this.reservationNumber = r.reservationNumber;
+        return res;
 	}
 	public String getCalendarString(Calendar c)
     {

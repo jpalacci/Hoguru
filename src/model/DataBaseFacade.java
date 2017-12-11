@@ -107,6 +107,41 @@ public class DataBaseFacade
 
     }
 
+    public Reservation getReservation(String userP , Calendar checkInp , Calendar checkOutp , int roomNumberp, String hotelNamep)
+    {
+      
+
+        ResultSet res = r.gXrGenerico("SELECT * FROM RESERVAS WHERE username = " + "\'" +userP + "\'" +
+                                        "AND check_in = " + "\'"  + CalendarTranslator.calendarToString(checkInp) + "\'" +
+                                        "AND check_out = " +  "\'" + CalendarTranslator.calendarToString(checkOutp) + "\'" +
+                                        "AND room_number = " + roomNumberp + " "+
+                                        "AND hotel_name = " + "\'" + hotelNamep +"\'");
+        Reservation reservation = null;
+        boolean first = true;
+        try {
+            if(res.next())
+            {
+
+                User user = getUser(res.getString("username"));
+                Calendar checkIn = Calendar.getInstance();
+                checkIn.setTime(res.getDate("check_in"));
+                Calendar checkOut = Calendar.getInstance();
+                checkOut.setTime(res.getDate("check_out"));
+                reservation = new Reservation(user.getUserName(), res.getInt("reservation_number"), checkIn, checkOut);
+                first = false;
+                Room r = getRoom(res.getInt("room_number"), res.getString("hotel_name"));
+                reservation.setRoom(r);
+                return reservation;
+            }
+            return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println("Ocurrió un error al obtener la reserva");
+            return null;
+        }
+    }
+
     /**
      * Gets a Reservation from the DB
      * @param reservationNumber
