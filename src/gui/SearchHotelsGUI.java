@@ -158,12 +158,17 @@ public class SearchHotelsGUI extends JFrame {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if(listModel.isEmpty()){
-					return;
-				}
-				Hotel selectedHotel = listModel.get(e.getFirstIndex());
-				new JListRoomResultsGUI(selectedHotel,checkIn, checkOut,cityTf.getText().trim(), (Integer) peopleCb.getSelectedItem(),user.getUserName()  );
-			}
+				if (!e.getValueIsAdjusting()){
+				      if(list.getSelectedIndex()>-1){
+				    	  if(listModel.isEmpty()){
+								return;
+							}
+							Hotel selectedHotel = listModel.get(e.getFirstIndex());
+							new JListRoomResultsGUI(selectedHotel,checkIn, checkOut,cityTf.getText().trim(), (Integer) peopleCb.getSelectedItem(),user.getUserName()  );
+							list.clearSelection();
+				      	}
+				      }
+				    }
 			
 		});
 		contentPane.add(list);
@@ -206,26 +211,18 @@ public class SearchHotelsGUI extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
         });

@@ -63,7 +63,8 @@ public class JListRoomTypesGUI extends JFrame {
 		contentPane.add(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
-		JButton Cancel = new JButton("Cancel");
+		
+		JButton Cancel = new JButton("Cancelar");
 		Cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hotelFrame.setVisible(true);
@@ -74,7 +75,7 @@ public class JListRoomTypesGUI extends JFrame {
 		contentPane.add(Cancel);
 		
 		
-		JButton btnDelete = new JButton("Delete");
+		JButton btnDelete = new JButton("Borrar");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if (list.getSelectedIndex() == -1) {
@@ -83,7 +84,7 @@ public class JListRoomTypesGUI extends JFrame {
 			    	 int[] indices = list.getSelectedIndices();
 			    	 DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
 
-			    	 for(int i = 0 ; i <= indices.length; i++){
+			    	 for(int i = 0 ; i < indices.length; i++){
 						controller.deleteRoomTypeFromHotel(hotel.getName(), model.getElementAt(indices[i]-i));
 						model.remove(indices[i]-i);
 			    	 }

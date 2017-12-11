@@ -54,8 +54,13 @@ public class JListRoomResultsGUI extends JFrame  {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				Room selectedRoom =listModel.getElementAt(e.getFirstIndex()); 
-				new RoomDisplayGUI(selectedRoom, checkIn, checkOut, city, numberOfPeople, userName);
+				if (!e.getValueIsAdjusting()){
+				      if(list.getSelectedIndex()>-1){
+				    	  Room selectedRoom =listModel.getElementAt(e.getFirstIndex()); 
+				    	  new RoomDisplayGUI(selectedRoom, checkIn, checkOut, city, numberOfPeople, userName);
+				    	  list.clearSelection();
+				      }
+				    }
 			}
 			
 		});

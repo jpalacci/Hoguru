@@ -62,7 +62,7 @@ public class JListRoomGUI extends JFrame {
 		contentPane.add(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
-		JButton Cancel = new JButton("Cancel");
+		JButton Cancel = new JButton("Cancelar");
 		Cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -72,7 +72,7 @@ public class JListRoomGUI extends JFrame {
 		Cancel.setBounds(0, 162, 87, 24);
 		contentPane.add(Cancel);
 		
-		JButton btnEdit = new JButton("Edit");
+		JButton btnEdit = new JButton("Editar");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if (list.getSelectedIndex() == -1) {
@@ -91,7 +91,7 @@ public class JListRoomGUI extends JFrame {
 		btnEdit.setBounds(100, 162, 87, 24);
 		contentPane.add(btnEdit);
 		
-		JButton btnDelete = new JButton("Delete");
+		JButton btnDelete = new JButton("Borrar");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if (list.getSelectedIndex() == -1) {
@@ -100,7 +100,7 @@ public class JListRoomGUI extends JFrame {
 			    	 int[] indices = list.getSelectedIndices();
 			    	 DefaultListModel<Room> model = (DefaultListModel<Room>) list.getModel();
 
-			    	 for(int i = 0 ; i <= indices.length; i++){
+			    	 for(int i = 0 ; i < indices.length; i++){
 						controller.deleteRoom(model.getElementAt(indices[i]-i));
 						model.remove(indices[i]-i);
 			    	 }

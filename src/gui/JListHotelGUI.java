@@ -32,7 +32,7 @@ public class JListHotelGUI extends JFrame {
 	private DefaultListModel<Hotel> listModel;
 	private JScrollPane listScroller;
 	private JFrame editHotelFrame;
-	private final JButton Cancel = new JButton("Cancel");
+	private final JButton Cancel = new JButton("Cancelar");
 	private Controller controller;
 	
 	public JListHotelGUI(List<Hotel> hotelList, JFrame editHotelFrame) {
@@ -70,10 +70,10 @@ public class JListHotelGUI extends JFrame {
 				editHotelFrame.setVisible(true);
 			}
 		});
-		Cancel.setBounds(0, 162, 82, 24);
+		Cancel.setBounds(0, 162, 88, 24);
 		contentPane.add(Cancel);
 		
-		JButton btnEdit = new JButton("Edit");
+		JButton btnEdit = new JButton("Editar");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if (list.getSelectedIndex() == -1) {
@@ -83,7 +83,7 @@ public class JListHotelGUI extends JFrame {
 					Hotel h = (Hotel)list.getSelectedValue();
 			        JListHotelGUI.this.setVisible(false);
 			        new EditHotelGUI(editHotelFrame, h);
-			       
+			        list.clearSelection();
 				 }
 				 
 	
@@ -92,7 +92,7 @@ public class JListHotelGUI extends JFrame {
 		btnEdit.setBounds(104, 162, 88, 24);
 		contentPane.add(btnEdit);
 		
-		JButton btnDelete = new JButton("Delete");
+		JButton btnDelete = new JButton("Borrar");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if (list.getSelectedIndex() == -1) {
@@ -101,7 +101,7 @@ public class JListHotelGUI extends JFrame {
 			    	 int[] indices = list.getSelectedIndices();
 			    	 DefaultListModel<Hotel> model = (DefaultListModel<Hotel>) list.getModel();
 
-			    	 for(int i = 0 ; i <= indices.length; i++){
+			    	 for(int i = 0 ; i < indices.length; i++){
 						controller.deleteHotel(model.getElementAt(indices[i]-i));
 						model.remove(indices[i]-i);
 			    	 }
