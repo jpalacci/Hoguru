@@ -539,7 +539,7 @@ public class DataBaseFacade
         List<Room> rooms = new LinkedList<>();
 
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM HABITACIONES WHERE capacity >= ");
+        sb.append("SELECT * FROM HABITACIONES NATURAL JOIN HOTELES WHERE capacity >= ");
         sb.append(capacity);
         sb.append(" AND city = '");
         sb.append(city);
