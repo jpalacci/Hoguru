@@ -211,5 +211,10 @@ public class Controller {
         Comment m = new Comment("a" , userName , d , hotelName);
         return m.delete();
     }
+
+    public List<Comment> getComments(String hotelName){
+    	return Comment.getComments(hotelName);
+	}
+
 	
 }
