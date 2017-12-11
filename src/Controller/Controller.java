@@ -194,6 +194,7 @@ public class Controller {
 	public static  void connect(){
         DataBaseFacade.connect();
     }
+    public static void disconnect(){DataBaseFacade.disconnect();}
 
     public long addReservation(String userName , Calendar checkIn , Calendar checkOut , Room room  ){
         Reservation r = new Reservation(userName , checkIn , checkOut , room);

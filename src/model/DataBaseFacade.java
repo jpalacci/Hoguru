@@ -725,6 +725,14 @@ public class DataBaseFacade
 
 
     }
+    public static void disconnect(){
+
+        DataBaseFacade db = getInstance();
+        db.r.desconectar();
+
+
+
+    }
 
     public boolean editRoom(Room r)
     {

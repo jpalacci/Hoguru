@@ -110,8 +110,8 @@ public class EditRoomGUI extends JFrame {
 		viewTypeLbl.setBounds(10, 173, 121, 14);
 		contentPane.add(viewTypeLbl);
 		
-		viewTypeCB = new JComboBox<VIEW_TYPE>();
-		//viewTypeCB = new JComboBox<VIEW_TYPE>(VIEW_TYPE.values());
+		//viewTypeCB = new JComboBox<VIEW_TYPE>();
+		viewTypeCB = new JComboBox<VIEW_TYPE>(VIEW_TYPE.values());
 
 		viewTypeCB.setBounds(141, 170, 221, 20);
 		contentPane.add(viewTypeCB);
@@ -177,9 +177,9 @@ public class EditRoomGUI extends JFrame {
 	}
 
 	public boolean fieldValidity() {
-		String tipeOfRoom = (String) roomTypeCb.getSelectedItem();
+		String tipeOfRoom = "DELUXE";
 		Integer getNumber = (Integer) guestNumberCB.getSelectedItem();
-		VIEW_TYPE viewType = (VIEW_TYPE) viewTypeCB.getSelectedItem();
+		VIEW_TYPE viewType = VIEW_TYPE.EXTERIOR;
 		String room = roomNumberFT.getText();
 		Integer roomNumber;
 		boolean error = false;

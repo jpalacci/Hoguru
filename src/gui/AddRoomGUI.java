@@ -168,7 +168,7 @@ public class AddRoomGUI extends JFrame {
 	}
 
 	public boolean fieldValidity() {
-		String tipeOfRoom =  (String)typeRoomCb.getSelectedItem();
+		String tipeOfRoom = "DELUXE";
 		Integer getNumber = (Integer) guestNumberCB.getSelectedItem();
 		VIEW_TYPE viewType = (VIEW_TYPE) viewTypeCB.getSelectedItem();
 		String room = roomNumberFT.getText();

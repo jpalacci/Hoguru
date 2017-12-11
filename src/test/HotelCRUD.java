@@ -16,7 +16,7 @@ import static junit.framework.TestCase.assertFalse;
 public class HotelCRUD {
     @Test
     public void addHotelWithValidParameters() {
-        Controller.connect();
+        //Controller.connect();
         AddHotelGUI screen = new AddHotelGUI(new JFrame());
         screen.getCityTf().setText("city");
         screen.getDirectionTf().setText("23 Test");
@@ -29,7 +29,7 @@ public class HotelCRUD {
 
     @Test
     public void addRoomWithInvalidDirection() {
-        Controller.connect();
+        //Controller.connect();
         AddHotelGUI screen = new AddHotelGUI(new JFrame());
         screen.getCityTf().setText("city");
         screen.getDirectionTf().setText("");
@@ -41,7 +41,7 @@ public class HotelCRUD {
 
     @Test
     public void addRoomWithInvalidName() {
-        Controller.connect();
+        // Controller.connect();
         AddHotelGUI screen = new AddHotelGUI(new JFrame());
         screen.getCityTf().setText("city");
         screen.getDirectionTf().setText("23 Test");
@@ -53,7 +53,7 @@ public class HotelCRUD {
 
     @Test
     public void addRoomWithInvalidStar() {
-        Controller.connect();
+        //Controller.connect();
         AddHotelGUI screen = new AddHotelGUI(new JFrame());
         screen.getCityTf().setText("city");
         screen.getDirectionTf().setText("23 Test");
@@ -65,7 +65,7 @@ public class HotelCRUD {
 
     @Test
     public void addRoomWithInvalidCity() {
-        Controller.connect();
+        //Controller.connect();
         AddHotelGUI screen = new AddHotelGUI(new JFrame());
         screen.getCityTf().setText("");
         screen.getDirectionTf().setText("23 Test");
@@ -76,8 +76,8 @@ public class HotelCRUD {
     }
 
     @Test
-    void modifyHotelWithValidParameters() {
-        Controller.connect();
+    public void modifyHotelWithValidParameters() {
+        //Controller.connect();
         Hotel hotel = new Hotel("hotel");
         EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
         screen.getCityTf().setText("city");
@@ -90,7 +90,7 @@ public class HotelCRUD {
 
     @Test
     public void modifyHotelWithInvalidCity() {
-        Controller.connect();
+        //Controller.connect();
         Hotel hotel = new Hotel("hotel");
         EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
         screen.getCityTf().setText("");
@@ -103,7 +103,7 @@ public class HotelCRUD {
 
     @Test
     public void modifyHotelWithInvalidDirection() {
-        Controller.connect();
+       // Controller.connect();
         Hotel hotel = new Hotel("hotel");
         EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
         screen.getCityTf().setText("city");
@@ -116,7 +116,7 @@ public class HotelCRUD {
 
     @Test
     public void modifyHotelWithInvalidName() {
-        Controller.connect();
+        //Controller.connect();
         Hotel hotel = new Hotel("hotel");
         EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
         screen.getCityTf().setText("city");
@@ -130,7 +130,7 @@ public class HotelCRUD {
 
     @Test
     public void modifyHotelWithInvalidRate() {
-        Controller.connect();
+        //Controller.connect();
         Hotel hotel = new Hotel("hotel");
         EditHotelGUI screen = new EditHotelGUI(new JFrame(),hotel);
         screen.getCityTf().setText("");

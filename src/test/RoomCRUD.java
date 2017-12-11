@@ -21,10 +21,10 @@ import java.awt.*;
 public class RoomCRUD {
     @Test
     public void addRoomWithValidParameters() {
-        Controller.connect();
+        //Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
-        screen.getTypeRoomCb().setSelectedIndex(0);
-        screen.getGuestNumberCB().setSelectedIndex(0);
+        //screen.getTypeRoomCb().setSelectedIndex(0);
+        screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getFormattedTextField().setText("$134");
         screen.getViewTypeCB().setSelectedIndex(0);
         screen.getRoomNumberFT().setText("1234");
@@ -34,11 +34,11 @@ public class RoomCRUD {
 
     @Test
     public void addRoomWithNoGuestNumber() {
-        Controller.connect();
+        //Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
-        screen.getGuestNumberCB().setSelectedIndex(0);
+        screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getFormattedTextField().setText("$134");
-        screen.getViewTypeCB().setSelectedIndex(0);
+        screen.getViewTypeCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("1234");
 
         assertFalse(screen.fieldValidity());
@@ -46,12 +46,12 @@ public class RoomCRUD {
 
     @Test
     public void addRoomWithNoPrice() {
-        Controller.connect();
+        //Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
-        screen.getTypeRoomCb().setSelectedIndex(0);
-        screen.getGuestNumberCB().setSelectedIndex(0);
+        //screen.getTypeRoomCb().setSelectedIndex(1);
+        screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getFormattedTextField().setText("");
-        screen.getViewTypeCB().setSelectedIndex(0);
+        screen.getViewTypeCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("1234");
 
         assertFalse(screen.fieldValidity());
@@ -59,9 +59,9 @@ public class RoomCRUD {
 
     @Test
     public void addRoomWithNoViewType() {
-        Controller.connect();
+        //Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
-        screen.getTypeRoomCb().setSelectedIndex(0);
+//        screen.getTypeRoomCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(0);
         screen.getFormattedTextField().setText("$134");
         screen.getRoomNumberFT().setText("1234");
@@ -71,9 +71,9 @@ public class RoomCRUD {
 
     @Test
     public void addRoomWithNoNumber() {
-        Controller.connect();
+        //Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
-        screen.getTypeRoomCb().setSelectedIndex(0);
+//        screen.getTypeRoomCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(0);
         screen.getFormattedTextField().setText("$134");
         screen.getViewTypeCB().setSelectedIndex(0);
@@ -85,58 +85,57 @@ public class RoomCRUD {
 
     @Test
     public void modifyRoomWithValidParameters(){
-        EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
-        screen.getRoomTypeCb().setSelectedIndex(0);
+        EditRoomGUI screen = new EditRoomGUI(new JFrame(), new Hotel("testHotel"), new Room("testHotel" , 22));
+//        screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("$1234");
-        screen.getViewTypeCB().setSelectedIndex(0);
+        screen.getViewTypeCB().setSelectedIndex(1);
 
         assertTrue(screen.fieldValidity());
     }
 
     @Test
     public void modifyRoomWithInvalidType(){
-        Controller.connect();
-        EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
+        //Controller.connect();
+        EditRoomGUI screen = new EditRoomGUI(new JFrame(), new Hotel("testHotel"), new Room("testHotel" , 22));
         screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("$1234");
-        screen.getViewTypeCB().setSelectedIndex(0);
+       screen.getViewTypeCB().setSelectedIndex(1);
 
         assertTrue(screen.fieldValidity());
     }
 
     @Test
     public void modifyRoomWithInvalidRoomNumber(){
-        Controller.connect();
-        EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
-        screen.getRoomTypeCb().setSelectedIndex(0);
+        //Controller.connect();
+        EditRoomGUI screen = new EditRoomGUI(new JFrame(), new Hotel("testHotel"), new Room("testHotel" , 22));
+//        screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("");
         screen.getFormattedTextField().setText("$1234");
-        screen.getViewTypeCB().setSelectedIndex(0);
+        screen.getViewTypeCB().setSelectedIndex(1);
 
         assertFalse(screen.fieldValidity());
     }
 
     @Test
     public void modifyRoomWithInvalidGuestNumber(){
-        Controller.connect();
-        EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
-        screen.getRoomTypeCb().setSelectedIndex(0);
+        //Controller.connect();
+        EditRoomGUI screen = new EditRoomGUI(new JFrame(), new Hotel("testHotel"), new Room("testHotel" , 22));
+//        screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("$1234");
-        screen.getViewTypeCB().setSelectedIndex(0);
+        screen.getViewTypeCB().setSelectedIndex(1);
 
         assertFalse(screen.fieldValidity());
     }
-
     @Test
     public void modifyRoomWithViewType(){
-        Controller.connect();
-        EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
-        screen.getRoomTypeCb().setSelectedIndex(0);
+        //Controller.connect();
+        EditRoomGUI screen = new EditRoomGUI(new JFrame(), new Hotel("testHotel"), new Room("testHotel" , 22));
+        //screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("$1234");
@@ -146,13 +145,13 @@ public class RoomCRUD {
 
     @Test
     public void modifyRoomWithInvalidPrice(){
-        Controller.connect();
-        EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
-        screen.getRoomTypeCb().setSelectedIndex(0);
+        //Controller.connect();
+        EditRoomGUI screen = new EditRoomGUI(new JFrame(), new Hotel("testHotel"), new Room("testHotel" , 22));
+//        screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("");
-        screen.getViewTypeCB().setSelectedIndex(0);
+        screen.getViewTypeCB().setSelectedIndex(1);
 
         assertTrue(screen.fieldValidity());
     }

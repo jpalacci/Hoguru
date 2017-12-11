@@ -16,7 +16,7 @@ public class RegisterTest {
 
     @Test
     public void registerWithValidFields() {
-        Controller.connect();
+        //Controller.connect();
         RegisterGUI screen = new RegisterGUI(new JFrame());
         screen.getAcceptConditionChckbx().doClick();
         screen.getCountryCb().setSelectedIndex(0);
@@ -40,7 +40,7 @@ public class RegisterTest {
 
     @Test
     public void registerWithIncompleteFields() {
-        Controller.connect();
+        //Controller.connect();
         RegisterGUI screen = new RegisterGUI(new JFrame());
         screen.getAcceptConditionChckbx().doClick();
         screen.getCountryCb().setSelectedIndex(0);
@@ -64,7 +64,7 @@ public class RegisterTest {
 
     @Test
     public void registerWithoutAcceptingConditions() {
-        Controller.connect();
+        //Controller.connect();
         RegisterGUI screen = new RegisterGUI(new JFrame());
         screen.getCountryCb().setSelectedIndex(0);
         screen.getDocumentNumberFtf().setText("2034565432");

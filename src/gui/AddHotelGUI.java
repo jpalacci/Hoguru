@@ -143,6 +143,7 @@ public class AddHotelGUI extends JFrame {
 		String direction = directionTf.getText().trim();
 		String rate =  rateFT.getText().trim();
 		String city = cityTf.getText().trim();
+		float rateNumber;
 		boolean error = !validFields();
 		if(error) {
 			return false;

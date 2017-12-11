@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class SearchTest {
     @Test
     public void searchWithValidFields() {
-        Controller.connect();
+        //Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("City");
         screen.getPeopleCb().setSelectedIndex(0);
@@ -23,7 +23,7 @@ public class SearchTest {
 
     @Test
     public void searchWithInvalidCity() {
-        Controller.connect();
+        //Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("");
         screen.getPeopleCb().setSelectedIndex(0);
@@ -35,7 +35,7 @@ public class SearchTest {
     @Test
     public void searchWithNoCheckIn() {
 
-        Controller.connect();
+        //Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("City");
         screen.getPeopleCb().setSelectedIndex(0);
@@ -46,7 +46,7 @@ public class SearchTest {
 
     @Test
     public void searchWithNoCheckOut() {
-        Controller.connect();
+        //Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("City");
         screen.getPeopleCb().setSelectedIndex(0);
