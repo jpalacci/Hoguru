@@ -166,7 +166,7 @@ public class AddRoomGUI extends JFrame {
 			deleteErrorMessage.start();
 			return false;
 		}
-		if(!controller.addRoom(hotel,tipeOfRoom,viewType,getNumber,roomNumber,true)){
+		if(!controller.addRoom(hotel,tipeOfRoom,viewType,roomNumber,getNumber,true)){
 			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
 			deleteErrorMessage.start();
 			return false;
