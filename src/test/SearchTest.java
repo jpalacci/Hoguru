@@ -1,14 +1,18 @@
 package test;
 
+import Controller.Controller;
 import gui.SearchHotelsGUI;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.Test;
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 
 public class SearchTest {
     @Test
-    void searchWithValidFields() {
+    public void searchWithValidFields() {
+        Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("City");
         screen.getPeopleCb().setSelectedIndex(0);
@@ -18,7 +22,8 @@ public class SearchTest {
     }
 
     @Test
-    void searchWithInvalidCity() {
+    public void searchWithInvalidCity() {
+        Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("");
         screen.getPeopleCb().setSelectedIndex(0);
@@ -28,7 +33,9 @@ public class SearchTest {
     }
 
     @Test
-    void searchWithNoCheckIn() {
+    public void searchWithNoCheckIn() {
+
+        Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("City");
         screen.getPeopleCb().setSelectedIndex(0);
@@ -38,7 +45,8 @@ public class SearchTest {
     }
 
     @Test
-    void searchWithNoCheckOut() {
+    public void searchWithNoCheckOut() {
+        Controller.connect();
         SearchHotelsGUI screen = new SearchHotelsGUI();
         screen.getCityTf().setText("City");
         screen.getPeopleCb().setSelectedIndex(0);

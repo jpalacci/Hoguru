@@ -1,17 +1,22 @@
 package test;
 
+import Controller.Controller;
 import gui.RegisterGUI;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.Test;
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 
 import javax.swing.*;
 
 public class RegisterTest {
 
     @Test
-    void registerWithValidFields() {
+    public void registerWithValidFields() {
+        Controller.connect();
         RegisterGUI screen = new RegisterGUI(new JFrame());
         screen.getAcceptConditionChckbx().doClick();
         screen.getCountryCb().setSelectedIndex(0);
@@ -34,7 +39,8 @@ public class RegisterTest {
     }
 
     @Test
-    void registerWithIncompleteFields() {
+    public void registerWithIncompleteFields() {
+        Controller.connect();
         RegisterGUI screen = new RegisterGUI(new JFrame());
         screen.getAcceptConditionChckbx().doClick();
         screen.getCountryCb().setSelectedIndex(0);
@@ -57,7 +63,8 @@ public class RegisterTest {
     }
 
     @Test
-    void registerWithoutAcceptingConditions() {
+    public void registerWithoutAcceptingConditions() {
+        Controller.connect();
         RegisterGUI screen = new RegisterGUI(new JFrame());
         screen.getCountryCb().setSelectedIndex(0);
         screen.getDocumentNumberFtf().setText("2034565432");

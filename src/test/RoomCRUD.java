@@ -1,20 +1,27 @@
 package test;
 
+import Controller.Controller;
 import gui.AddRoomGUI;
 import gui.EditHotelGUI;
 import gui.EditRoomGUI;
 import javafx.scene.control.ComboBox;
 import model.Hotel;
 import model.Room;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+
+import org.junit.Test;
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class RoomCRUD {
     @Test
-    void addRoomWithValidParameters() {
+    public void addRoomWithValidParameters() {
+        Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTypeRoomCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(0);
@@ -26,7 +33,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void addRoomWithNoGuestNumber() {
+    public void addRoomWithNoGuestNumber() {
+        Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getGuestNumberCB().setSelectedIndex(0);
         screen.getFormattedTextField().setText("$134");
@@ -37,7 +45,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void addRoomWithNoPrice() {
+    public void addRoomWithNoPrice() {
+        Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTypeRoomCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(0);
@@ -49,7 +58,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void addRoomWithNoViewType() {
+    public void addRoomWithNoViewType() {
+        Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTypeRoomCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(0);
@@ -60,7 +70,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void addRoomWithNoNumber() {
+    public void addRoomWithNoNumber() {
+        Controller.connect();
         AddRoomGUI screen = new AddRoomGUI(new JFrame(), new Hotel("hotel"));
         screen.getTypeRoomCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(0);
@@ -73,7 +84,7 @@ public class RoomCRUD {
 
 
     @Test
-    void modifyRoomWithValidParameters(){
+    public void modifyRoomWithValidParameters(){
         EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
         screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(1);
@@ -85,7 +96,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void modifyRoomWithInvalidType(){
+    public void modifyRoomWithInvalidType(){
+        Controller.connect();
         EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
         screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("123");
@@ -96,7 +108,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void modifyRoomWithInvalidRoomNumber(){
+    public void modifyRoomWithInvalidRoomNumber(){
+        Controller.connect();
         EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
         screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(1);
@@ -108,7 +121,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void modifyRoomWithInvalidGuestNumber(){
+    public void modifyRoomWithInvalidGuestNumber(){
+        Controller.connect();
         EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
         screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getRoomNumberFT().setText("123");
@@ -119,7 +133,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void modifyRoomWithViewType(){
+    public void modifyRoomWithViewType(){
+        Controller.connect();
         EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
         screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(1);
@@ -130,7 +145,8 @@ public class RoomCRUD {
     }
 
     @Test
-    void modifyRoomWithInvalidPrice(){
+    public void modifyRoomWithInvalidPrice(){
+        Controller.connect();
         EditRoomGUI screen = new EditRoomGUI(new JFrame(),null,null);
         screen.getRoomTypeCb().setSelectedIndex(0);
         screen.getGuestNumberCB().setSelectedIndex(1);

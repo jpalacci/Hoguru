@@ -1,14 +1,18 @@
 package test;
 
+import Controller.Controller;
 import gui.LoginGUI;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import org.junit.Test;
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 
 public class LoginTest {
     @Test
-    void loginWithValidFields() {
+    public void loginWithValidFields() {
+        Controller.connect();
         LoginGUI screen = new LoginGUI();
         screen.getUserTf().setText("User");
         String user = screen.getUserTf().getText();
@@ -18,7 +22,8 @@ public class LoginTest {
     }
 
     @Test
-    void loginWithIncompleteUser() {
+    public void loginWithIncompleteUser() {
+        Controller.connect();
         LoginGUI screen = new LoginGUI();
         screen.getUserTf().setText("");
         String user = screen.getUserTf().getText();
@@ -28,7 +33,8 @@ public class LoginTest {
     }
 
     @Test
-    void loginWithIncompletePassword() {
+    public  void loginWithIncompletePassword() {
+        Controller.connect();
         LoginGUI screen = new LoginGUI();
         screen.getUserTf().setText("User");
         String user = screen.getUserTf().getText();

@@ -1,17 +1,20 @@
 package test;
 
+import Controller.Controller;
 import gui.EditUserGUI;
 import model.Person;
-import org.junit.jupiter.api.Test;
+
 
 import javax.swing.*;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.Test;
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertFalse;
 
 public class EditUserTest {
+
    @Test
-   void editUserWithValidFields() {
+   public void editUserWithValidFields() {
+        Controller.connect();
         EditUserGUI screen = new EditUserGUI(new JFrame(),null);
         screen.getAcceptConditionChckbx().doClick();
         screen.getCountryCb().setSelectedIndex(0);
@@ -33,7 +36,8 @@ public class EditUserTest {
    }
 
    @Test
-   void editUserWithIncompleteFields() {
+   public void editUserWithIncompleteFields() {
+        Controller.connect();
         EditUserGUI screen = new EditUserGUI(new JFrame(),null);
         screen.getAcceptConditionChckbx().doClick();
         screen.getCountryCb().setSelectedIndex(0);
@@ -56,7 +60,8 @@ public class EditUserTest {
    }
 
    @Test
-   void editUserWithoutAcceptingCondition() {
+   public void editUserWithoutAcceptingCondition() {
+        Controller.connect();
         EditUserGUI screen = new EditUserGUI(new JFrame(),null);
         screen.getCountryCb().setSelectedIndex(0);
         screen.getDocumentNumberFtf().setText("2034565432");
