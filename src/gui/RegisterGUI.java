@@ -201,7 +201,6 @@ public class RegisterGUI {
 				if(isRegistrationValid()){
 					sendRegistration();
 					loginFrame.setVisible(true);
-					new ThankYouPopUpGUI();
 					frame.dispose();
 				}
 			}

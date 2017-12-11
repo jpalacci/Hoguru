@@ -15,15 +15,15 @@ public class ThankYouPopUpGUI {
 	private JLabel thanksLbl;
 	private JLabel explanationLbl;
 	private JButton acceptBtn;
-	
-	public ThankYouPopUpGUI() {
-		initialize();
+
+	public ThankYouPopUpGUI(long reservationCode) {
+		initialize(reservationCode);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(long reservationCode) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 226);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -35,7 +35,7 @@ public class ThankYouPopUpGUI {
 		thanksLbl.setBounds(125, 47, 183, 37);
 		frame.getContentPane().add(thanksLbl);
 		
-		explanationLbl = new JLabel(" Se ha enviado un correo electronico a su mail para confirmar el registro");
+		explanationLbl = new JLabel("Se ha enviado un correo electronico a su mail para confirmar la reserva nro: " + String.valueOf(reservationCode));
 		explanationLbl.setBounds(30, 95, 355, 14);
 		frame.getContentPane().add(explanationLbl);
 		

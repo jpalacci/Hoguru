@@ -71,7 +71,7 @@ public class SearchHotelsGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		messageLbl = new JLabel("Busca las mejores ofertas online:");
-		messageLbl.setBounds(10, 60, 276, 14);
+		messageLbl.setBounds(10, 60, 204, 14);
 		contentPane.add(messageLbl);
 		
 		cityLbl = new JLabel("Ciudad:");
@@ -120,7 +120,7 @@ public class SearchHotelsGUI extends JFrame {
 		contentPane.add(checkOutTextField);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(433, 110, 89, 23);
+		btnBuscar.setBounds(453, 144, 89, 23);
 		contentPane.add(btnBuscar);
 		
 		listModel = new DefaultListModel<Hotel>();
@@ -135,7 +135,7 @@ public class SearchHotelsGUI extends JFrame {
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
 		list.setVisibleRowCount(-1);
-		list.setBounds(10, 180, 512, 208);
+		list.setBounds(10, 180, 532, 208);
 		contentPane.add(list);
 		list.addListSelectionListener(new ListSelectionListener(){
 
@@ -147,6 +147,15 @@ public class SearchHotelsGUI extends JFrame {
 			
 		});
 		contentPane.add(list);
+		
+		JButton reservationButton = new JButton("Buscar Reserva");
+		reservationButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ReservationDisplayGUI();
+			}
+		});
+		reservationButton.setBounds(419, 110, 123, 23);
+		contentPane.add(reservationButton);
 		
 		btnBuscar.addActionListener(new ActionListener(){
 			@Override
@@ -207,5 +216,4 @@ public class SearchHotelsGUI extends JFrame {
 		
 		
 	}
-	
 }

@@ -81,7 +81,6 @@ public class AddHotelGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(isHotelValid()){
 					administratorFrame.setVisible(true);
-					new ThankYouPopUpGUI();
 					AddHotelGUI.this.dispose();
 				}
 				else{

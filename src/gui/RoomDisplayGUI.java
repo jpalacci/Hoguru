@@ -93,7 +93,8 @@ public class RoomDisplayGUI extends JFrame {
 		reserveBtn = new JButton("Reservar");
 		reserveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.addReservation(userName, checkIn, checkOut, room);
+				long reservationNumber = controller.addReservation(userName, checkIn, checkOut, room);
+				new ThankYouPopUpGUI(reservationNumber);
 				dispose();
 			}
 

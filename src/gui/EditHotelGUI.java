@@ -86,7 +86,6 @@ public class EditHotelGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(isHotelValid()){
 					administratorFrame.setVisible(true);
-					new ThankYouPopUpGUI();
 					EditHotelGUI.this.dispose();
 				}
 				else{
@@ -140,6 +139,11 @@ public class EditHotelGUI extends JFrame {
 		contentPane.add(rateFT);
 		
 		JButton viewTypesBtn = new JButton("Ver Tipos de Habitacion");
+		viewTypesBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new JListRoomTypesGUI(hotel, EditHotelGUI.this);
+			}
+		});
 		viewTypesBtn.setBounds(20, 253, 158, 23);
 		contentPane.add(viewTypesBtn);
 		

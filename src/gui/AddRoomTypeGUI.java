@@ -36,6 +36,7 @@ public class AddRoomTypeGUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		setVisible(true);
 		contentPane.setLayout(null);
 		
 		this.controller = controller;

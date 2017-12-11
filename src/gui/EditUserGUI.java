@@ -205,7 +205,6 @@ public class EditUserGUI extends JFrame {
 				if(isRegistrationValid()){
 					sendChanges();
 					loginFrame.setVisible(true);
-					new ThankYouPopUpGUI();
 					frame.dispose();
 				}
 			}

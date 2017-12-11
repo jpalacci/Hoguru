@@ -68,7 +68,6 @@ public class AddRoomGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(isRoomValid()){
 					editHotelFrame.setVisible(true);
-					new ThankYouPopUpGUI();
 					AddRoomGUI.this.dispose();
 				}
 			}

@@ -24,12 +24,12 @@ public class JListRoomTypesGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JList list;
-	private DefaultListModel<RoomType> listModel;
+	private DefaultListModel<String> listModel;
 	private JScrollPane listScroller;
 	private JFrame hotelFrame;
 	private Hotel hotel;
 	private Controller controller;
-	
+	private List<String> roomTypes;
 	
 	public JListRoomTypesGUI(Hotel hotel, JFrame hotelFrame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,9 +42,13 @@ public class JListRoomTypesGUI extends JFrame {
 		this.hotelFrame = hotelFrame;
 		this.hotel = hotel;
 		
-		listModel = new DefaultListModel<RoomType>();
+		listModel = new DefaultListModel<String>();
 
-		//TODO controller
+		roomTypes = controller.getRoomTypes(hotel.getName());
+		
+		for(String roomType: roomTypes){
+			listModel.addElement(roomType);
+		}
 		
 
 		listScroller = new JScrollPane();
@@ -54,7 +58,7 @@ public class JListRoomTypesGUI extends JFrame {
 		
 		contentPane.setLayout(null);
 		contentPane.add(listScroller);
-		list = new JList<RoomType>(listModel);
+		list = new JList<String>(listModel);
 		list.setBounds(0, 0, 282, 157);
 		contentPane.add(list);
 		list.setLayoutOrientation(JList.VERTICAL);
@@ -62,8 +66,8 @@ public class JListRoomTypesGUI extends JFrame {
 		JButton Cancel = new JButton("Cancel");
 		Cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
 				hotelFrame.setVisible(true);
+				dispose();
 			}
 		});
 		Cancel.setBounds(0, 162, 72, 24);
@@ -77,11 +81,11 @@ public class JListRoomTypesGUI extends JFrame {
 					 return;
 			     } else{
 			    	 int[] indices = list.getSelectedIndices();
-			    	 DefaultListModel<Room> model = (DefaultListModel<Room>) list.getModel();
+			    	 DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
 
 			    	 for(int i = 0 ; i <= indices.length; i++){
-						controller.deleteRoom(model.getElementAt(indices[i]));
-						model.remove(indices[i]);
+						controller.deleteRoomTypeFromHotel(hotel.getName(), model.getElementAt(indices[i]-i));
+						model.remove(indices[i]-i);
 			    	 }
 			    	
 			     }
