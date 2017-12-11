@@ -129,7 +129,10 @@ public class Controller {
 		return RoomType.getRoomTypes(hotelName);
 
 	}
-	
+
+	public Hotel getHotel(String hotelName){
+	    return Hotel.getHotel(hotelName);
+    }
 	public List<Hotel> getHotels(){
 	    return Hotel.getHotels();
 	}
