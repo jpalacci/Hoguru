@@ -28,7 +28,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("$134");
         screen.getViewTypeCB().setSelectedIndex(0);
         screen.getRoomNumberFT().setText("1234");
-
+        Controller.disconnect();
         assertTrue(screen.fieldValidity());
     }
 
@@ -40,7 +40,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("$134");
         screen.getViewTypeCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("1234");
-
+        Controller.disconnect();
         assertFalse(screen.fieldValidity());
     }
 
@@ -53,7 +53,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("");
         screen.getViewTypeCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("1234");
-
+        Controller.disconnect();
         assertFalse(screen.fieldValidity());
     }
 
@@ -65,7 +65,7 @@ public class RoomCRUD {
         screen.getGuestNumberCB().setSelectedIndex(0);
         screen.getFormattedTextField().setText("$134");
         screen.getRoomNumberFT().setText("1234");
-
+        Controller.disconnect();
         assertFalse(screen.fieldValidity());
     }
 
@@ -78,7 +78,7 @@ public class RoomCRUD {
         screen.getFormattedTextField().setText("$134");
         screen.getViewTypeCB().setSelectedIndex(0);
         screen.getRoomNumberFT().setText("");
-
+        Controller.disconnect();
         assertFalse(screen.fieldValidity());
     }
 
@@ -91,7 +91,7 @@ public class RoomCRUD {
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("$1234");
         screen.getViewTypeCB().setSelectedIndex(1);
-
+        Controller.disconnect();
         assertTrue(screen.fieldValidity());
     }
 
@@ -103,7 +103,7 @@ public class RoomCRUD {
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("$1234");
        screen.getViewTypeCB().setSelectedIndex(1);
-
+        Controller.disconnect();
         assertTrue(screen.fieldValidity());
     }
 
@@ -116,7 +116,7 @@ public class RoomCRUD {
         screen.getRoomNumberFT().setText("");
         screen.getFormattedTextField().setText("$1234");
         screen.getViewTypeCB().setSelectedIndex(1);
-
+        Controller.disconnect();
         assertFalse(screen.fieldValidity());
     }
 
@@ -128,7 +128,7 @@ public class RoomCRUD {
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("$1234");
         screen.getViewTypeCB().setSelectedIndex(1);
-
+        Controller.disconnect();
         assertFalse(screen.fieldValidity());
     }
     @Test
@@ -139,7 +139,7 @@ public class RoomCRUD {
         screen.getGuestNumberCB().setSelectedIndex(1);
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("$1234");
-
+        Controller.disconnect();
         assertFalse(screen.fieldValidity());
     }
 
@@ -152,7 +152,7 @@ public class RoomCRUD {
         screen.getRoomNumberFT().setText("123");
         screen.getFormattedTextField().setText("");
         screen.getViewTypeCB().setSelectedIndex(1);
-
+        Controller.disconnect();
         assertTrue(screen.fieldValidity());
     }
 
