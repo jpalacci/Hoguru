@@ -59,7 +59,23 @@ public class SearchHotelsGUI extends JFrame {
 	private Calendar checkIn;
 	private Calendar checkOut;
 
-	
+
+	public JTextField getCityTf() {
+		return cityTf;
+	}
+
+	public JComboBox getPeopleCb() {
+		return peopleCb;
+	}
+
+	public JFormattedTextField getCheckOutTextField() {
+		return checkOutTextField;
+	}
+
+	public JFormattedTextField getCheckInTextField() {
+		return checkInTextField;
+	}
+
 	public SearchHotelsGUI() {
 		controller = new Controller();
 		user = controller.getActivePerson();
@@ -213,7 +229,8 @@ public class SearchHotelsGUI extends JFrame {
 			}
 
         });
-		
+
+
 		
 	}
 }

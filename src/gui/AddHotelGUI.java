@@ -147,9 +147,30 @@ public class AddHotelGUI extends JFrame {
 		String rate =  rateFT.getText().trim();
 		String city = cityTf.getText().trim();
 		float rateNumber;
+		boolean error = validFields();
+		if(error) {
+			return false;
+		}
+		try{
+			rateNumber = Float.parseFloat(rate);
+		}catch(Exception e){
+			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
+			deleteErrorMessage.start();
+			return false;
+		}
+		
+		return controller.isValidHotel(hotelName,direction, rateNumber, true, city);
+	}
+
+	public boolean validFields() {
+		String hotelName = hotelNameTf.getText().trim();
+		String direction = directionTf.getText().trim();
+		String rate =  rateFT.getText().trim();
+		String city = cityTf.getText().trim();
+		float rateNumber;
 		boolean error = false;
-		
-		
+
+
 		if(hotelName.equals(""))
 		{
 			hotelNameTf.setBorder(BorderFactory.createLineBorder(Color.red));
@@ -170,22 +191,13 @@ public class AddHotelGUI extends JFrame {
 			rateFT.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
-
 		if(error)
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
 			return false;
 		}
-		try{
-			rateNumber = Float.parseFloat(rate);
-		}catch(Exception e){
-			errorLbl.setText("Ponga un numero valido como cantidad de Estrellas");
-			deleteErrorMessage.start();
-			return false;
-		}
-		
-		return controller.isValidHotel(hotelName,direction, rateNumber, true, city);
+		return true;
 	}
 
 	
@@ -200,5 +212,9 @@ public class AddHotelGUI extends JFrame {
 
 	public JTextField getRateFT() {
 		return rateFT;
+	}
+
+	public JTextField getCityTf() {
+		return cityTf;
 	}
 }

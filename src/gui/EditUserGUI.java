@@ -356,7 +356,7 @@ public class EditUserGUI extends JFrame {
 		
 	}
 
-	protected boolean isRegistrationValid() {
+	public boolean isRegistrationValid() {
 		String mail = mailTf.getText().trim();
 		String password1 = new String(passwordField.getPassword()).trim();
 		String password2 = new String(passwordConfirmationField.getPassword()).trim();
@@ -525,5 +525,9 @@ public class EditUserGUI extends JFrame {
 
 	public JFormattedTextField getTelephoneFtf() {
 		return telephoneFtf;
+	}
+
+	public JComboBox<PHONE_TYPE> getPhoneTypeCB() {
+		return phoneTypeCB;
 	}
 }

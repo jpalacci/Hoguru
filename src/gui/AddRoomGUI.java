@@ -147,8 +147,29 @@ public class AddRoomGUI extends JFrame {
 		VIEW_TYPE viewType = (VIEW_TYPE) viewTypeCB.getSelectedItem();
 		String room = roomNumberFT.getText();
 		Integer roomNumber;
+		boolean error = fieldValidity();
+		if(error) {
+			return false;
+		}
+		try{
+			roomNumber = Integer.parseInt(room);
+		}catch(Exception e){
+			errorLbl.setText("Ponga un numero valido como numero de la habitacion");
+			deleteErrorMessage.start();
+			return false;
+		}
+
+		return controller.isValidRoom(hotel,tipeOfRoom,viewType,getNumber,roomNumber,true);
+	}
+
+	public boolean fieldValidity() {
+		String tipeOfRoom =  (String)typeRoomCb.getSelectedItem();
+		Integer getNumber = (Integer) guestNumberCB.getSelectedItem();
+		VIEW_TYPE viewType = (VIEW_TYPE) viewTypeCB.getSelectedItem();
+		String room = roomNumberFT.getText();
+		Integer roomNumber;
 		boolean error = false;
-		
+
 		if(tipeOfRoom.equals(""))
 		{
 			typeRoomCb.setBorder(BorderFactory.createLineBorder(Color.red));
@@ -169,22 +190,14 @@ public class AddRoomGUI extends JFrame {
 			viewTypeCB.setBorder(BorderFactory.createLineBorder(Color.red));
 			error = true;
 		}
-		
+
 		if(error)
 		{
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
 			return error;
 		}
-		try{
-			roomNumber = Integer.parseInt(room);
-		}catch(Exception e){
-			errorLbl.setText("Ponga un numero valido como numero de la habitacion");
-			deleteErrorMessage.start();
-			return false;
-		}
-		
-		return controller.isValidRoom(hotel,tipeOfRoom,viewType,getNumber,roomNumber,true);
+		return true;
 	}
 
 	public JComboBox getGuestNumberCB() {
@@ -197,5 +210,17 @@ public class AddRoomGUI extends JFrame {
 
 	public JFormattedTextField getFormattedTextField() {
 		return roomNumberFT;
+	}
+
+	public JFormattedTextField getRoomNumberFT() {
+		return roomNumberFT;
+	}
+
+	public JComboBox<VIEW_TYPE> getViewTypeCB() {
+		return viewTypeCB;
+	}
+
+	public JComboBox<String> getTypeRoomCb() {
+		return typeRoomCb;
 	}
 }
