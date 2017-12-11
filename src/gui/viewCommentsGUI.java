@@ -2,12 +2,15 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controller.Controller;
+import model.Comment;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
@@ -16,6 +19,7 @@ public class viewCommentsGUI extends JFrame {
 
 	private JPanel contentPane;
 	private Controller controller = new Controller();
+	private JTextArea commentViewrTa;
 	
 	public viewCommentsGUI(String hotelName) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -26,8 +30,8 @@ public class viewCommentsGUI extends JFrame {
 		contentPane.setLayout(null);
 		setVisible(true);
 		setResizable(false);
-		JTextArea commentViewrTa = new JTextArea();
-		commentViewrTa.setBounds(0, 29, 434, 232);
+		 commentViewrTa = new JTextArea();
+		commentViewrTa.setBounds(10, 29, 424, 232);
 		contentPane.add(commentViewrTa);
 		
 		JLabel hotelNameLbl = new JLabel("");
@@ -39,7 +43,10 @@ public class viewCommentsGUI extends JFrame {
 	}
 
 	private void loadComments(String hotelName) {
-		
-		//controller.getComment(hotelName);
+	
+		List<Comment> comments = controller.getComments(hotelName);
+		for(Comment comment: comments){
+			commentViewrTa.append(comment.toString());
+		}
 	}
 }
