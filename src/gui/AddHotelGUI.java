@@ -104,7 +104,7 @@ public class AddHotelGUI extends JFrame {
 		
 		errorLbl = new JLabel("");
 		errorLbl.setForeground(Color.RED);
-		errorLbl.setBounds(10, 262, 384, 14);
+		errorLbl.setBounds(0, 261, 415, 14);
 		contentPane.add(errorLbl);
 		
 		rateFT = new JFormattedTextField();

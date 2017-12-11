@@ -140,20 +140,20 @@ public class AddRoomTypeGUI extends JFrame {
 		if(error){
 			errorLbl.setText("Complete los campos en rojo");
 			deleteErrorMessage.start();
-			return error;
+			return !error;
 		}
 		try{
 			priceNumber = Double.parseDouble(price);
 		}catch(Exception e){
 			errorLbl.setText("Ponga un numero valido para el precio");
 			deleteErrorMessage.start();
-			return error;
+			return false;
 		}
 		
 		if(!controller.addRoomTypeToHotel(hotel.getName(), description, name, priceNumber)){
 			errorLbl.setText("Hay porblemas con la base de datos por favor vuelva a intentar");
 			deleteErrorMessage.start();
-			return error;
+			return false;
 		}
 		return true;
 	}

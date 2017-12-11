@@ -90,10 +90,6 @@ public class EditHotelGUI extends JFrame {
 					administratorFrame.setVisible(true);
 					EditHotelGUI.this.dispose();
 				}
-				else{
-					errorLbl.setText("El hotel no se pudo crear, intentelo devuelta");
-					deleteErrorMessage.start();
-				}
 			}
 		});
 		
@@ -133,7 +129,7 @@ public class EditHotelGUI extends JFrame {
 		
 		errorLbl = new JLabel("");
 		errorLbl.setForeground(Color.RED);
-		errorLbl.setBounds(30, 334, 285, 14);
+		errorLbl.setBounds(0, 336, 415, 14);
 		contentPane.add(errorLbl);
 		
 		rateFT = new JFormattedTextField();
