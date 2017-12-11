@@ -79,7 +79,7 @@ public class Controller {
 		return actualPerson;
 	}
 		
-	public boolean isValidHotel(String name, String direction,float rate, boolean isNewHotel , String city){
+	public boolean addHotel(String name, String direction,float rate , String city , boolean isNewHotel){
 			Hotel h = new Hotel(name);
 			h.setRate(rate);
 			h.setDirection(direction);
@@ -116,7 +116,7 @@ public class Controller {
         }
     }
 
-	public boolean isValidRoom(Hotel hotel, String tipeOfRoom, VIEW_TYPE viewType, int number,int capacity, boolean isNewRoom){
+	public boolean addRoom(Hotel hotel, String tipeOfRoom, VIEW_TYPE viewType, int number,int capacity, boolean isNewRoom){
 			Room r = new Room(hotel.getName(),number);
 			r.setCapacity(capacity);
 			r.setType(tipeOfRoom);

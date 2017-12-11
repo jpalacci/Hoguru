@@ -159,7 +159,7 @@ public class AddHotelGUI extends JFrame {
 			return false;
 		}
 		
-		return controller.isValidHotel(hotelName,direction, rateNumber, true, city);
+		return controller.addHotel(hotelName,direction, rateNumber, city, true);
 	}
 
 	public boolean validFields() {

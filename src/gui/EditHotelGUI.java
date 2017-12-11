@@ -213,7 +213,7 @@ public class EditHotelGUI extends JFrame {
 			return false;
 		}
 
-		return controller.isValidHotel(hotelName,direction, rateNumber, false, city);
+		return controller.addHotel(hotelName,direction, rateNumber, city, false);
 	}
 
 	public boolean validFields() {

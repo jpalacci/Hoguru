@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
+import java.awt.TextArea;
+import java.awt.Button;
 
 public class RoomDisplayGUI extends JFrame {
 
@@ -37,7 +39,7 @@ public class RoomDisplayGUI extends JFrame {
 	
 	public RoomDisplayGUI(Room room, Calendar checkIn, Calendar checkOut, String city, int numberOfPeople, String userName) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 216);
+		setBounds(100, 100, 450, 253);
 		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -102,6 +104,10 @@ public class RoomDisplayGUI extends JFrame {
 		reserveBtn.setBounds(286, 139, 89, 23);
 		contentPane.add(reserveBtn);
 		
+		JLabel writeCommentLbl = new JLabel("Escribe un comentario del hotel:");
+		writeCommentLbl.setBounds(10, 168, 213, 14);
+		contentPane.add(writeCommentLbl);
+		
 		loadRoom();
 	}
 	
@@ -114,5 +120,4 @@ public class RoomDisplayGUI extends JFrame {
 		roomPriceLbl.setText(String.valueOf(room.getNightCost()));;
 		
 	}
-
 }

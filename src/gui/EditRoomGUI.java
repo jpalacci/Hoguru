@@ -169,7 +169,7 @@ public class EditRoomGUI extends JFrame {
 			return false;
 		}
 		
-		return controller.isValidRoom(hotel,tipeOfRoom,viewType,roomNumber,getNumber,false);
+		return controller.addRoom(hotel,tipeOfRoom,viewType,roomNumber,getNumber,false);
 	}
 
 	public boolean fieldValidity() {

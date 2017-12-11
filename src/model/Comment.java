@@ -71,4 +71,12 @@ public class Comment {
 	public Calendar getDate() {
 		return date;
 	}
+
+	@Override
+	public String toString() {
+		return  nombreUsuario + " -- " + "Comentario: " + comment
+				+System.lineSeparator()+ " Publicado en:" + date ;
+	}
+	
+	
 }

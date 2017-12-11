@@ -29,7 +29,7 @@ public class JListRoomResultsGUI extends JFrame  {
 	
 	public JListRoomResultsGUI(Hotel hotel, Calendar checkIn,Calendar checkOut, String city , int numberOfPeople, String userName) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 304, 225);
+		setBounds(100, 100, 325, 264);
 		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,10 +46,22 @@ public class JListRoomResultsGUI extends JFrame  {
 		
 		contentPane.setLayout(null);
 		list = new JList<Room>(listModel);
-		list.setBounds(0, 0, 282, 186);
+		list.setBounds(0, 0, 309, 186);
 		contentPane.add(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
+		
+		JButton btnNewButton = new JButton("Agregar Comentario");
+		btnNewButton.setBounds(149, 197, 150, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnVerComentarios = new JButton("Ver Comentarios");
+		btnVerComentarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnVerComentarios.setBounds(0, 197, 139, 23);
+		contentPane.add(btnVerComentarios);
 		list.addListSelectionListener(new ListSelectionListener(){
 
 			@Override
