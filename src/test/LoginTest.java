@@ -20,7 +20,7 @@ public class LoginTest {
         String user = screen.getUserTf().getText();
         screen.getPasswordField().setText("name");
         String pword = screen.getPasswordField().getPassword().toString();
-        assertNotEquals(1,0);
+        assertNotEquals(screen.isValid(user , pword),0);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class LoginTest {
         String user = screen.getUserTf().getText();
         screen.getPasswordField().setText("Key");
         String pword = screen.getPasswordField().getPassword().toString();
-        assertEquals(0,0);
+        assertEquals(screen.isValid(user , pword),0);
     }
 
     @Test
@@ -42,6 +42,6 @@ public class LoginTest {
         String user = screen.getUserTf().getText();
         screen.getPasswordField().setText("");
         String pword = screen.getPasswordField().getPassword().toString();
-        assertEquals(0,0);
+        assertEquals(screen.isValid(user , pword),0);
     }
 }
