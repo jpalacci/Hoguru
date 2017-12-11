@@ -34,6 +34,7 @@ public class Comment {
 		this.comment=comment;
 		this.nombreUsuario=nombreUsuario;
 		this.date=date;
+		this.hotelName = hotelName;
 	}
 	
 	public static Comment getComment(String hotelName, String userName , Calendar date) {
@@ -76,7 +77,7 @@ public class Comment {
 	@Override
 	public String toString() {
 		return  nombreUsuario + " -- " + "Comentario: " + comment
-				+System.lineSeparator()+ " Publicado en:" + date ;
+				+System.lineSeparator()+ " Publicado en: " + CalendarTranslator.calendarToString(date) ;
 	}
 
 	public static List<Comment> getComments(String hotelName){

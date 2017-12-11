@@ -33,7 +33,7 @@ public class AddCommentGUI extends JFrame {
 		setResizable(false);
 		
 		JTextArea commentTa = new JTextArea();
-		commentTa.setBounds(0, 25, 434, 119);
+		commentTa.setBounds(10, 25, 424, 119);
 		contentPane.add(commentTa);
 		addBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -42,7 +42,9 @@ public class AddCommentGUI extends JFrame {
 				if(comment.equals("")){
 					return;
 				}
-				controller.addComment(comment, userName, today, hotelName);
+				if(controller.addComment(comment, userName, today, hotelName)){
+					dispose();
+				}
 			}
 		});
 		addBtn.setBounds(304, 155, 120, 31);

@@ -197,7 +197,7 @@ public class SearchHotelsGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				checkIn = CalendarTranslator.stringToCalendar(checkInTextField.getText().trim());
 				checkOut = CalendarTranslator.stringToCalendar(checkOutTextField.getText().trim());
-				if(checkIn == null || checkOut == null){
+				if(checkIn == null || checkOut == null || checkOut.before(checkIn) || checkIn.before(Calendar.getInstance())){
 					errorLbl.setText("Por favor ingrese una fecha valida");
 					deleteErrorMessage.start();
 					listModel.clear();
